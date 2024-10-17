@@ -32,6 +32,7 @@ func _ready() -> void:
 	_ui.register_action_handler(UIAT.ACTION_START_SINGLEPLAYER, _UIStartGame)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_GAME, _UIQuitGame)
 	_ui.register_action_handler(UIAT.ACtION_RESUME_GAME, _UIResumeGame)
+	_LoadSettings()
 
 func _input(event: InputEvent) -> void:
 	if _active_level != null and not get_tree().paused:
@@ -46,6 +47,11 @@ func _input(event: InputEvent) -> void:
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
+func _LoadSettings() -> void:
+	if Settings.load() != OK:
+		Settings.request_reset()
+		Settings.save()
+
 func _CloseActiveLevel() -> void:
 	if _active_level == null: return
 	remove_child(_active_level)

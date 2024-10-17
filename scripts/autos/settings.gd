@@ -13,7 +13,7 @@ signal value_changed(section : String, key : String, value : Variant)
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
-const CONFIG_FILE_PATH_DEFAULT : String = "user://tower.cfg"
+const CONFIG_FILE_PATH_DEFAULT : String = "user://game_settings.cfg"
 
 # ------------------------------------------------------------------------------
 # Export Variables
