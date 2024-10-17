@@ -48,8 +48,7 @@ _subresources={
 "generate/physics": true
 },
 "PATH:Glass_002LT": {
-"generate/physics": true,
-"import/skip_import": true
+"generate/physics": true
 },
 "PATH:Window_001LT": {
 "generate/physics": true
