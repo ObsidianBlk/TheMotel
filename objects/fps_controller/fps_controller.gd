@@ -19,10 +19,12 @@ const CAMERA_PITCH_ANGLE : float = deg_to_rad(70.0)
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
-var _mouse_sensitivity : Vector2 = Vector2(0.02, 0.02)
+var _mouse_rotation : Vector2 = Vector2.ZERO
+var _mouse_sensitivity : Vector2 = Vector2(0.2, 0.2)
 
 var _gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _input : Vector2 = Vector2.ZERO
+var _look_input : Vector2 = Vector2.ZERO
 var _jump : bool = false
 
 var _interactable : Interactable = null
@@ -43,7 +45,8 @@ var _interactable : Interactable = null
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
-	pass
+	MSense.sensitivity_changed.connect(_on_msense_sensitivity_changed)
+	_mouse_sensitivity = MSense.get_sensitivity_vector()
 
 func _unhandled_input(event: InputEvent) -> void:
 	#if event.is_action_pressed("ui_cancel"):
@@ -56,13 +59,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	
 	if event is InputEventMouseMotion:
-		_UpdateView(event.relative * _mouse_sensitivity)
+		_look_input = event.relative * _mouse_sensitivity
+		#_UpdateView(event.relative * _mouse_sensitivity)
 	elif event.is_action("move_forward") or event.is_action("move_backward") or event.is_action("move_left") or event.is_action("move_right"):
 		_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 
 func _physics_process(delta: float) -> void:
 	_CheckForInteractable()
-
+	
+	_UpdateView(delta)
+	
 	velocity.y += -_gravity * delta
 	var move_dir : Vector3 = transform.basis * Vector3(_input.x, 0.0, _input.y)
 	velocity.x = move_dir.x * speed
@@ -76,11 +82,19 @@ func _physics_process(delta: float) -> void:
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
-func _UpdateView(look_relative : Vector2) -> void:
+func _UpdateView(delta : float) -> void:
 	if _camera == null: return
-	rotate_y(-look_relative.x)
-	_camera.rotate_x(-look_relative.y)
-	_camera.rotation.x = clampf(_camera.rotation.x, -CAMERA_PITCH_ANGLE, CAMERA_PITCH_ANGLE)
+	
+	_mouse_rotation.x += -_look_input.y * delta
+	_mouse_rotation.x = clampf(_mouse_rotation.x, -CAMERA_PITCH_ANGLE, CAMERA_PITCH_ANGLE)
+	_mouse_rotation.y = wrapf(_mouse_rotation.y + (-_look_input.x * delta), 0.0, 2*PI)
+	
+	
+	global_transform.basis = Basis.from_euler(Vector3(0.0, _mouse_rotation.y, 0.0))
+	_camera.transform.basis = Basis.from_euler(Vector3(_mouse_rotation.x, 0.0, 0.0))
+	_camera.rotation.z = 0.0
+	
+	_look_input = Vector2.ZERO
 
 
 func _CheckForInteractable() -> void:
@@ -102,3 +116,5 @@ func _CheckForInteractable() -> void:
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
+func _on_msense_sensitivity_changed(sensitivity : Vector2) -> void:
+	_mouse_sensitivity = sensitivity
