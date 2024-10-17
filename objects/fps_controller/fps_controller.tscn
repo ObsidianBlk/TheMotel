@@ -5,7 +5,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ukdfn"]
 radius = 0.35
-height = 1.6
+height = 1.82
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_d4css"]
 dof_blur_far_enabled = true
@@ -14,13 +14,14 @@ dof_blur_far_enabled = true
 script = ExtResource("1_5myhk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.912729, 0)
 shape = SubResource("CapsuleShape3D_ukdfn")
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48245, 0.25)
 attributes = SubResource("CameraAttributesPractical_d4css")
 current = true
+fov = 47.9
 
 [node name="CameraRay" type="RayCast3D" parent="Camera"]
 unique_name_in_owner = true
