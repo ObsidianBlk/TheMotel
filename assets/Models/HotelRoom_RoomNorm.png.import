@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://dowu3ti8m64uk"
+path.s3tc="res://.godot/imported/HotelRoom_RoomNorm.png-95735fe36f6c45b24fabe912d756febe.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "2b0bf02f7c9b484386d3aa168fa79cff"
+}
+
+[deps]
+
+source_file="res://assets/Models/HotelRoom_RoomNorm.png"
+dest_files=["res://.godot/imported/HotelRoom_RoomNorm.png-95735fe36f6c45b24fabe912d756febe.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=1
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=1
+roughness/src_normal="res://assets/Models/HotelRoom_RoomNorm.png"
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

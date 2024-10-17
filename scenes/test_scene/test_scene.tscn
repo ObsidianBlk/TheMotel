@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bkmhrjnkx1ih0"]
+[gd_scene load_steps=11 format=3 uid="uid://bkmhrjnkx1ih0"]
 
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="1_wnr84"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_nl23n"]
 [ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="3_k3734"]
+[ext_resource type="PackedScene" uid="uid://dtqr6pgb3tyht" path="res://assets/Models/HotelRoom.glb" id="4_lhmmm"]
 
 [sub_resource type="Environment" id="Environment_gh8v3"]
 background_mode = 2
@@ -99,3 +100,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 28)
 
 [node name="GhostPath_05" type="Node3D" parent="." groups=["GhostPath"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 28)
+
+[node name="HotelRoom" parent="." instance=ExtResource("4_lhmmm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.757745, 4.76837e-07, -6.26257)
