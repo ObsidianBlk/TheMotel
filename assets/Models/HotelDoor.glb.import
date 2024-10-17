@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b4fpwo48wbpfn"
-path="res://.godot/imported/HotelDoorsWindowsAndFloor.glb-8bfc46d5a43b565fcf699425359fa939.scn"
+uid="uid://ch1cwgn32h01v"
+path="res://.godot/imported/HotelDoor.glb-21b965ecb5ae5d57acf1655a082d393d.scn"
 
 [deps]
 
-source_file="res://assets/Models/HotelDoorsWindowsAndFloor.glb"
-dest_files=["res://.godot/imported/HotelDoorsWindowsAndFloor.glb-8bfc46d5a43b565fcf699425359fa939.scn"]
+source_file="res://assets/Models/HotelDoor.glb"
+dest_files=["res://.godot/imported/HotelDoor.glb-21b965ecb5ae5d57acf1655a082d393d.scn"]
 
 [params]
 
@@ -33,26 +33,31 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Door Frame_003LT": {
-"generate/physics": true
+"PATH:Door Frame_002LT": {
+"import/skip_import": true
 },
-"PATH:Door_002LT": {
+"PATH:Door Frame_003LT": {
 "generate/physics": true,
 "import/skip_import": true
+},
+"PATH:Door_002LT": {
+"generate/physics": true
 },
 "PATH:Door_003LT": {
 "generate/physics": true,
 "import/skip_import": true
 },
 "PATH:Floor_001LT": {
-"generate/physics": true
+"generate/physics": true,
+"import/skip_import": true
 },
 "PATH:Glass_002LT": {
 "generate/physics": true,
 "import/skip_import": true
 },
 "PATH:Window_001LT": {
-"generate/physics": true
+"generate/physics": true,
+"import/skip_import": true
 }
 }
 }
