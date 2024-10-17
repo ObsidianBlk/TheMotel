@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://beg6m72kwbn07"]
+
+[ext_resource type="PackedScene" uid="uid://d4avrfo24c0dj" path="res://assets/Models/HotelRoom.glb" id="1_0rpph"]
+[ext_resource type="PackedScene" uid="uid://b4fpwo48wbpfn" path="res://assets/Models/HotelDoorsWindowsAndFloor.glb" id="2_ahfc3"]
+
+[node name="HotelRoom" type="Node3D"]
+
+[node name="HotelRoom" parent="." instance=ExtResource("1_0rpph")]
+
+[node name="HotelDoorsWindowsAndFloor" parent="." instance=ExtResource("2_ahfc3")]

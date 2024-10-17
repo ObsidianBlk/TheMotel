@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwgo8xrqjlqru"
-path.s3tc="res://.godot/imported/HotelRoom_RoomNorm.png-95735fe36f6c45b24fabe912d756febe.s3tc.ctex"
+uid="uid://devrtmg5mgelo"
+path.s3tc="res://.godot/imported/HotelDoorsWindowsAndFloor_DoorsWindowsFloorColor.png-b7d07af709db0ba7d5db929c805255e4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "4d29b3fa9da42de7cb7214bde235d12d"
+"md5": "6b2167a240b653a49de469bb196e5982"
 }
 
 [deps]
 
-source_file="res://assets/Models/HotelRoom_RoomNorm.png"
-dest_files=["res://.godot/imported/HotelRoom_RoomNorm.png-95735fe36f6c45b24fabe912d756febe.s3tc.ctex"]
+source_file="res://assets/Models/HotelDoorsWindowsAndFloor_DoorsWindowsFloorColor.png"
+dest_files=["res://.godot/imported/HotelDoorsWindowsAndFloor_DoorsWindowsFloorColor.png-b7d07af709db0ba7d5db929c805255e4.s3tc.ctex"]
 
 [params]
 
@@ -23,12 +23,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://assets/Models/HotelRoom_RoomNorm.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
