@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://bkmhrjnkx1ih0"]
+[gd_scene load_steps=12 format=3 uid="uid://bkmhrjnkx1ih0"]
 
+[ext_resource type="Script" path="res://scenes/test_scene/test_scene.gd" id="1_ue1qn"]
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="1_wnr84"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_nl23n"]
 [ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="3_k3734"]
@@ -34,6 +35,7 @@ height = 5.0
 radius = 0.1
 
 [node name="TestScene" type="Node3D"]
+script = ExtResource("1_ue1qn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.5, 0)
