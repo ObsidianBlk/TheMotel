@@ -20,4 +20,5 @@ roof_node = NodePath("HotelRoom/UnitRoof")
 [node name="Glass_002LT" parent="HotelDoorsWindowsAndFloor" index="4"]
 surface_material_override/0 = ExtResource("4_7brqj")
 
+[editable path="HotelRoom"]
 [editable path="HotelDoorsWindowsAndFloor"]

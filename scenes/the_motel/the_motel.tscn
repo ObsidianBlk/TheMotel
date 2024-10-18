@@ -1,0 +1,255 @@
+[gd_scene load_steps=14 format=3 uid="uid://capiwdemgn6sk"]
+
+[ext_resource type="Script" path="res://scenes/the_motel/the_motel.gd" id="1_ggejn"]
+[ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="1_oyi4t"]
+[ext_resource type="PackedScene" uid="uid://ca4a48vlljlxe" path="res://objects/florecent_red/florecent_red.tscn" id="2_a02ax"]
+[ext_resource type="PackedScene" uid="uid://dixri84qmdp53" path="res://objects/room_door/room_door.tscn" id="2_ja0tx"]
+[ext_resource type="PackedScene" uid="uid://dt4qwuu8l7tya" path="res://objects/buildings/hotel_Room_Flipped.tscn" id="3_hhicw"]
+[ext_resource type="PackedScene" uid="uid://n0382xk60h4n" path="res://objects/sidewalk_square/sidewalk_square_temp.tscn" id="4_s6k41"]
+[ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="5_yp6ap"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l8ybt"]
+noise_type = 3
+fractal_type = 3
+fractal_octaves = 2
+fractal_lacunarity = 5.755
+fractal_gain = 1.15
+fractal_weighted_strength = 0.54
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jyy4"]
+albedo_color = Color(0.423651, 0.423651, 0.423651, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v8pe8"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.25, 0.094, 0.055, 1)
+sky_curve = 0.0274515
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.25098, 0.0941176, 0.054902, 1)
+sun_angle_max = 6.45
+sun_curve = 2.57225
+
+[sub_resource type="Sky" id="Sky_3ka8n"]
+sky_material = SubResource("ProceduralSkyMaterial_v8pe8")
+
+[sub_resource type="Environment" id="Environment_ngn8q"]
+background_mode = 2
+sky = SubResource("Sky_3ka8n")
+ambient_light_source = 3
+ambient_light_color = Color(0.86, 0.74863, 0.5418, 0.901961)
+ambient_light_sky_contribution = 0.9
+ambient_light_energy = 0.13
+tonemap_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 1.2
+glow_strength = 1.25
+fog_mode = 1
+fog_density = 1.0
+fog_height_density = 0.25
+fog_depth_curve = 0.482968
+fog_depth_end = 538.9
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1
+volumetric_fog_albedo = Color(1, 0.791, 0.34, 1)
+volumetric_fog_sky_affect = 0.347
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1bahh"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 20.0
+dof_blur_far_transition = 10.0
+
+[node name="TheMotel" type="Node3D"]
+script = ExtResource("1_ggejn")
+
+[node name="ExteriorFloresence" type="Node3D" parent="."]
+
+[node name="FlorecentRed" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38958, -5.48218)
+max_energy = 3.0
+flicker_noise = SubResource("FastNoiseLite_l8ybt")
+
+[node name="FlorecentRed2" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38203, 2.38958, -5.48218)
+max_energy = 5.641
+
+[node name="RoomGroup" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
+
+[node name="Room_02" parent="RoomGroup" instance=ExtResource("1_oyi4t")]
+
+[node name="MainDoor" parent="RoomGroup/Room_02" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20748, 0, 2.68478)
+open_angle = 2.35381
+door_number = 2
+
+[node name="BathroomDoor" parent="RoomGroup/Room_02" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1406, 0, -1.42723)
+open_angle = 2.35381
+
+[node name="Room_03" parent="RoomGroup" instance=ExtResource("3_hhicw")]
+transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 4.82181, 0, 0)
+hide_roof = true
+
+[node name="MainDoor" parent="RoomGroup/Room_03" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216093, 0, 2.68902)
+open_angle = 2.35381
+door_number = 3
+
+[node name="BathroomDoor" parent="RoomGroup/Room_03" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723514, 0, -1.43282)
+open_angle = 2.35381
+
+[node name="Room_04" parent="RoomGroup" instance=ExtResource("1_oyi4t")]
+transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 10.6396, 0, 0)
+hide_roof = true
+
+[node name="MainDoor" parent="RoomGroup/Room_04" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20748, 0, 2.68478)
+open_angle = 2.35381
+door_number = 4
+
+[node name="BathroomDoor" parent="RoomGroup/Room_04" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1406, 0, -1.42723)
+open_angle = 2.35381
+
+[node name="Room_05" parent="RoomGroup" instance=ExtResource("3_hhicw")]
+transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 15.4614, 0, 0)
+hide_roof = true
+
+[node name="MainDoor" parent="RoomGroup/Room_05" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216093, 0, 2.68902)
+open_angle = 2.35381
+door_number = 5
+
+[node name="BathroomDoor" parent="RoomGroup/Room_05" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723514, 0, -1.43282)
+open_angle = 2.35381
+
+[node name="SidewalkSegment" type="Node3D" parent="RoomGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.499)
+
+[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment2" type="Node3D" parent="RoomGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30838, 0, 3.499)
+
+[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment2" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment2" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment2" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment3" type="Node3D" parent="RoomGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6279, 0, 3.499)
+
+[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment3" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment3" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment3" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment4" type="Node3D" parent="RoomGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9627, 0, 3.499)
+
+[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment4" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment4" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment4" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="RoomGroup2" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.9726, 0, -2.84391)
+
+[node name="Room_06" parent="RoomGroup2" instance=ExtResource("1_oyi4t")]
+hide_roof = true
+
+[node name="MainDoor" parent="RoomGroup2/Room_06" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20748, 0, 2.68478)
+open_angle = 2.35381
+door_number = 6
+
+[node name="BathroomDoor" parent="RoomGroup2/Room_06" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1406, 0, -1.42723)
+open_angle = 2.35381
+
+[node name="Room_07" parent="RoomGroup2" instance=ExtResource("3_hhicw")]
+transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 4.82181, 0, 0)
+hide_roof = true
+
+[node name="MainDoor" parent="RoomGroup2/Room_07" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216093, 0, 2.68902)
+open_angle = 2.35381
+door_number = 7
+
+[node name="BathroomDoor" parent="RoomGroup2/Room_07" instance=ExtResource("2_ja0tx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723514, 0, -1.43282)
+open_angle = 2.35381
+
+[node name="SidewalkSquare_TEMP4" parent="RoomGroup2" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5586, 0, 3.54228)
+
+[node name="SidewalkSegment5" type="Node3D" parent="RoomGroup2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01152, 0, 3.54228)
+
+[node name="SidewalkSquare_TEMP2" parent="RoomGroup2/SidewalkSegment5" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="RoomGroup2/SidewalkSegment5" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="RoomGroup2/SidewalkSegment5" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment6" type="Node3D" parent="RoomGroup2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.32463, 0, 3.54228)
+
+[node name="SidewalkSquare_TEMP2" parent="RoomGroup2/SidewalkSegment6" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="RoomGroup2/SidewalkSegment6" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="RoomGroup2/SidewalkSegment6" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0, -6.75)
+visible = false
+size = Vector3(5.31201, 1, 1)
+
+[node name="ParkingLot" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36942, -0.502459, -0.8387)
+use_collision = true
+size = Vector3(22, 0.872128, 12)
+material = SubResource("StandardMaterial3D_6jyy4")
+
+[node name="FPSController" parent="." instance=ExtResource("5_yp6ap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -0.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ngn8q")
+camera_attributes = SubResource("CameraAttributesPractical_1bahh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.5, 0.612372, -0.612372, 0, 0.707107, 0.707107, 0.866026, -0.353553, 0.353553, 0, 3.5, 0)
+light_color = Color(0.73, 0.65773, 0.5694, 1)
+light_energy = 0.1
+light_angular_distance = 2.0
+shadow_enabled = true
+directional_shadow_mode = 0

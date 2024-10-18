@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bkmhrjnkx1ih0"]
+[gd_scene load_steps=16 format=3 uid="uid://bkmhrjnkx1ih0"]
 
 [ext_resource type="Script" path="res://scenes/test_scene/test_scene.gd" id="1_ue1qn"]
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="1_wnr84"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://btdg3sbefp48r" path="res://objects/clock/clock.tscn" id="6_2akxp"]
 [ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="6_wv52y"]
 [ext_resource type="PackedScene" uid="uid://bcudxtf6nokr" path="res://objects/air_conditioner/air_conditioner.tscn" id="7_stjqu"]
+[ext_resource type="PackedScene" uid="uid://dixri84qmdp53" path="res://objects/room_door/room_door.tscn" id="8_eyku1"]
 
 [sub_resource type="Environment" id="Environment_gh8v3"]
 background_mode = 2
@@ -123,6 +124,11 @@ omni_range = 3.0
 [node name="AirConditioner" parent="HotelRoom" instance=ExtResource("7_stjqu")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.89328, 0.465386, 2.62608)
 state = 1
+
+[node name="RoomDoor" parent="HotelRoom" instance=ExtResource("8_eyku1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.225, 0, 2.7)
+open_angle = 2.35381
+door_number = 4
 
 [node name="UnitRoofColumn" parent="." instance=ExtResource("6_wv52y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)

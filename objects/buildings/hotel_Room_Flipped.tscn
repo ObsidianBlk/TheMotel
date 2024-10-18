@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://dt4qwuu8l7tya"]
+[gd_scene load_steps=6 format=3 uid="uid://dt4qwuu8l7tya"]
 
 [ext_resource type="PackedScene" uid="uid://bj0oi8bnhw32v" path="res://assets/Models/MotelRoomFlipped.glb" id="1_3s4u2"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_6vd7o"]
 [ext_resource type="PackedScene" uid="uid://cdgeuhwcrr1sb" path="res://assets/Models/UnitRoof.glb" id="2_c6sm3"]
 [ext_resource type="Material" uid="uid://cpuhgm0mnor4p" path="res://objects/buildings/HotelRoomGlass.material" id="2_g5x1k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_agrf6"]
+size = Vector3(5.21, 0.115, 5.57)
 
 [node name="HotelRoom" type="Node3D" node_paths=PackedStringArray("roof_node")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -15,7 +18,19 @@ roof_node = NodePath("MotelRoomFlipped/UnitRoof")
 [node name="Glass_002LT" parent="MotelRoomFlipped" index="4"]
 surface_material_override/0 = ExtResource("2_g5x1k")
 
+[node name="CollisionShape3D" parent="MotelRoomFlipped/Glass_002LT/StaticBody3D" index="0"]
+disabled = true
+
+[node name="CollisionShape3D" parent="MotelRoomFlipped/Floor_001LT/StaticBody3D" index="0"]
+disabled = true
+
 [node name="UnitRoof" parent="MotelRoomFlipped" instance=ExtResource("2_c6sm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.508443, 0, 0)
+
+[node name="FloorBody" type="StaticBody3D" parent="MotelRoomFlipped"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MotelRoomFlipped/FloorBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.515, -0.055, 0)
+shape = SubResource("BoxShape3D_agrf6")
 
 [editable path="MotelRoomFlipped"]

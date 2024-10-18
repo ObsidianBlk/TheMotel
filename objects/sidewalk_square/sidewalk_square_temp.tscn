@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://n0382xk60h4n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwd1a"]
+albedo_color = Color(0.46, 0.4255, 0.3772, 1)
+
+[node name="SidewalkSquare_TEMP" type="Node3D"]
+
+[node name="SidewalkSquare" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.079, 0)
+use_collision = true
+size = Vector3(1.771, 0.145, 1.6)
+material = SubResource("StandardMaterial3D_cwd1a")

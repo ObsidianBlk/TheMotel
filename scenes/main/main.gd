@@ -4,7 +4,8 @@ extends Node
 # ------------------------------------------------------------------------------
 # Constants
 # ------------------------------------------------------------------------------
-const DEFAULT_LEVEL_PATH : String = "res://scenes/test_scene/test_scene.tscn"
+#const DEFAULT_LEVEL_PATH : String = "res://scenes/test_scene/test_scene.tscn"
+const DEFAULT_LEVEL_PATH : String = "res://scenes/the_motel/the_motel.tscn"
 
 # ------------------------------------------------------------------------------
 # Export Variables

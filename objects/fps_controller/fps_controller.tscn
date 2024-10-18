@@ -1,14 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1ips5dgrr41b"]
+[gd_scene load_steps=4 format=3 uid="uid://d1ips5dgrr41b"]
 
 [ext_resource type="Script" path="res://objects/fps_controller/fps_controller.gd" id="1_5myhk"]
 [ext_resource type="PackedScene" uid="uid://uhqhvuvymitn" path="res://scenes/ui/interact_message/interact_message.tscn" id="2_wiaal"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ukdfn"]
-radius = 0.35
+radius = 0.25
 height = 1.82
-
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_d4css"]
-dof_blur_far_enabled = true
 
 [node name="FPSController" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_5myhk")
@@ -19,7 +16,6 @@ shape = SubResource("CapsuleShape3D_ukdfn")
 
 [node name="Camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48245, 0.25)
-attributes = SubResource("CameraAttributesPractical_d4css")
 current = true
 fov = 47.9
 
