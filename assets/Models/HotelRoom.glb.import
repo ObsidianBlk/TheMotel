@@ -32,6 +32,28 @@ animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
+"materials": {
+"Gypsum.001": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/Models/Materials/room.material"
+},
+"Seam.001": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/Models/Materials/room.material"
+},
+"Shower Tile.001": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/Models/Materials/room.material"
+},
+"Stone.001": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/Models/Materials/room.material"
+},
+"WoodPanelling.001": {
+"use_external/enabled": false,
+"use_external/path": "res://assets/Models/Materials/room.material"
+}
+},
 "nodes": {
 "PATH:LowResRoom": {
 "generate/physics": true
@@ -39,4 +61,4 @@ _subresources={
 }
 }
 gltf/naming_version=1
-gltf/embedded_image_handling=1
+gltf/embedded_image_handling=2

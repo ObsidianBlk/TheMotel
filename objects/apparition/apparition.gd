@@ -177,10 +177,12 @@ func _on_player_attack_timer_timeout() -> void:
 
 
 func _on_food_area_entered(area: Area3D) -> void:
-	if area is Interactable:
-		if area.type != &"Item": return
-		_items.append(area)
+	pass
+	#if area is Interactable:
+		#if area.type != &"Item": return
+		#_items.append(area)
 
 func _on_food_area_exited(area: Area3D) -> void:
-	if area is Interactable and area.type == &"Item":
-		_items = _items.filter(func(item): item != area)
+	pass
+	#if area is Interactable and area.type == &"Item":
+		#_items = _items.filter(func(item): item != area)

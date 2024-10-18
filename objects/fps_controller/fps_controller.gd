@@ -63,6 +63,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		#_UpdateView(event.relative * _mouse_sensitivity)
 	elif event.is_action("move_forward") or event.is_action("move_backward") or event.is_action("move_left") or event.is_action("move_right"):
 		_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	elif event.is_action_pressed("interact_a"):
+		if _interactable != null:
+			_interactable.interact()
 
 func _physics_process(delta: float) -> void:
 	_CheckForInteractable()

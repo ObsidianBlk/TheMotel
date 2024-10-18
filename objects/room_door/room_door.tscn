@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://dixri84qmdp53"]
+
+[ext_resource type="Script" path="res://objects/room_door/room_door.gd" id="1_anj5b"]
+[ext_resource type="PackedScene" uid="uid://bybf6asshuw4q" path="res://assets/Models/MotelDoor.glb" id="1_kj0i2"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="3_t6yyr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qlyud"]
+size = Vector3(0.9, 2, 0.1)
+
+[node name="RoomDoor" type="Node3D"]
+script = ExtResource("1_anj5b")
+
+[node name="MotelDoor" parent="." instance=ExtResource("1_kj0i2")]
+
+[node name="Text_002" parent="MotelDoor" index="1"]
+visible = false
+
+[node name="Text_003" parent="MotelDoor" index="2"]
+visible = false
+
+[node name="Text_004" parent="MotelDoor" index="3"]
+visible = false
+
+[node name="Text_005" parent="MotelDoor" index="4"]
+visible = false
+
+[node name="Text_006" parent="MotelDoor" index="5"]
+visible = false
+
+[node name="Text_007" parent="MotelDoor" index="6"]
+visible = false
+
+[node name="Text_008" parent="MotelDoor" index="7"]
+visible = false
+
+[node name="Text_009" parent="MotelDoor" index="8"]
+visible = false
+
+[node name="Text_010" parent="MotelDoor" index="9"]
+visible = false
+
+[node name="Text_011" parent="MotelDoor" index="10"]
+visible = false
+
+[node name="Text_012" parent="MotelDoor" index="11"]
+visible = false
+
+[node name="Interactable" type="Area3D" parent="MotelDoor"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("3_t6yyr")
+message = "[center]Open Door[/center]"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MotelDoor/Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 1, 0)
+shape = SubResource("BoxShape3D_qlyud")
+
+[connection signal="interacted" from="MotelDoor/Interactable" to="." method="interact"]
+
+[editable path="MotelDoor"]

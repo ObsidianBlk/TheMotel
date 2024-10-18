@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dixri84qmdp53"]
-
-[ext_resource type="PackedScene" uid="uid://bybf6asshuw4q" path="res://assets/Models/MotelDoor.glb" id="1_qc3rs"]
-
-[node name="Door" type="Node3D"]
-
-[node name="MotelDoor" parent="." instance=ExtResource("1_qc3rs")]

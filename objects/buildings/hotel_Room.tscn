@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://beg6m72kwbn07"]
+[gd_scene load_steps=4 format=3 uid="uid://beg6m72kwbn07"]
 
 [ext_resource type="PackedScene" uid="uid://d4avrfo24c0dj" path="res://assets/Models/HotelRoom.glb" id="1_0rpph"]
 [ext_resource type="PackedScene" uid="uid://b4fpwo48wbpfn" path="res://assets/Models/HotelDoorsWindowsAndFloor.glb" id="2_ahfc3"]
+[ext_resource type="PackedScene" uid="uid://dixri84qmdp53" path="res://objects/room_door/room_door.tscn" id="3_q87m4"]
 
 [node name="HotelRoom" type="Node3D"]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -9,3 +10,8 @@ transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="HotelRoom" parent="." instance=ExtResource("1_0rpph")]
 
 [node name="HotelDoorsWindowsAndFloor" parent="." instance=ExtResource("2_ahfc3")]
+
+[node name="RoomDoor" parent="." instance=ExtResource("3_q87m4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20692, 0, 2.69974)
+open_angle = 2.35381
+door_number = 2
