@@ -28,6 +28,7 @@ var _active_level : Node3D = null
 # ------------------------------------------------------------------------------
 func _ready() -> void:
 	get_tree().paused = true
+	Clock24.set_seconds_per_minute(2.0)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_APPLICATION, _UIQuitApplication)
 	_ui.register_action_handler(UIAT.ACTION_START_SINGLEPLAYER, _UIStartGame)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_GAME, _UIQuitGame)
@@ -39,6 +40,7 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_pressed("ui_cancel"):
 			get_tree().paused = true
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			Clock24.enable(false)
 			if pause_menu.is_empty():
 				_ui.open_default_ui()
 			else:
@@ -75,6 +77,7 @@ func _LoadLevel(src : String) -> int:
 
 func _LevelInit() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Clock24.enable(true)
 
 # ------------------------------------------------------------------------------
 # UI Action Methods
@@ -104,6 +107,7 @@ func _UIResumeGame() -> void:
 	if _active_level != null:
 		_ui.close_all_ui()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		Clock24.enable(true)
 		get_tree().paused = false
 
 # ------------------------------------------------------------------------------

@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 Settings="*res://scripts/autos/settings.gd"
 AVC="*res://scripts/autos/avc.gd"
 MSense="*res://scripts/autos/msense.gd"
+Clock24="*res://scripts/autos/clock24.gd"
 
 [editor_plugins]
 

@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bkmhrjnkx1ih0"]
+[gd_scene load_steps=15 format=3 uid="uid://bkmhrjnkx1ih0"]
 
 [ext_resource type="Script" path="res://scenes/test_scene/test_scene.gd" id="1_ue1qn"]
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="1_wnr84"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_nl23n"]
 [ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="3_k3734"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="5_eeed7"]
+[ext_resource type="PackedScene" uid="uid://btdg3sbefp48r" path="res://objects/clock/clock.tscn" id="6_2akxp"]
 [ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="6_wv52y"]
+[ext_resource type="PackedScene" uid="uid://bcudxtf6nokr" path="res://objects/air_conditioner/air_conditioner.tscn" id="7_stjqu"]
 
 [sub_resource type="Environment" id="Environment_gh8v3"]
 background_mode = 2
@@ -106,6 +108,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 28)
 
 [node name="HotelRoom" parent="." instance=ExtResource("5_eeed7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31777, 0.0752258, -6.42692)
+hide_roof = true
+
+[node name="Clock" parent="HotelRoom" instance=ExtResource("6_2akxp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.585955, 1.6916, -2.55161)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="HotelRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49819, 0)
+light_color = Color(0.89, 0.6141, 0.6141, 1)
+light_energy = 0.5
+shadow_enabled = true
+omni_range = 3.0
+
+[node name="AirConditioner" parent="HotelRoom" instance=ExtResource("7_stjqu")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.89328, 0.465386, 2.62608)
+state = 1
 
 [node name="UnitRoofColumn" parent="." instance=ExtResource("6_wv52y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)

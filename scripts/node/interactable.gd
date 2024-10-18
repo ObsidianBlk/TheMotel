@@ -15,12 +15,13 @@ signal interacted(payload : Dictionary)
 # Export Variables
 # ------------------------------------------------------------------------------
 @export var enabled : bool = true:					set=set_enabled
-@export_multiline var message : String = ""
+@export_multiline var message : String = "":		set=set_message
 
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
 var _coll_layer = -1
+var _showing = false
 
 # ------------------------------------------------------------------------------
 # Onready Variables
@@ -34,7 +35,11 @@ func set_enabled(e : bool) -> void:
 	if e != enabled:
 		enabled = e
 		_UpdateEnabled()
-		
+
+func set_message(m : String) -> void:
+	message = m
+	if _showing:
+		InteractMessage.Set_Message(message)
 
 # ------------------------------------------------------------------------------
 # Override Methods
@@ -59,8 +64,10 @@ func interact(payload : Dictionary = {}) -> void:
 func show_message(show : bool = true) -> void:
 	if not message.is_empty():
 		if show:
+			_showing = true
 			InteractMessage.Set_Message(message)
 		else:
+			_showing = false
 			InteractMessage.Hide_Message()
 
 # ------------------------------------------------------------------------------

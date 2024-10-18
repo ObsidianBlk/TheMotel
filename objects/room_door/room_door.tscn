@@ -9,6 +9,8 @@ size = Vector3(0.9, 2, 0.1)
 
 [node name="RoomDoor" type="Node3D"]
 script = ExtResource("1_anj5b")
+closed_message = "[center]Open Door[/center]"
+opened_message = "[center]Close Door[/center]"
 
 [node name="MotelDoor" parent="." instance=ExtResource("1_kj0i2")]
 

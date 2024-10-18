@@ -1,13 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://btdg3sbefp48r"]
+[gd_scene load_steps=5 format=3 uid="uid://btdg3sbefp48r"]
 
 [ext_resource type="PackedScene" uid="uid://d18c66p8pwgyh" path="res://assets/Models/Clock.glb" id="1_bsywx"]
+[ext_resource type="Script" path="res://objects/clock/clock.gd" id="1_cme6d"]
 [ext_resource type="PackedScene" uid="uid://d2fumxorkaii5" path="res://assets/Models/ClockLongHand.glb" id="2_eulla"]
 [ext_resource type="PackedScene" uid="uid://gvihln0xftn5" path="res://assets/Models/ClockShortHand.glb" id="3_xx3wb"]
 
 [node name="Clock" type="Node3D"]
+script = ExtResource("1_cme6d")
 
-[node name="Clock2" parent="." instance=ExtResource("1_bsywx")]
+[node name="ClockFace" parent="." instance=ExtResource("1_bsywx")]
 
-[node name="ClockLongHand" parent="Clock2" instance=ExtResource("2_eulla")]
+[node name="ClockLongHand" parent="ClockFace" instance=ExtResource("2_eulla")]
+unique_name_in_owner = true
 
-[node name="ClockShortHand" parent="Clock2" instance=ExtResource("3_xx3wb")]
+[node name="LongHand" parent="ClockFace/ClockLongHand" index="0"]
+transform = Transform3D(0.917144, -0.398557, 0, 0.398557, 0.917144, 0, 0, 0, 1, 0, 0, 0.00824256)
+
+[node name="ClockShortHand" parent="ClockFace" instance=ExtResource("3_xx3wb")]
+unique_name_in_owner = true
+
+[node name="ShortHand" parent="ClockFace/ClockShortHand" index="0"]
+transform = Transform3D(0.917803, -0.397036, 0, 0.397036, 0.917803, 0, 0, 0, 1, 0, 0, 0.00796931)
+
+[editable path="ClockFace/ClockLongHand"]
+[editable path="ClockFace/ClockShortHand"]

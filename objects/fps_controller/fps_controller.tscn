@@ -25,7 +25,7 @@ fov = 47.9
 
 [node name="CameraRay" type="RayCast3D" parent="Camera"]
 unique_name_in_owner = true
-target_position = Vector3(0, 0, -1.5)
+target_position = Vector3(0, 0, -2)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false

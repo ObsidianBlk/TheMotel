@@ -92,5 +92,3 @@ func get_convert_clock_minutes(minutes : int) -> float:
 
 func is_morning() -> bool:
 	return _hour < 12
-
-

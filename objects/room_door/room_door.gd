@@ -18,6 +18,8 @@ const DOOR_MAX_ANGLE : float = deg_to_rad(135.0)
 @export_range(-DOOR_MAX_ANGLE, DOOR_MAX_ANGLE, 0.01) var open_angle : float = 0.0
 @export var duration : float = 1.0:															set=set_duration
 @export_range(0, 12, 1) var door_number : int = 0:											set=set_door_number
+@export_multiline var closed_message : String = "":											set=set_closed_message
+@export_multiline var opened_message : String = "":											set=set_opened_message
 
 # ------------------------------------------------------------------------------
 # Variables
@@ -28,6 +30,7 @@ var _tween : Tween = null
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
+@onready var _interactable: Interactable = $MotelDoor/Interactable
 @onready var _motel_door: Node3D = $MotelDoor
 @onready var _text_object : Array[MeshInstance3D] = [
 	null,
@@ -57,6 +60,16 @@ func set_duration(d : float) -> void:
 	if d >= 0.0:
 		duration = d
 
+func set_closed_message(m : String) -> void:
+	closed_message = m
+	if _interactable != null and not _door_open:
+		_interactable.message = closed_message
+
+func set_opened_message(m : String) -> void:
+	opened_message = m
+	if _interactable != null and _door_open:
+		_interactable.message = opened_message
+
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
@@ -84,6 +97,8 @@ func interact(payload : Dictionary = {}) -> void:
 	var dur : float = (dist / abs(open_angle)) * duration
 	
 	_door_open = not _door_open
+	if _interactable != null:
+		_interactable.message = opened_message if _door_open else closed_message
 	
 	if _tween != null:
 		_tween.kill()
