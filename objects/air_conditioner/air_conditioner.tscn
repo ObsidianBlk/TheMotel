@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcudxtf6nokr"]
+
+[ext_resource type="PackedScene" uid="uid://5seoka587mgg" path="res://assets/Models/AirConditioner.glb" id="1_ppakw"]
+[ext_resource type="PackedScene" uid="uid://bnoicg706gggo" path="res://assets/Models/AirConditionerGreenLight.glb" id="2_eub2y"]
+[ext_resource type="PackedScene" uid="uid://cjsf0esyekjlm" path="res://assets/Models/AirConditionerRedLight.glb" id="3_lcuox"]
+
+[node name="AirConditioner" type="Node3D"]
+
+[node name="AirConditioner" parent="." instance=ExtResource("1_ppakw")]
+
+[node name="AirConditionerGreenLight" parent="AirConditioner" instance=ExtResource("2_eub2y")]
+
+[node name="AirConditionerRedLight2" parent="AirConditioner" instance=ExtResource("3_lcuox")]

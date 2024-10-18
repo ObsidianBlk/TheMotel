@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkmhrjnkx1ih0"]
+[gd_scene load_steps=13 format=3 uid="uid://bkmhrjnkx1ih0"]
 
 [ext_resource type="Script" path="res://scenes/test_scene/test_scene.gd" id="1_ue1qn"]
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="1_wnr84"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_nl23n"]
 [ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="3_k3734"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="5_eeed7"]
+[ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="6_wv52y"]
 
 [sub_resource type="Environment" id="Environment_gh8v3"]
 background_mode = 2
@@ -105,3 +106,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 0, 28)
 
 [node name="HotelRoom" parent="." instance=ExtResource("5_eeed7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.31777, 0.0752258, -6.42692)
+
+[node name="UnitRoofColumn" parent="." instance=ExtResource("6_wv52y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2)

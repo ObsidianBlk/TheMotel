@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://btdg3sbefp48r"]
+
+[ext_resource type="PackedScene" uid="uid://d18c66p8pwgyh" path="res://assets/Models/Clock.glb" id="1_bsywx"]
+[ext_resource type="PackedScene" uid="uid://d2fumxorkaii5" path="res://assets/Models/ClockLongHand.glb" id="2_eulla"]
+[ext_resource type="PackedScene" uid="uid://gvihln0xftn5" path="res://assets/Models/ClockShortHand.glb" id="3_xx3wb"]
+
+[node name="Clock" type="Node3D"]
+
+[node name="Clock2" parent="." instance=ExtResource("1_bsywx")]
+
+[node name="ClockLongHand" parent="Clock2" instance=ExtResource("2_eulla")]
+
+[node name="ClockShortHand" parent="Clock2" instance=ExtResource("3_xx3wb")]

@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt4qwuu8l7tya"]
+[gd_scene load_steps=3 format=3 uid="uid://dt4qwuu8l7tya"]
 
 [ext_resource type="PackedScene" uid="uid://bj0oi8bnhw32v" path="res://assets/Models/MotelRoomFlipped.glb" id="1_3s4u2"]
+[ext_resource type="PackedScene" uid="uid://cdgeuhwcrr1sb" path="res://assets/Models/UnitRoof.glb" id="2_c6sm3"]
 
 [node name="HotelRoom" type="Node3D"]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="MotelRoomFlipped" parent="." instance=ExtResource("1_3s4u2")]
+
+[node name="UnitRoof" parent="MotelRoomFlipped" instance=ExtResource("2_c6sm3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.508443, 0, 0)
