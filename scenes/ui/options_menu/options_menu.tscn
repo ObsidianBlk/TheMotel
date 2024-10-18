@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://cb6d5843yessc"]
+[gd_scene load_steps=3 format=3 uid="uid://cb6d5843yessc"]
+
+[ext_resource type="Script" path="res://addons/OBSControlLibrary/SlideoutContainer/slide_out_container.gd" id="1_nuqgb"]
+[ext_resource type="PackedScene" uid="uid://48nrw2bfqggj" path="res://scenes/ui/options_menu/options_audio/options_audio.tscn" id="2_yo6ow"]
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +10,50 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="HLayout" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SlideoutGroups" type="Container" parent="HLayout"]
+layout_mode = 2
+script = ExtResource("1_nuqgb")
+slide_edge = 3
+slide_duration = 0.5
+transition_type = 4
+ease_type = 2
+
+[node name="MC" type="MarginContainer" parent="HLayout/SlideoutGroups"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 24
+
+[node name="Panel" type="PanelContainer" parent="HLayout/SlideoutGroups/MC"]
+layout_mode = 2
+
+[node name="VButtons" type="VBoxContainer" parent="HLayout/SlideoutGroups/MC/Panel"]
+layout_mode = 2
+
+[node name="BTN_Audio" type="Button" parent="HLayout/SlideoutGroups/MC/Panel/VButtons"]
+layout_mode = 2
+text = "Audio"
+
+[node name="CenterContainer" type="CenterContainer" parent="HLayout"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SlideoutOptions" type="Container" parent="HLayout/CenterContainer"]
+layout_mode = 2
+script = ExtResource("1_nuqgb")
+slide_edge = 1
+slide_duration = 0.5
+transition_type = 4
+ease_type = 2
+
+[node name="OptionsAudio" parent="HLayout/CenterContainer/SlideoutOptions" instance=ExtResource("2_yo6ow")]
+layout_mode = 2

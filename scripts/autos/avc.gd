@@ -17,6 +17,7 @@ const SETTINGS_SECTION_AUDIO : String = "AUDIO"
 
 const VOLUME_MULTIPLIER : float = 0.001
 
+const DEFAULT_BUS_VOLUME : float = 1000.0
 const DEFAULT_BUS_VOLUME_MASTER : float = 1000.0
 const DEFAULT_BUS_VOLUME_MUSIC : float = 500.0
 const DEFAULT_BUS_VOLUME_SFX : float = 800.0
@@ -74,6 +75,18 @@ func set_bus_volume(bus : StringName, volume : float, large_val : bool = false) 
 		volume = clampf(volume, 0.0, 1.0) * 1000.0
 	
 	Settings.set_value(SETTINGS_SECTION_AUDIO, bus, volume)
+
+func reset_bus_volume(bus : StringName) -> void:
+	if AudioServer.get_bus_index(bus) < 0: return
+	match bus:
+		AUDIO_BUS_MASTER:
+			set_bus_volume(AUDIO_BUS_MASTER, DEFAULT_BUS_VOLUME_MASTER, true)
+		AUDIO_BUS_MUSIC:
+			set_bus_volume(AUDIO_BUS_MUSIC, DEFAULT_BUS_VOLUME_MUSIC, true)
+		AUDIO_BUS_SFX:
+			set_bus_volume(AUDIO_BUS_SFX, DEFAULT_BUS_VOLUME_SFX, true)
+		_:
+			set_bus_volume(bus, DEFAULT_BUS_VOLUME, true)
 
 func get_bus_volume(bus : StringName, large_val : bool = false) -> float:
 	var volume : float = 0.0

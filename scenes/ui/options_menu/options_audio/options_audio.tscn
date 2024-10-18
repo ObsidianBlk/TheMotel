@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://48nrw2bfqggj"]
+
+[ext_resource type="PackedScene" uid="uid://kqy3of6fvmfu" path="res://scenes/ui/options_menu/options_audio/audio_bus_slider/audio_bus_slider.tscn" id="1_4w0kb"]
+
+[node name="OptionsAudio" type="PanelContainer"]
+
+[node name="VLayout" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VLayout"]
+layout_mode = 2
+text = "Audio Volume:"
+
+[node name="HSeparator" type="HSeparator" parent="VLayout"]
+layout_mode = 2
+
+[node name="GridContainer" type="VBoxContainer" parent="VLayout"]
+layout_mode = 2
+
+[node name="ABS_Master" parent="VLayout/GridContainer" instance=ExtResource("1_4w0kb")]
+layout_mode = 2
+audio_bus = &"Master"
+label_text = "Master:"
+min_label_size = 128
+
+[node name="ABS_SFX" parent="VLayout/GridContainer" instance=ExtResource("1_4w0kb")]
+layout_mode = 2
+audio_bus = &"SFX"
+label_text = "SFX:"
+min_label_size = 128
+
+[node name="ABS_Music" parent="VLayout/GridContainer" instance=ExtResource("1_4w0kb")]
+layout_mode = 2
+audio_bus = &"Music"
+label_text = "Music:"
+min_label_size = 128

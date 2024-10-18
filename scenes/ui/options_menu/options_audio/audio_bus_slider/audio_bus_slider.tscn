@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://kqy3of6fvmfu"]
+
+[ext_resource type="Script" path="res://scenes/ui/options_menu/options_audio/audio_bus_slider/audio_bus_slider.gd" id="1_um3c0"]
+
+[node name="AudioBusSlider" type="MarginContainer"]
+offset_right = 395.0
+offset_bottom = 24.0
+script = ExtResource("1_um3c0")
+
+[node name="HLayout" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LBL_BusName" type="Label" parent="HLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Audio Bus: "
+
+[node name="CHECK_BusActive" type="CheckButton" parent="HLayout"]
+unique_name_in_owner = true
+layout_mode = 2
+tooltip_text = "Mute audio bus"
+button_pressed = true
+
+[node name="SLIDER_Volume" type="HSlider" parent="HLayout"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1000.0
+
+[connection signal="toggled" from="HLayout/CHECK_BusActive" to="." method="_on_check_bus_active_toggled"]
+[connection signal="value_changed" from="HLayout/SLIDER_Volume" to="." method="_on_slider_volume_value_changed"]
