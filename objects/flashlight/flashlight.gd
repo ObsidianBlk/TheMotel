@@ -1,4 +1,3 @@
-@tool
 extends Node3D
 
 # ------------------------------------------------------------------------------
@@ -9,69 +8,50 @@ extends Node3D
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
+const MATERIAL_ON : Material = preload("res://objects/flashlight/light_on.material")
+const MATERIAL_OFF : Material = preload("res://objects/flashlight/light_off.material")
 
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
-@export var enabled : bool = false : 					set = set_enable
-@export_range(0.0, 16.0) var min_energy : float = 1.0:	set = set_min_energy
-@export_range(0.0, 16.0) var max_energy : float = 1.0:	set = set_max_energy
-@export var flicker_noise : FastNoiseLite = null:		set = set_flicker_noise
+@export var enabled : bool = false:		set = set_enabled
 
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
 
+
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
-@onready var _light_bar: CSGCylinder3D = $LightBar
-@onready var _flicker: Flicker = $Flicker
+@onready var _light: SpotLight3D = $SpotLight3D
+@onready var _mesh: MeshInstance3D = $Flashlight/Cylinder_002
 
 
 # ------------------------------------------------------------------------------
 # Setters / Getters
 # ------------------------------------------------------------------------------
-func set_enable(e : bool) -> void:
+func set_enabled(e : bool) -> void:
 	if e != enabled:
 		enabled = e
-		_UpdateFlicker()
-
-func set_min_energy(e : float) -> void:
-	if e >= 0.0 and e <= 16.0:
-		min_energy = min(max_energy, e)
-		_UpdateFlicker()
-
-func set_max_energy(e : float) -> void:
-	if e >= 0.0 and e <= 16.0:
-		max_energy = max(min_energy, e)
-		_UpdateFlicker()
-
-func set_flicker_noise(n : FastNoiseLite) -> void:
-	if n != flicker_noise:
-		flicker_noise = n
-		_UpdateFlickerNoise()
+		_UpdateFlashlightState()
 
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
-func _ready() -> void:
-	_flicker.material = _light_bar.material
-	_UpdateFlickerNoise()
-	_UpdateFlicker()
+
 
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
-func _UpdateFlicker() -> void:
-	if _flicker == null: return
-	_flicker.enabled = enabled
-	_flicker.min_energy = min_energy
-	_flicker.max_energy = max_energy
-
-func _UpdateFlickerNoise() -> void:
-	if _flicker == null: return
-	_flicker.flicker_noise = flicker_noise
+func _UpdateFlashlightState() -> void:
+	if _light == null or _mesh == null: return
+	if enabled:
+		_light.visible = true
+		_mesh.set_surface_override_material(0, MATERIAL_ON)
+	else:
+		_light.visible = false
+		_mesh.set_surface_override_material(0, MATERIAL_OFF)
 
 # ------------------------------------------------------------------------------
 # Public Methods

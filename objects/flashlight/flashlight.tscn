@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://semg45julkco"]
+
+[ext_resource type="PackedScene" uid="uid://cac3ocswaath8" path="res://assets/Models/Flashlight.glb" id="1_qn3ln"]
+[ext_resource type="Script" path="res://objects/flashlight/flashlight.gd" id="1_ulucw"]
+[ext_resource type="Material" uid="uid://bedk7ysdrtb8o" path="res://objects/flashlight/light_off.material" id="2_fuh2n"]
+
+[node name="Flashlight" type="Node3D"]
+script = ExtResource("1_ulucw")
+
+[node name="Flashlight" parent="." instance=ExtResource("1_qn3ln")]
+
+[node name="Cylinder_002" parent="Flashlight" index="0"]
+surface_material_override/0 = ExtResource("2_fuh2n")
+
+[node name="CollisionShape3D" parent="Flashlight/Cylinder_002/StaticBody3D" index="0"]
+disabled = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.173648, -0.984808, 0, 0.984808, 0.173648, 0, 1.07404, 0)
+light_color = Color(1, 0.956863, 0.858824, 1)
+light_energy = 4.0
+shadow_enabled = true
+spot_range = 20.0
+spot_angle = 35.0
+spot_angle_attenuation = 1.7411
+
+[editable path="Flashlight"]

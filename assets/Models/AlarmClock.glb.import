@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/AlarmClock.glb-cc76f110e74cb06bc6f7c41a6251a8
 
 [params]
 
-nodes/root_type="Area3D"
+nodes/root_type="Node3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

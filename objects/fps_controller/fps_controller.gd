@@ -34,6 +34,7 @@ var _interactable : Interactable = null
 # ------------------------------------------------------------------------------
 @onready var _camera: Camera3D = $Camera
 @onready var _camera_ray: RayCast3D = %CameraRay
+@onready var _flashlight_handler: Node = $FlashlightHandler
 
 
 # ------------------------------------------------------------------------------
@@ -66,6 +67,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("interact_a"):
 		if _interactable != null:
 			_interactable.interact()
+	elif event.is_action_pressed("interact_b"):
+		_flashlight_handler.enabled = not _flashlight_handler.enabled
 
 func _physics_process(delta: float) -> void:
 	_CheckForInteractable()

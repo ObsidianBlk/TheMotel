@@ -1,4 +1,3 @@
-@tool
 extends Node3D
 
 # ------------------------------------------------------------------------------
@@ -10,23 +9,29 @@ extends Node3D
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
 
+
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
-@export var enabled : bool = false : 					set = set_enable
+@export var enabled : bool = false:						set = set_enable
 @export_range(0.0, 16.0) var min_energy : float = 1.0:	set = set_min_energy
 @export_range(0.0, 16.0) var max_energy : float = 1.0:	set = set_max_energy
 @export var flicker_noise : FastNoiseLite = null:		set = set_flicker_noise
+@export_multiline var enabled_message : String = "":	set = set_enabled_message
+@export_multiline var disabled_message : String = "":	set = set_disabled_message
+
+
 
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
 
+
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
-@onready var _light_bar: CSGCylinder3D = $LightBar
 @onready var _flicker: Flicker = $Flicker
+@onready var _interactable: Interactable = $Interactable
 
 
 # ------------------------------------------------------------------------------
@@ -52,13 +57,21 @@ func set_flicker_noise(n : FastNoiseLite) -> void:
 		flicker_noise = n
 		_UpdateFlickerNoise()
 
+func set_enabled_message(m : String) -> void:
+	enabled_message = m
+	_UpdateInteractMessage()
+
+func set_disabled_message(m : String) -> void:
+	disabled_message = m
+	_UpdateInteractMessage()
+
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
-	_flicker.material = _light_bar.material
 	_UpdateFlickerNoise()
 	_UpdateFlicker()
+	_UpdateInteractMessage()
 
 # ------------------------------------------------------------------------------
 # Private Methods
@@ -73,10 +86,16 @@ func _UpdateFlickerNoise() -> void:
 	if _flicker == null: return
 	_flicker.flicker_noise = flicker_noise
 
+func _UpdateInteractMessage() -> void:
+	if _interactable == null: return
+	var msg : String = enabled_message if enabled else disabled_message
+	_interactable.message = msg
+
 # ------------------------------------------------------------------------------
 # Public Methods
 # ------------------------------------------------------------------------------
-
+func interact(payload : Dictionary = {}) -> void:
+	enabled = not enabled
 
 # ------------------------------------------------------------------------------
 # Handler Methods

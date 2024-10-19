@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca4a48vlljlxe"]
+[gd_scene load_steps=5 format=3 uid="uid://ca4a48vlljlxe"]
 
 [ext_resource type="Script" path="res://objects/florecent_red/florecent_red.gd" id="1_bwtt5"]
 [ext_resource type="AudioStream" uid="uid://bdv6bwuknntq7" path="res://assets/audio/sfx/fluorescent-light-hum.wav" id="1_rdinr"]
+[ext_resource type="Script" path="res://scripts/node/flicker.gd" id="3_3wrxv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cvvw4"]
 resource_local_to_scene = true
@@ -25,8 +26,12 @@ material = SubResource("StandardMaterial3D_cvvw4")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("1_rdinr")
+volume_db = inf_neg
 max_db = 6.0
 autoplay = true
-stream_paused = true
 max_distance = 5.0
 bus = &"SFX"
+
+[node name="Flicker" type="Node" parent="." node_paths=PackedStringArray("audio")]
+script = ExtResource("3_3wrxv")
+audio = NodePath("../AudioStreamPlayer3D")

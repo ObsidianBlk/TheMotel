@@ -22,7 +22,6 @@ script = ExtResource("1_xhy1w")
 [node name="AirConditionerRedLight2" parent="AirConditioner" instance=ExtResource("3_lcuox")]
 
 [node name="Int_Power" type="Area3D" parent="."]
-collision_layer = 2
 collision_mask = 0
 script = ExtResource("5_n4qpt")
 message = "Toggle Power"
@@ -33,7 +32,6 @@ shape = SubResource("BoxShape3D_6lnj4")
 
 [node name="Int_Repair" type="Area3D" parent="."]
 unique_name_in_owner = true
-collision_layer = 2
 collision_mask = 0
 script = ExtResource("5_n4qpt")
 enabled = false

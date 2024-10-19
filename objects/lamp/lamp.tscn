@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://crkmr27wjjsfr"]
+
+[ext_resource type="PackedScene" uid="uid://dqe7e5fll5k5a" path="res://assets/Models/Lamp.glb" id="1_4oyru"]
+[ext_resource type="Script" path="res://objects/lamp/lamp.gd" id="1_mjsxl"]
+[ext_resource type="Script" path="res://scripts/node/flicker.gd" id="2_aexde"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="3_6baca"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_svua7"]
+height = 0.4
+radius = 0.16
+
+[node name="Lamp" type="Node3D"]
+script = ExtResource("1_mjsxl")
+enabled_message = "[center]Turn Off[/center]"
+disabled_message = "[center]Turn On[/center]"
+
+[node name="Lamp_Mesh" parent="." instance=ExtResource("1_4oyru")]
+
+[node name="Flicker" type="Node" parent="." node_paths=PackedStringArray("light")]
+script = ExtResource("2_aexde")
+light = NodePath("../OmniLight3D")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.431724, 0)
+visible = false
+light_color = Color(1, 0.923116, 0.866093, 1)
+light_energy = 0.0
+shadow_enabled = true
+omni_range = 3.0
+
+[node name="Interactable" type="Area3D" parent="."]
+collision_mask = 0
+script = ExtResource("3_6baca")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+shape = SubResource("CylinderShape3D_svua7")
+
+[connection signal="interacted" from="Interactable" to="." method="interact"]

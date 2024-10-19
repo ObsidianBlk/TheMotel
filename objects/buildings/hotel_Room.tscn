@@ -10,10 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://weyichuvh831" path="res://assets/Models/NightTable.glb" id="8_k7kdw"]
 [ext_resource type="PackedScene" uid="uid://b88oic4ald48o" path="res://assets/Models/MessyBed.glb" id="9_ikcnp"]
 [ext_resource type="PackedScene" uid="uid://bgfh8rtqwsbk7" path="res://assets/Models/AlarmClock.glb" id="10_26hhl"]
-[ext_resource type="PackedScene" uid="uid://dqe7e5fll5k5a" path="res://assets/Models/Lamp.glb" id="11_yeeq8"]
 [ext_resource type="PackedScene" uid="uid://bcudxtf6nokr" path="res://objects/air_conditioner/air_conditioner.tscn" id="12_0ev2c"]
 [ext_resource type="PackedScene" uid="uid://cfs282fw2cv1a" path="res://assets/Models/Seating.glb" id="13_jr52q"]
 [ext_resource type="PackedScene" uid="uid://dvybxyc6uo031" path="res://objects/shower/shower.tscn" id="14_6jodn"]
+[ext_resource type="PackedScene" uid="uid://crkmr27wjjsfr" path="res://objects/lamp/lamp.tscn" id="14_cbgwg"]
 
 [node name="HotelRoom" type="Node3D" node_paths=PackedStringArray("roof_node")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -44,9 +44,6 @@ transform = Transform3D(-4.50169e-08, 0, -1, 0, 1, 0, 1.02987, 0, -4.37114e-08, 
 [node name="AlarmClock" parent="." instance=ExtResource("10_26hhl")]
 transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, -0.105277, 0.884482, -2.3961)
 
-[node name="Lamp" parent="." instance=ExtResource("11_yeeq8")]
-transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, 0.205637, 0.884482, -2.13547)
-
 [node name="AirConditioner" parent="." instance=ExtResource("12_0ev2c")]
 transform = Transform3D(-1.02987, 0, 8.74228e-08, 0, 1, 0, -9.00338e-08, 0, -1, -1.83299, 0.50794, 2.61812)
 
@@ -55,6 +52,9 @@ transform = Transform3D(-4.50169e-08, 0, -1, 0, 1, 0, 1.02987, 0, -4.37114e-08, 
 
 [node name="Shower" parent="." instance=ExtResource("14_6jodn")]
 transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, 0.906621, -0.00012207, -2.07708)
+
+[node name="Lamp" parent="." instance=ExtResource("14_cbgwg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.206, 0.884, -2.135)
 
 [editable path="HotelRoom"]
 [editable path="HotelDoorsWindowsAndFloor"]

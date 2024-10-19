@@ -1,5 +1,5 @@
 @tool
-extends Node3D
+extends Node
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -9,75 +9,68 @@ extends Node3D
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
+const ANIM_FLASHLIGHT_OFF : StringName = &"flashlight_off"
+const ANIM_FLASHLIGHT_ON : StringName = &"flashlight_on"
+const ANIM_FLASHLIGHT_AWAY : StringName = &"flashlight_away"
+const ANIM_FLASHLIGHT_OUT : StringName = &"flashlight_out"
 
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
-@export var enabled : bool = false : 					set = set_enable
-@export_range(0.0, 16.0) var min_energy : float = 1.0:	set = set_min_energy
-@export_range(0.0, 16.0) var max_energy : float = 1.0:	set = set_max_energy
-@export var flicker_noise : FastNoiseLite = null:		set = set_flicker_noise
+@export var available : bool = false:	set = set_available
+@export var enabled : bool = false:		set = set_enabled
 
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
+var _can_interact : bool = true
 
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
-@onready var _light_bar: CSGCylinder3D = $LightBar
-@onready var _flicker: Flicker = $Flicker
+@onready var _anims: AnimationPlayer = $"../Anims"
+@onready var _flashlight: Node3D = $"../Camera/FlashLight"
 
 
 # ------------------------------------------------------------------------------
 # Setters / Getters
 # ------------------------------------------------------------------------------
-func set_enable(e : bool) -> void:
-	if e != enabled:
+func set_available(a : bool) -> void:
+	if available != a:
+		if not a:
+			enabled = false
+		available = a
+		if _flashlight != null:
+			_flashlight.visible = available
+
+func set_enabled(e : bool) -> void:
+	if available and enabled != e:
 		enabled = e
-		_UpdateFlicker()
-
-func set_min_energy(e : float) -> void:
-	if e >= 0.0 and e <= 16.0:
-		min_energy = min(max_energy, e)
-		_UpdateFlicker()
-
-func set_max_energy(e : float) -> void:
-	if e >= 0.0 and e <= 16.0:
-		max_energy = max(min_energy, e)
-		_UpdateFlicker()
-
-func set_flicker_noise(n : FastNoiseLite) -> void:
-	if n != flicker_noise:
-		flicker_noise = n
-		_UpdateFlickerNoise()
+		_UpdateEnableState()
 
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
-	_flicker.material = _light_bar.material
-	_UpdateFlickerNoise()
-	_UpdateFlicker()
+	if not Engine.is_editor_hint():
+		_flashlight.visible = available
+		_can_interact = false
+		_anims.play(ANIM_FLASHLIGHT_OFF)
 
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
-func _UpdateFlicker() -> void:
-	if _flicker == null: return
-	_flicker.enabled = enabled
-	_flicker.min_energy = min_energy
-	_flicker.max_energy = max_energy
-
-func _UpdateFlickerNoise() -> void:
-	if _flicker == null: return
-	_flicker.flicker_noise = flicker_noise
-
-# ------------------------------------------------------------------------------
-# Public Methods
-# ------------------------------------------------------------------------------
+func _UpdateEnableState() -> void:
+	if Engine.is_editor_hint(): return
+	_can_interact = false
+	var anim : StringName = ANIM_FLASHLIGHT_OUT if enabled else ANIM_FLASHLIGHT_AWAY
+	print("Playing anim: ", anim)
+	_anims.play(anim)
 
 
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
+func _on_anim_finished(anim_name : StringName) -> void:
+	print("Animation Complete")
+	_can_interact = true

@@ -39,6 +39,8 @@ ambient_light_color = Color(0.86, 0.74863, 0.5418, 0.901961)
 ambient_light_sky_contribution = 0.9
 ambient_light_energy = 0.13
 tonemap_mode = 3
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
 glow_enabled = true
 glow_normalized = true
 glow_intensity = 1.2
@@ -72,10 +74,19 @@ flicker_noise = SubResource("FastNoiseLite_l8ybt")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38203, 2.38958, -5.48218)
 max_energy = 5.641
 
+[node name="FlorecentRed3" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7276, 2.38958, -5.48218)
+max_energy = 5.641
+
+[node name="FlorecentRed4" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0898, 2.38958, -5.48218)
+max_energy = 5.641
+
 [node name="RoomGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="Room_02" parent="RoomGroup" instance=ExtResource("1_oyi4t")]
+hide_roof = true
 
 [node name="MainDoor" parent="RoomGroup/Room_02" instance=ExtResource("2_ja0tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20748, 0, 2.68478)
@@ -88,6 +99,7 @@ open_angle = 2.35381
 
 [node name="Room_03" parent="RoomGroup" instance=ExtResource("3_hhicw")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 4.82181, 0, 0)
+hide_roof = true
 
 [node name="MainDoor" parent="RoomGroup/Room_03" instance=ExtResource("2_ja0tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216093, 0, 2.68902)
@@ -100,6 +112,7 @@ open_angle = 2.35381
 
 [node name="Room_04" parent="RoomGroup" instance=ExtResource("1_oyi4t")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 10.6396, 0, 0)
+hide_roof = true
 
 [node name="MainDoor" parent="RoomGroup/Room_04" instance=ExtResource("2_ja0tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20748, 0, 2.68478)
@@ -112,6 +125,7 @@ open_angle = 2.35381
 
 [node name="Room_05" parent="RoomGroup" instance=ExtResource("3_hhicw")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 15.4614, 0, 0)
+hide_roof = true
 
 [node name="MainDoor" parent="RoomGroup/Room_05" instance=ExtResource("2_ja0tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216093, 0, 2.68902)
@@ -174,6 +188,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.9726, 0, -2.84391)
 
 [node name="Room_06" parent="RoomGroup2" instance=ExtResource("1_oyi4t")]
+hide_roof = true
 
 [node name="MainDoor" parent="RoomGroup2/Room_06" instance=ExtResource("2_ja0tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20748, 0, 2.68478)
@@ -186,6 +201,7 @@ open_angle = 2.35381
 
 [node name="Room_07" parent="RoomGroup2" instance=ExtResource("3_hhicw")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 4.82181, 0, 0)
+hide_roof = true
 
 [node name="MainDoor" parent="RoomGroup2/Room_07" instance=ExtResource("2_ja0tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.216093, 0, 2.68902)

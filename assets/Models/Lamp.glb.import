@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Lamp.glb-ed4a7226e05d66c62bfa5ffb4bcfa42f.scn
 
 [params]
 
-nodes/root_type="Area3D"
+nodes/root_type="Node3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
