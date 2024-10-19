@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjb031s75fq1o"]
+[gd_scene load_steps=6 format=3 uid="uid://cjb031s75fq1o"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1jvga"]
 [ext_resource type="Script" path="res://scripts/ui/ui_layer.gd" id="2_q6rcc"]
 [ext_resource type="PackedScene" uid="uid://dc1arcrryh0rk" path="res://scenes/ui/main_menu/main_menu.tscn" id="3_brvpx"]
 [ext_resource type="PackedScene" uid="uid://c7etkj4myo7kn" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="4_d7rgh"]
+[ext_resource type="PackedScene" uid="uid://cb6d5843yessc" path="res://scenes/ui/options_menu/options_menu.tscn" id="5_appbs"]
 
 [node name="Main" type="Node"]
 process_mode = 3
@@ -17,5 +18,9 @@ initial_ui = &"MainMenu"
 default_ui = &"MainMenu"
 
 [node name="MainMenu" parent="UI" instance=ExtResource("3_brvpx")]
+options_menu = &"OptionsMenu"
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("4_d7rgh")]
+options_menu = &"OptionsMenu"
+
+[node name="OptionsMenu" parent="UI" instance=ExtResource("5_appbs")]

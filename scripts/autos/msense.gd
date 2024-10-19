@@ -47,31 +47,35 @@ var _allow_emit : bool = true
 # Setters / Getters
 # ------------------------------------------------------------------------------
 func set_sensitivity_x(sx : float) -> void:
-	_sensitivity.x = clampf(sx, 0.0, 1.0)
-	_EmitUpdatedSens()
+	Settings.set_value(SETTINGS_SECTION, SETTINGS_KEY_SENSITIVITY_X, clampf(sx, 0.0, 1.0))
+	#_sensitivity.x = clampf(sx, 0.0, 1.0)
+	#_EmitUpdatedSens()
 
 func get_sensitivity_x() -> float:
 	return _sensitivity.x
 
 func set_sensitivity_y(sy : float) -> void:
-	_sensitivity.y = clampf(sy, 0.0, 1.0)
-	_EmitUpdatedSens()
+	Settings.set_value(SETTINGS_SECTION, SETTINGS_KEY_SENSITIVITY_Y, clampf(sy, 0.0, 1.0))
+	#_sensitivity.y = clampf(sy, 0.0, 1.0)
+	#_EmitUpdatedSens()
 
 func get_sensitivity_y() -> float:
 	return _sensitivity.y
 
 func set_invert_x(i : bool) -> void:
 	if _inv[0] != i:
-		_inv[0] = i
-		_EmitUpdatedSens()
+		Settings.set_value(SETTINGS_SECTION, SETTINGS_KEY_INVERT_X, i)
+		#_inv[0] = i
+		#_EmitUpdatedSens()
 
 func get_invert_x() -> bool:
 	return _inv[0]
 
 func set_invert_y(i : bool) -> void:
 	if _inv[1] != i:
-		_inv[1] = i
-		_EmitUpdatedSens()
+		Settings.set_value(SETTINGS_SECTION, SETTINGS_KEY_INVERT_Y, i)
+		#_inv[1] = i
+		#_EmitUpdatedSens()
 
 func get_invert_y() -> bool:
 	return _inv[1]
@@ -83,6 +87,7 @@ func _ready() -> void:
 	Settings.reset.connect(_on_settings_reset)
 	Settings.loaded.connect(_on_settings_loaded)
 	Settings.value_changed.connect(_on_settings_value_changed)
+	_UpdateFromSettings()
 
 # ------------------------------------------------------------------------------
 # Private Methods

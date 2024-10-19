@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://bulit52jip7sr"]
+
+[ext_resource type="Script" path="res://scenes/ui/options_menu/options_gameplay/options_gameplay.gd" id="1_ywgy2"]
+
+[node name="OptionsGameplay" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ywgy2")
+
+[node name="VLayout" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VLayout"]
+layout_mode = 2
+text = "Gameplay Options"
+
+[node name="HSeparator" type="HSeparator" parent="VLayout"]
+layout_mode = 2
+
+[node name="MouseControls" type="VBoxContainer" parent="VLayout"]
+layout_mode = 2
+
+[node name="LBL_Sensitivity" type="Label" parent="VLayout/MouseControls"]
+layout_mode = 2
+text = "Mouse Sensitivity"
+
+[node name="SensitivityControls" type="VBoxContainer" parent="VLayout/MouseControls"]
+layout_mode = 2
+
+[node name="SensX" type="HBoxContainer" parent="VLayout/MouseControls/SensitivityControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VLayout/MouseControls/SensitivityControls/SensX"]
+layout_mode = 2
+text = "X: "
+
+[node name="SLIDER_SenseX" type="HSlider" parent="VLayout/MouseControls/SensitivityControls/SensX"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CHECK_InvertX" type="CheckButton" parent="VLayout/MouseControls/SensitivityControls/SensX"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Inv"
+
+[node name="SensY" type="HBoxContainer" parent="VLayout/MouseControls/SensitivityControls"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VLayout/MouseControls/SensitivityControls/SensY"]
+layout_mode = 2
+text = "Y: "
+
+[node name="SLIDER_SenseY" type="HSlider" parent="VLayout/MouseControls/SensitivityControls/SensY"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="CHECK_InvertY" type="CheckButton" parent="VLayout/MouseControls/SensitivityControls/SensY"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+text = "Inv"
+
+[connection signal="value_changed" from="VLayout/MouseControls/SensitivityControls/SensX/SLIDER_SenseX" to="." method="_on_slider_sense_x_value_changed"]
+[connection signal="toggled" from="VLayout/MouseControls/SensitivityControls/SensX/CHECK_InvertX" to="." method="_on_check_invert_x_toggled"]
+[connection signal="value_changed" from="VLayout/MouseControls/SensitivityControls/SensY/SLIDER_SenseY" to="." method="_on_slider_sense_y_value_changed"]
+[connection signal="toggled" from="VLayout/MouseControls/SensitivityControls/SensY/CHECK_InvertY" to="." method="_on_check_invert_y_toggled"]
