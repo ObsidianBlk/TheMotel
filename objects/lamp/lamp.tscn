@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://crkmr27wjjsfr"]
+[gd_scene load_steps=7 format=3 uid="uid://crkmr27wjjsfr"]
 
-[ext_resource type="PackedScene" uid="uid://dqe7e5fll5k5a" path="res://assets/Models/Lamp.glb" id="1_4oyru"]
 [ext_resource type="Script" path="res://objects/lamp/lamp.gd" id="1_mjsxl"]
 [ext_resource type="Script" path="res://scripts/node/flicker.gd" id="2_aexde"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="3_6baca"]
+[ext_resource type="PackedScene" uid="uid://bygsayexgtymt" path="res://assets/Models/LampNoShade.glb" id="4_di2pr"]
+[ext_resource type="PackedScene" uid="uid://c8nikm083efx" path="res://assets/Models/Lamp_Shade.glb" id="5_2lx3c"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_svua7"]
 height = 0.4
@@ -13,8 +14,6 @@ radius = 0.16
 script = ExtResource("1_mjsxl")
 enabled_message = "[center]Turn Off[/center]"
 disabled_message = "[center]Turn On[/center]"
-
-[node name="Lamp_Mesh" parent="." instance=ExtResource("1_4oyru")]
 
 [node name="Flicker" type="Node" parent="." node_paths=PackedStringArray("light")]
 script = ExtResource("2_aexde")
@@ -35,5 +34,9 @@ script = ExtResource("3_6baca")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 shape = SubResource("CylinderShape3D_svua7")
+
+[node name="LampNoShade" parent="." instance=ExtResource("4_di2pr")]
+
+[node name="Lamp_Shade" parent="." instance=ExtResource("5_2lx3c")]
 
 [connection signal="interacted" from="Interactable" to="." method="interact"]
