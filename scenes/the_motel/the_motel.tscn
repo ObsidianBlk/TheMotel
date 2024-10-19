@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://capiwdemgn6sk"]
+[gd_scene load_steps=24 format=3 uid="uid://capiwdemgn6sk"]
 
 [ext_resource type="Script" path="res://scenes/the_motel/the_motel.gd" id="1_ggejn"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="1_oyi4t"]
@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dt4qwuu8l7tya" path="res://objects/buildings/hotel_Room_Flipped.tscn" id="3_hhicw"]
 [ext_resource type="PackedScene" uid="uid://n0382xk60h4n" path="res://objects/sidewalk_square/sidewalk_square_temp.tscn" id="4_s6k41"]
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="5_yp6ap"]
+[ext_resource type="Material" uid="uid://c5av5m4ael85h" path="res://assets/materials/asphalt/asphalt.material" id="7_k2hgr"]
+[ext_resource type="AudioStream" uid="uid://db28pvcfdtstv" path="res://assets/audio/sfx/wind/Wind_Loop.wav" id="8_imytu"]
+[ext_resource type="AudioStream" uid="uid://bhamjo5ceda0q" path="res://assets/audio/sfx/cicadas/cicadas.wav" id="9_emy2i"]
+[ext_resource type="Texture2D" uid="uid://c7e2v5sbbjnrx" path="res://assets/materials/asphalt/asphalt_pit_lane_ao_256px.png" id="11_ph765"]
+[ext_resource type="Texture2D" uid="uid://douhm5ajrr372" path="res://assets/materials/asphalt/asphalt_pit_lane_nor_gl_256.png" id="12_1y0xx"]
+[ext_resource type="Script" path="res://scripts/node/Region.gd" id="13_cuxto"]
+[ext_resource type="PackedScene" uid="uid://bu4h5lmh88iul" path="res://objects/buildings/laundryRoom.tscn" id="14_uhq2o"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_l8ybt"]
 noise_type = 3
@@ -16,8 +23,14 @@ fractal_lacunarity = 5.755
 fractal_gain = 1.15
 fractal_weighted_strength = 0.54
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jyy4"]
-albedo_color = Color(0.423651, 0.423651, 0.423651, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_0n3rw"]
+size = Vector3(20.9944, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sfyde"]
+size = Vector3(10.3303, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1j7t2"]
+size = Vector3(22.8404, 1, 18.7924)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v8pe8"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -60,27 +73,11 @@ dof_blur_far_enabled = true
 dof_blur_far_distance = 20.0
 dof_blur_far_transition = 10.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_uc2hx"]
+size = Vector3(5.80975, 1, 1)
+
 [node name="TheMotel" type="Node3D"]
 script = ExtResource("1_ggejn")
-
-[node name="ExteriorFloresence" type="Node3D" parent="."]
-
-[node name="FlorecentRed" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38958, -5.48218)
-max_energy = 3.0
-flicker_noise = SubResource("FastNoiseLite_l8ybt")
-
-[node name="FlorecentRed2" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.38203, 2.38958, -5.48218)
-max_energy = 5.641
-
-[node name="FlorecentRed3" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7276, 2.38958, -5.48218)
-max_energy = 5.641
-
-[node name="FlorecentRed4" parent="ExteriorFloresence" instance=ExtResource("2_a02ax")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.0898, 2.38958, -5.48218)
-max_energy = 5.641
 
 [node name="RoomGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -184,6 +181,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
 [node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment4" instance=ExtResource("4_s6k41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
 
+[node name="ExteriorFloresence" type="Node3D" parent="RoomGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="FlorecentRed" parent="RoomGroup/ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38958, -5.48218)
+max_energy = 3.0
+flicker_noise = SubResource("FastNoiseLite_l8ybt")
+
+[node name="FlorecentRed2" parent="RoomGroup/ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.31643, 2.38958, -5.48218)
+max_energy = 5.641
+
+[node name="FlorecentRed3" parent="RoomGroup/ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6424, 2.38958, -5.48218)
+max_energy = 5.641
+
+[node name="FlorecentRed4" parent="RoomGroup/ExteriorFloresence" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9728, 2.38958, -5.48218)
+max_energy = 5.641
+
+[node name="Region_Indoor_Rooms_01" type="Area3D" parent="RoomGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.08647)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 1
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomGroup/Region_Indoor_Rooms_01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98303, 0, 0)
+shape = SubResource("BoxShape3D_0n3rw")
+
 [node name="RoomGroup2" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.9726, 0, -2.84391)
 
@@ -239,16 +268,127 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
 [node name="SidewalkSquare_TEMP" parent="RoomGroup2/SidewalkSegment6" instance=ExtResource("4_s6k41")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
 
+[node name="FlorecentRed5" parent="RoomGroup2" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0183806, 2.38958, 4.52885)
+max_energy = 5.641
+
+[node name="FlorecentRed6" parent="RoomGroup2" instance=ExtResource("2_a02ax")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.33856, 2.38958, 4.52885)
+max_energy = 5.641
+
+[node name="Region_Indoor_Rooms_02" type="Area3D" parent="RoomGroup2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.075)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 1
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomGroup2/Region_Indoor_Rooms_02"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6615, 0, 0)
+shape = SubResource("BoxShape3D_sfyde")
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000244141, 0, -6.75)
 visible = false
 size = Vector3(5.31201, 1, 1)
 
-[node name="ParkingLot" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36942, -0.502459, -0.8387)
+[node name="Parkinglot" type="Node3D" parent="."]
+
+[node name="Asphalt" type="CSGBox3D" parent="Parkinglot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36942, -0.502459, 3.4113)
 use_collision = true
-size = Vector3(22, 0.872128, 12)
-material = SubResource("StandardMaterial3D_6jyy4")
+size = Vector3(22, 0.872, 18.3)
+material = ExtResource("7_k2hgr")
+
+[node name="ParkingSpace" type="Node3D" parent="Parkinglot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.95)
+
+[node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace"]
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="Decal2" type="Decal" parent="Parkinglot/ParkingSpace"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59, 0, 0)
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="ParkingSpace2" type="Node3D" parent="Parkinglot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68, 0, -2.95)
+
+[node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace2"]
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="Decal2" type="Decal" parent="Parkinglot/ParkingSpace2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59, 0, 0)
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="ParkingSpace3" type="Node3D" parent="Parkinglot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86, 0, -2.95)
+
+[node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace3"]
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="Decal2" type="Decal" parent="Parkinglot/ParkingSpace3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59, 0, 0)
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="ParkingSpace4" type="Node3D" parent="Parkinglot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04, 0, -2.95)
+
+[node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace4"]
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="Decal2" type="Decal" parent="Parkinglot/ParkingSpace4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59, 0, 0)
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="ParkingSpace5" type="Node3D" parent="Parkinglot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04, 0, 9.88757)
+
+[node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace5"]
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="Decal2" type="Decal" parent="Parkinglot/ParkingSpace5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59, 0, 0)
+size = Vector3(0.1, 1, 5.48)
+texture_albedo = ExtResource("11_ph765")
+texture_normal = ExtResource("12_1y0xx")
+texture_orm = ExtResource("11_ph765")
+
+[node name="Region_Outdoor_01" type="Area3D" parent="Parkinglot"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Parkinglot/Region_Outdoor_01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.79282, 0, 2.14178)
+shape = SubResource("BoxShape3D_1j7t2")
 
 [node name="FPSController" parent="." instance=ExtResource("5_yp6ap")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -0.5)
@@ -264,3 +404,29 @@ light_energy = 0.1
 light_angular_distance = 2.0
 shadow_enabled = true
 directional_shadow_mode = 0
+
+[node name="Audio_Wind" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_imytu")
+volume_db = -5.871
+autoplay = true
+bus = &"Ambient_Outdoor"
+
+[node name="Audio_Cicadas" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_emy2i")
+autoplay = true
+bus = &"Ambient_Outdoor"
+
+[node name="LaundryRoom" parent="." instance=ExtResource("14_uhq2o")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.5, 0, 15.5721)
+
+[node name="Region_LaundryRoom" type="Area3D" parent="LaundryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.40679)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 2
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LaundryRoom/Region_LaundryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00204468, 0, -3.8147e-06)
+shape = SubResource("BoxShape3D_uc2hx")

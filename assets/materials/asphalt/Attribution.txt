@@ -1,0 +1,4 @@
+Textures obtained from
+https://polyhaven.com/a/asphalt_pit_lane
+
+Modified: Reduced from 1k to 256px

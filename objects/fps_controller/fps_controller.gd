@@ -35,6 +35,7 @@ var _interactable : Interactable = null
 @onready var _camera: Camera3D = $Camera
 @onready var _camera_ray: RayCast3D = %CameraRay
 @onready var _flashlight_handler: Node = $FlashlightHandler
+@onready var _footstep_handler: Node = $FootstepHandler
 
 
 # ------------------------------------------------------------------------------
@@ -84,6 +85,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and _jump:
 		velocity.y = jump_speed
 	_jump = false
+	
+	_footstep_handler.enabled = velocity.length_squared() > 0.01
 
 # ------------------------------------------------------------------------------
 # Private Methods

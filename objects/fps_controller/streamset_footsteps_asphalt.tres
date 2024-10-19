@@ -1,0 +1,14 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=5 format=3 uid="uid://dnfxy4lx1b4o3"]
+
+[ext_resource type="AudioStream" uid="uid://dknymf1elt4np" path="res://assets/audio/sfx/footstep_asphalt/footstep_asphalt_01.wav" id="1_1d5vx"]
+[ext_resource type="AudioStream" uid="uid://cg83p54io1cfi" path="res://assets/audio/sfx/footstep_asphalt/footstep_asphalt_02.wav" id="2_p6non"]
+[ext_resource type="AudioStream" uid="uid://c6iclowx85ok5" path="res://assets/audio/sfx/footstep_asphalt/footstep_asphalt_03.wav" id="3_x7meq"]
+[ext_resource type="AudioStream" uid="uid://di2s6ptyprmv8" path="res://assets/audio/sfx/footstep_asphalt/footstep_asphalt_04.wav" id="4_3sqrg"]
+
+[resource]
+random_pitch = 1.25
+streams_count = 4
+stream_0/stream = ExtResource("1_1d5vx")
+stream_1/stream = ExtResource("2_p6non")
+stream_2/stream = ExtResource("3_x7meq")
+stream_3/stream = ExtResource("4_3sqrg")

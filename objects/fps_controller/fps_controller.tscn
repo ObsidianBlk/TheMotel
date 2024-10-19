@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1ips5dgrr41b"]
+[gd_scene load_steps=14 format=3 uid="uid://d1ips5dgrr41b"]
 
 [ext_resource type="Script" path="res://objects/fps_controller/fps_controller.gd" id="1_5myhk"]
 [ext_resource type="PackedScene" uid="uid://semg45julkco" path="res://objects/flashlight/flashlight.tscn" id="2_sy4yd"]
 [ext_resource type="PackedScene" uid="uid://uhqhvuvymitn" path="res://scenes/ui/interact_message/interact_message.tscn" id="2_wiaal"]
 [ext_resource type="Script" path="res://objects/fps_controller/flashlight_handler.gd" id="4_278ho"]
+[ext_resource type="AudioStream" uid="uid://c0iwuwg8c6glr" path="res://objects/fps_controller/streamset_footsteps_wood.tres" id="4_f35wl"]
+[ext_resource type="Script" path="res://objects/fps_controller/footstep_handler.gd" id="6_q7jba"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ukdfn"]
 radius = 0.25
@@ -455,6 +457,14 @@ libraries = {
 "": SubResource("AnimationLibrary_12dgf")
 }
 
+[node name="Audio_Footsteps" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_f35wl")
+bus = &"SFX"
+
 [node name="FlashlightHandler" type="Node" parent="."]
 script = ExtResource("4_278ho")
 available = true
+
+[node name="FootstepHandler" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
+script = ExtResource("6_q7jba")
+audio_player = NodePath("../Audio_Footsteps")

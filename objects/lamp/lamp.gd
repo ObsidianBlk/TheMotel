@@ -32,6 +32,7 @@ extends Node3D
 # ------------------------------------------------------------------------------
 @onready var _flicker: Flicker = $Flicker
 @onready var _interactable: Interactable = $Interactable
+@onready var _audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 
 # ------------------------------------------------------------------------------
@@ -41,6 +42,7 @@ func set_enable(e : bool) -> void:
 	if e != enabled:
 		enabled = e
 		_UpdateFlicker()
+		_PlayClick()
 
 func set_min_energy(e : float) -> void:
 	if e >= 0.0 and e <= 16.0:
@@ -90,6 +92,11 @@ func _UpdateInteractMessage() -> void:
 	if _interactable == null: return
 	var msg : String = enabled_message if enabled else disabled_message
 	_interactable.message = msg
+
+func _PlayClick() -> void:
+	if _audio == null: return
+	if not _audio.playing:
+		_audio.play()
 
 # ------------------------------------------------------------------------------
 # Public Methods
