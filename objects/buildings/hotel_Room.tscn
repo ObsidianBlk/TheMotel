@@ -1,10 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://beg6m72kwbn07"]
+[gd_scene load_steps=15 format=3 uid="uid://beg6m72kwbn07"]
 
 [ext_resource type="PackedScene" uid="uid://d4avrfo24c0dj" path="res://assets/Models/HotelRoom.glb" id="1_0rpph"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_cq312"]
 [ext_resource type="PackedScene" uid="uid://cdgeuhwcrr1sb" path="res://assets/Models/UnitRoof.glb" id="2_0yf4e"]
 [ext_resource type="PackedScene" uid="uid://b4fpwo48wbpfn" path="res://assets/Models/HotelDoorsWindowsAndFloor.glb" id="2_ahfc3"]
 [ext_resource type="Material" uid="uid://cpuhgm0mnor4p" path="res://objects/buildings/HotelRoomGlass.material" id="4_7brqj"]
+[ext_resource type="PackedScene" uid="uid://c3buncyi86j0s" path="res://assets/Models/Vanity.glb" id="6_wqa1l"]
+[ext_resource type="PackedScene" uid="uid://der28xp4tlinb" path="res://assets/Models/Toilet.glb" id="7_q44wb"]
+[ext_resource type="PackedScene" uid="uid://weyichuvh831" path="res://assets/Models/NightTable.glb" id="8_k7kdw"]
+[ext_resource type="PackedScene" uid="uid://b88oic4ald48o" path="res://assets/Models/MessyBed.glb" id="9_ikcnp"]
+[ext_resource type="PackedScene" uid="uid://bgfh8rtqwsbk7" path="res://assets/Models/AlarmClock.glb" id="10_26hhl"]
+[ext_resource type="PackedScene" uid="uid://dqe7e5fll5k5a" path="res://assets/Models/Lamp.glb" id="11_yeeq8"]
+[ext_resource type="PackedScene" uid="uid://bcudxtf6nokr" path="res://objects/air_conditioner/air_conditioner.tscn" id="12_0ev2c"]
+[ext_resource type="PackedScene" uid="uid://cfs282fw2cv1a" path="res://assets/Models/Seating.glb" id="13_jr52q"]
+[ext_resource type="PackedScene" uid="uid://dvybxyc6uo031" path="res://objects/shower/shower.tscn" id="14_6jodn"]
 
 [node name="HotelRoom" type="Node3D" node_paths=PackedStringArray("roof_node")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -19,6 +28,33 @@ roof_node = NodePath("HotelRoom/UnitRoof")
 
 [node name="Glass_002LT" parent="HotelDoorsWindowsAndFloor" index="4"]
 surface_material_override/0 = ExtResource("4_7brqj")
+
+[node name="Vanity" parent="." instance=ExtResource("6_wqa1l")]
+transform = Transform3D(0.785, 0, 0, 0, 0.785, 0, 0, 0, 0.785, 2.16273, 0, -2.37358)
+
+[node name="Toilet" parent="." instance=ExtResource("7_q44wb")]
+transform = Transform3D(-4.50169e-08, 0, 1, 0, 1, 0, -1.02987, 0, -4.37114e-08, 1.40488, 2.38419e-07, -2.30013)
+
+[node name="NightTable" parent="." instance=ExtResource("8_k7kdw")]
+transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, 0.107392, 0.00012207, -2.27036)
+
+[node name="MessyBed" parent="." instance=ExtResource("9_ikcnp")]
+transform = Transform3D(-4.50169e-08, 0, -1, 0, 1, 0, 1.02987, 0, -4.37114e-08, -1.17524, -0.00012207, -1.34366)
+
+[node name="AlarmClock" parent="." instance=ExtResource("10_26hhl")]
+transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, -0.105277, 0.884482, -2.3961)
+
+[node name="Lamp" parent="." instance=ExtResource("11_yeeq8")]
+transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, 0.205637, 0.884482, -2.13547)
+
+[node name="AirConditioner" parent="." instance=ExtResource("12_0ev2c")]
+transform = Transform3D(-1.02987, 0, 8.74228e-08, 0, 1, 0, -9.00338e-08, 0, -1, -1.83299, 0.50794, 2.61812)
+
+[node name="Seating" parent="." instance=ExtResource("13_jr52q")]
+transform = Transform3D(-4.50169e-08, 0, -1, 0, 1, 0, 1.02987, 0, -4.37114e-08, 2.0579, 0, 1.25905)
+
+[node name="Shower" parent="." instance=ExtResource("14_6jodn")]
+transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, 0.906621, -0.00012207, -2.07708)
 
 [editable path="HotelRoom"]
 [editable path="HotelDoorsWindowsAndFloor"]

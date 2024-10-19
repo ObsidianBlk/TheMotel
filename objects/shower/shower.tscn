@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvybxyc6uo031"]
+
+[ext_resource type="PackedScene" uid="uid://chs1fy4yi30am" path="res://assets/Models/Shower.fbx" id="1_wrmhv"]
+
+[node name="Shower" type="Node3D"]
+
+[node name="Shower" parent="." instance=ExtResource("1_wrmhv")]
+transform = Transform3D(0.602, 0, 0, 0, 0.725, 0, 0, 0, 0.725, 2.41825, 2.38419e-07, -1.65378)
