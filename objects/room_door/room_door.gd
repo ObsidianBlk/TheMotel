@@ -32,6 +32,7 @@ var _tween : Tween = null
 # ------------------------------------------------------------------------------
 @onready var _interactable: Interactable = $MotelDoor/Interactable
 @onready var _motel_door: Node3D = $MotelDoor
+@onready var _collision: CollisionShape3D = $MotelDoor/Door_002LT/StaticBody3D/CollisionShape3D
 @onready var _text_object : Array[MeshInstance3D] = [
 	null,
 	null,
@@ -99,6 +100,8 @@ func interact(payload : Dictionary = {}) -> void:
 	_door_open = not _door_open
 	if _interactable != null:
 		_interactable.message = opened_message if _door_open else closed_message
+	if _collision != null:
+		_collision.disabled = _door_open
 	
 	if _tween != null:
 		_tween.kill()

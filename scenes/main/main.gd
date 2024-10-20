@@ -18,6 +18,8 @@ const DEFAULT_LEVEL_PATH : String = "res://scenes/the_motel/the_motel.tscn"
 var _active_level_src : String = ""
 var _active_level : Node3D = null
 
+var _loading : bool = false
+
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
@@ -62,8 +64,15 @@ func _CloseActiveLevel() -> void:
 	_active_level = null
 	_active_level_src = ""
 
+func _ThreadedLevelLoadCallback(scene : Resource, progress : float, status : int) -> void:
+	if status != OK:
+		_loading = false
+	# TODO: Finish this!
+
 func _LoadLevel(src : String) -> int:
+	#if _loading: return ERR_BUSY
 	if src == _active_level_src: return OK
+	#_loading = true
 	var scene : Variant = load(src)
 	if scene is PackedScene:
 		var level : Variant = scene.instantiate()

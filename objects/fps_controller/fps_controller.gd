@@ -25,6 +25,7 @@ var _mouse_sensitivity : Vector2 = Vector2(0.2, 0.2)
 var _gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity")
 var _input : Vector2 = Vector2.ZERO
 var _look_input : Vector2 = Vector2.ZERO
+var _look_input_from_mouse : bool = false
 var _jump : bool = false
 
 var _interactable : Interactable = null
@@ -62,14 +63,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseMotion:
 		_look_input = event.relative * _mouse_sensitivity
+		_look_input_from_mouse = true
 		#_UpdateView(event.relative * _mouse_sensitivity)
 	elif event.is_action("move_forward") or event.is_action("move_backward") or event.is_action("move_left") or event.is_action("move_right"):
 		_input = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	elif event.is_action("turn_left") or event.is_action("turn_right"):
+		_look_input.x = Input.get_axis("turn_left", "turn_right")
+		_look_input_from_mouse = false
+	elif event.is_action("look_up") or event.is_action("look_down"):
+		_look_input.y = Input.get_axis("look_up", "look_down")
+		_look_input_from_mouse = false
 	elif event.is_action_pressed("interact_a"):
 		if _interactable != null:
 			_interactable.interact()
 	elif event.is_action_pressed("interact_b"):
 		_flashlight_handler.enabled = not _flashlight_handler.enabled
+	elif event.is_action_pressed("jump"):
+		_jump = true
 
 func _physics_process(delta: float) -> void:
 	_CheckForInteractable()
@@ -103,7 +113,8 @@ func _UpdateView(delta : float) -> void:
 	_camera.transform.basis = Basis.from_euler(Vector3(_mouse_rotation.x, 0.0, 0.0))
 	_camera.rotation.z = 0.0
 	
-	_look_input = Vector2.ZERO
+	if _look_input_from_mouse:
+		_look_input = Vector2.ZERO
 
 
 func _CheckForInteractable() -> void:
