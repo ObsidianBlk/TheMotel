@@ -1,7 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://ba7u2hojtaw1k"]
+[gd_scene load_steps=6 format=3 uid="uid://ba7u2hojtaw1k"]
 
 [ext_resource type="PackedScene" uid="uid://b6wap18l6wy68" path="res://assets/Models/RoomKeyPeg.glb" id="1_qbfdu"]
+[ext_resource type="Script" path="res://objects/roomkey peg/roomkey_peg.gd" id="1_tgdee"]
+[ext_resource type="PackedScene" uid="uid://b3ggowy5cxi0b" path="res://objects/room key/room_key.tscn" id="2_syw68"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="4_6rca1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_35cfg"]
+size = Vector3(0.120422, 0.371521, 0.198303)
 
 [node name="RoomkeyPeg" type="Node3D"]
+script = ExtResource("1_tgdee")
+occupied_message = "[center]Take Key[/center]"
+missing_message = "[center]Return Key[/center]"
 
 [node name="RoomKeyPeg" parent="." instance=ExtResource("1_qbfdu")]
+
+[node name="RoomKey" parent="." instance=ExtResource("2_syw68")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0054529, 0.0454109)
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("4_6rca1")
+message = "[center]Take Key[/center]"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00857544, -0.0462341, 0.0843201)
+shape = SubResource("BoxShape3D_35cfg")
+
+[connection signal="interacted" from="Interactable" to="." method="interact"]

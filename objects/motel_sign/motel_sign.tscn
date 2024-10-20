@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://niq8u11qjaly"]
+
+[ext_resource type="PackedScene" uid="uid://bc43qdo8isnmq" path="res://assets/Models/HotelSign.glb" id="1_48rhe"]
+
+[node name="MotelSign" type="Node3D"]
+
+[node name="HotelSign" parent="." instance=ExtResource("1_48rhe")]
+
+[editable path="HotelSign"]

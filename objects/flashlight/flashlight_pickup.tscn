@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgr37mvcgb7qu"]
+
+[ext_resource type="Script" path="res://objects/flashlight/flashlight_pickup.gd" id="1_6uad8"]
+[ext_resource type="PackedScene" uid="uid://cac3ocswaath8" path="res://assets/Models/Flashlight.glb" id="1_uvsbq"]
+[ext_resource type="Material" uid="uid://bedk7ysdrtb8o" path="res://objects/flashlight/light_off.material" id="2_60245"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="3_aigk5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glxri"]
+size = Vector3(0.675, 0.15, 0.15)
+
+[node name="FlashlightPickup" type="Node3D"]
+script = ExtResource("1_6uad8")
+
+[node name="Flashlight" parent="." instance=ExtResource("1_uvsbq")]
+transform = Transform3D(-2.18557e-08, 0.5, 2.18557e-08, 0, -2.18557e-08, 0.5, 0.5, 2.18557e-08, 9.55343e-16, 0, 0.0670899, 0)
+
+[node name="Cylinder_002" parent="Flashlight" index="0"]
+surface_material_override/0 = ExtResource("2_60245")
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("3_aigk5")
+message = "Pickup Flashlight"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2125, 0.075, 2.98023e-08)
+shape = SubResource("BoxShape3D_glxri")
+
+[connection signal="interacted" from="Interactable" to="." method="interact"]
+
+[editable path="Flashlight"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://dt4qwuu8l7tya"]
+[gd_scene load_steps=16 format=3 uid="uid://dt4qwuu8l7tya"]
 
 [ext_resource type="PackedScene" uid="uid://bj0oi8bnhw32v" path="res://assets/Models/MotelRoomFlipped.glb" id="1_3s4u2"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_6vd7o"]
 [ext_resource type="PackedScene" uid="uid://cdgeuhwcrr1sb" path="res://assets/Models/UnitRoof.glb" id="2_c6sm3"]
+[ext_resource type="Material" uid="uid://cpuhgm0mnor4p" path="res://objects/buildings/HotelRoomGlass.material" id="4_6jhve"]
 [ext_resource type="PackedScene" uid="uid://der28xp4tlinb" path="res://assets/Models/Toilet.glb" id="5_lps7j"]
 [ext_resource type="PackedScene" uid="uid://c3buncyi86j0s" path="res://assets/Models/Vanity.glb" id="6_4rkb1"]
 [ext_resource type="PackedScene" uid="uid://weyichuvh831" path="res://assets/Models/NightTable.glb" id="7_jp58l"]
@@ -15,6 +16,10 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_agrf6"]
 size = Vector3(5.21, 0.115, 5.57)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ngnt7"]
+material = ExtResource("4_6jhve")
+size = Vector3(1.2, 1.2, 0.02)
 
 [node name="HotelRoom" type="Node3D" node_paths=PackedStringArray("roof_node")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -34,6 +39,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.508443, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MotelRoomFlipped/FloorBody"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.515, -0.055, 0)
 shape = SubResource("BoxShape3D_agrf6")
+
+[node name="Glass" type="MeshInstance3D" parent="MotelRoomFlipped"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34295, 1.5, 2.725)
+mesh = SubResource("BoxMesh_ngnt7")
 
 [node name="Toilet" parent="." instance=ExtResource("5_lps7j")]
 transform = Transform3D(-4.50169e-08, 0, 1, 0, 1, 0, -1.02987, 0, -4.37114e-08, -1.01533, 0.00249989, -2.30331)

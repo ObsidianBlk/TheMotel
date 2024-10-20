@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://capiwdemgn6sk"]
+[gd_scene load_steps=35 format=3 uid="uid://capiwdemgn6sk"]
 
 [ext_resource type="Script" path="res://scenes/the_motel/the_motel.gd" id="1_ggejn"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="1_oyi4t"]
@@ -10,12 +10,19 @@
 [ext_resource type="Material" uid="uid://c5av5m4ael85h" path="res://assets/materials/asphalt/asphalt.material" id="7_k2hgr"]
 [ext_resource type="AudioStream" uid="uid://db28pvcfdtstv" path="res://assets/audio/sfx/wind/Wind_Loop.wav" id="8_imytu"]
 [ext_resource type="AudioStream" uid="uid://bhamjo5ceda0q" path="res://assets/audio/sfx/cicadas/cicadas.wav" id="9_emy2i"]
+[ext_resource type="PackedScene" uid="uid://j2fj7xmprr0y" path="res://objects/dumpster/dumpster.tscn" id="10_sdkca"]
 [ext_resource type="Texture2D" uid="uid://c7e2v5sbbjnrx" path="res://assets/materials/asphalt/asphalt_pit_lane_ao_256px.png" id="11_ph765"]
 [ext_resource type="Texture2D" uid="uid://douhm5ajrr372" path="res://assets/materials/asphalt/asphalt_pit_lane_nor_gl_256.png" id="12_1y0xx"]
+[ext_resource type="PackedScene" uid="uid://juu0jtiveafj" path="res://objects/buildings/office/office.tscn" id="13_4r2ku"]
 [ext_resource type="Script" path="res://scripts/node/Region.gd" id="13_cuxto"]
 [ext_resource type="PackedScene" uid="uid://bu4h5lmh88iul" path="res://objects/buildings/laundryRoom.tscn" id="14_uhq2o"]
+[ext_resource type="PackedScene" uid="uid://bb1mb6it4gpu5" path="res://objects/closed_circuit_camera/closed_circuit_camera.tscn" id="15_m2f66"]
 [ext_resource type="Terrain3DStorage" uid="uid://cstfv1gi5we2m" path="res://assets/terrain/terrain_data.res" id="15_rejoo"]
 [ext_resource type="Terrain3DAssets" uid="uid://dr3yv5ygoc6nw" path="res://assets/terrain/terrain_assets.res" id="16_8waf1"]
+[ext_resource type="PackedScene" uid="uid://niq8u11qjaly" path="res://objects/motel_sign/motel_sign.tscn" id="16_et0bv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0n3rw"]
+size = Vector3(20.9944, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_l8ybt"]
 noise_type = 3
@@ -25,14 +32,16 @@ fractal_lacunarity = 5.755
 fractal_gain = 1.15
 fractal_weighted_strength = 0.54
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0n3rw"]
-size = Vector3(20.9944, 1, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_sfyde"]
 size = Vector3(10.3303, 1, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1j7t2"]
-size = Vector3(22.8404, 1, 18.7924)
+size = Vector3(22.8404, 1, 21.225)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uc2hx"]
+size = Vector3(5.80975, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n0ka0"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v8pe8"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -73,9 +82,6 @@ volumetric_fog_sky_affect = 0.347
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_1bahh"]
 dof_blur_far_distance = 20.0
 dof_blur_far_transition = 10.0
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_uc2hx"]
-size = Vector3(5.80975, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_3ivmf"]
 offsets = PackedFloat32Array(0.2, 1)
@@ -120,7 +126,6 @@ script = ExtResource("1_ggejn")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
 
 [node name="Room_02" parent="RoomGroup" instance=ExtResource("1_oyi4t")]
-hide_roof = true
 
 [node name="MainDoor" parent="RoomGroup/Room_02" instance=ExtResource("2_ja0tx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.20748, 0, 2.68478)
@@ -170,56 +175,20 @@ door_number = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723514, 0, -1.43282)
 open_angle = 2.35381
 
-[node name="SidewalkSegment" type="Node3D" parent="RoomGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.499)
+[node name="Region_Indoor_Rooms_01" type="Area3D" parent="RoomGroup"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.08647)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 1
+ambient_level = 0.1
 
-[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
-
-[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
-
-[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
-
-[node name="SidewalkSegment2" type="Node3D" parent="RoomGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30838, 0, 3.499)
-
-[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment2" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
-
-[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment2" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
-
-[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment2" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
-
-[node name="SidewalkSegment3" type="Node3D" parent="RoomGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6279, 0, 3.499)
-
-[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment3" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
-
-[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment3" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
-
-[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment3" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
-
-[node name="SidewalkSegment4" type="Node3D" parent="RoomGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9627, 0, 3.499)
-
-[node name="SidewalkSquare_TEMP2" parent="RoomGroup/SidewalkSegment4" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
-
-[node name="SidewalkSquare_TEMP3" parent="RoomGroup/SidewalkSegment4" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
-
-[node name="SidewalkSquare_TEMP" parent="RoomGroup/SidewalkSegment4" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomGroup/Region_Indoor_Rooms_01"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98303, 0, 0)
+shape = SubResource("BoxShape3D_0n3rw")
 
 [node name="ExteriorFloresence" type="Node3D" parent="RoomGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.175, 0, 10)
 
 [node name="FlorecentRed" parent="RoomGroup/ExteriorFloresence" instance=ExtResource("2_a02ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.38958, -5.48218)
@@ -237,18 +206,6 @@ max_energy = 5.641
 [node name="FlorecentRed4" parent="RoomGroup/ExteriorFloresence" instance=ExtResource("2_a02ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9728, 2.38958, -5.48218)
 max_energy = 5.641
-
-[node name="Region_Indoor_Rooms_01" type="Area3D" parent="RoomGroup"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.08647)
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("13_cuxto")
-footsteps = 1
-ambient_level = 0.1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RoomGroup/Region_Indoor_Rooms_01"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.98303, 0, 0)
-shape = SubResource("BoxShape3D_0n3rw")
 
 [node name="RoomGroup2" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 22.9726, 0, -2.84391)
@@ -278,33 +235,6 @@ door_number = 7
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.723514, 0, -1.43282)
 open_angle = 2.35381
 
-[node name="SidewalkSquare_TEMP4" parent="RoomGroup2" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5586, 0, 3.54228)
-
-[node name="SidewalkSegment5" type="Node3D" parent="RoomGroup2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01152, 0, 3.54228)
-
-[node name="SidewalkSquare_TEMP2" parent="RoomGroup2/SidewalkSegment5" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
-
-[node name="SidewalkSquare_TEMP3" parent="RoomGroup2/SidewalkSegment5" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
-
-[node name="SidewalkSquare_TEMP" parent="RoomGroup2/SidewalkSegment5" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
-
-[node name="SidewalkSegment6" type="Node3D" parent="RoomGroup2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.32463, 0, 3.54228)
-
-[node name="SidewalkSquare_TEMP2" parent="RoomGroup2/SidewalkSegment6" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
-
-[node name="SidewalkSquare_TEMP3" parent="RoomGroup2/SidewalkSegment6" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
-
-[node name="SidewalkSquare_TEMP" parent="RoomGroup2/SidewalkSegment6" instance=ExtResource("4_s6k41")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
-
 [node name="FlorecentRed5" parent="RoomGroup2" instance=ExtResource("2_a02ax")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0183806, 2.38958, 4.52885)
 max_energy = 5.641
@@ -333,13 +263,19 @@ size = Vector3(5.31201, 1, 1)
 [node name="Parkinglot" type="Node3D" parent="."]
 
 [node name="Asphalt" type="CSGBox3D" parent="Parkinglot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.36942, -0.502459, 3.4113)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.11942, -0.502459, 3.4113)
 use_collision = true
-size = Vector3(22, 0.872, 18.3)
+size = Vector3(22.5, 0.872, 18.3)
+material = ExtResource("7_k2hgr")
+
+[node name="Drive" type="CSGBox3D" parent="Parkinglot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.6423, -0.502459, 8.3635)
+use_collision = true
+size = Vector3(9, 0.872, 8)
 material = ExtResource("7_k2hgr")
 
 [node name="ParkingSpace" type="Node3D" parent="Parkinglot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.95)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -2.925)
 
 [node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace"]
 size = Vector3(0.1, 1, 5.48)
@@ -355,7 +291,7 @@ texture_normal = ExtResource("12_1y0xx")
 texture_orm = ExtResource("11_ph765")
 
 [node name="ParkingSpace2" type="Node3D" parent="Parkinglot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68, 0, -2.95)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.68, 0, -2.925)
 
 [node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace2"]
 size = Vector3(0.1, 1, 5.48)
@@ -371,7 +307,7 @@ texture_normal = ExtResource("12_1y0xx")
 texture_orm = ExtResource("11_ph765")
 
 [node name="ParkingSpace3" type="Node3D" parent="Parkinglot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86, 0, -2.95)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86, 0, -2.925)
 
 [node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace3"]
 size = Vector3(0.1, 1, 5.48)
@@ -387,7 +323,7 @@ texture_normal = ExtResource("12_1y0xx")
 texture_orm = ExtResource("11_ph765")
 
 [node name="ParkingSpace4" type="Node3D" parent="Parkinglot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04, 0, -2.95)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04, 0, -2.925)
 
 [node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace4"]
 size = Vector3(0.1, 1, 5.48)
@@ -403,7 +339,7 @@ texture_normal = ExtResource("12_1y0xx")
 texture_orm = ExtResource("11_ph765")
 
 [node name="ParkingSpace5" type="Node3D" parent="Parkinglot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04, 0, 9.88757)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.04, 0, 9.63757)
 
 [node name="Decal" type="Decal" parent="Parkinglot/ParkingSpace5"]
 size = Vector3(0.1, 1, 5.48)
@@ -424,11 +360,255 @@ collision_mask = 2
 script = ExtResource("13_cuxto")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Parkinglot/Region_Outdoor_01"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.79282, 0, 2.14178)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.79282, 0, 3.35808)
 shape = SubResource("BoxShape3D_1j7t2")
+
+[node name="BackLot" type="Node3D" parent="."]
+
+[node name="Asphalt2" type="CSGBox3D" parent="BackLot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.8694, -0.502459, 26.1863)
+use_collision = true
+size = Vector3(14, 0.872, 10.25)
+material = ExtResource("7_k2hgr")
+
+[node name="Asphalt4" type="CSGBox3D" parent="BackLot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1423, -0.502459, 29.3135)
+use_collision = true
+size = Vector3(18, 0.872, 4)
+material = ExtResource("7_k2hgr")
+
+[node name="Asphalt3" type="CSGBox3D" parent="BackLot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1194, -0.502459, 20.5613)
+use_collision = true
+size = Vector3(7.5, 0.872, 1)
+material = ExtResource("7_k2hgr")
+
+[node name="Dumpster" parent="BackLot" instance=ExtResource("10_sdkca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.75, 0, 20.75)
+
+[node name="Dumpster2" parent="BackLot" instance=ExtResource("10_sdkca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.125, 0, 20.75)
+
+[node name="Sidewalks" type="Node3D" parent="."]
+
+[node name="SidewalkSegment9" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9303, 0, 13.1529)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment9" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment9" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment9" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment10" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.5803, 0, 13.1529)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment10" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment10" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment10" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment11" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 11.6472, 0, 16.6144)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment11" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment11" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment11" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSquare_TEMP4" parent="Sidewalks/SidewalkSegment11" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.56762, 0, 0)
+
+[node name="SidewalkSegment12" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2553, 0, 13.1529)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment12" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment12" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment12" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment13" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.069701, 0, 13.1529)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment13" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment13" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment13" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSquare_TEMP4" parent="Sidewalks" instance=ExtResource("4_s6k41")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.4303, 0, -6.40251)
+
+[node name="SidewalkSegment5" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.4303, 0, -2.85543)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment5" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment5" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment5" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment6" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.4303, 0, 2.48072)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment6" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment6" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment6" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment7" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.4303, 0, 7.73069)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment7" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment7" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment7" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment8" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.4303, 0, 13.0742)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment8" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment8" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0139999, 0, 0)
+
+[node name="SidewalkSegment" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.476)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment2" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.30838, 0, -6.476)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment2" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment2" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment2" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment3" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6279, 0, -6.476)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment3" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment3" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment3" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
+
+[node name="SidewalkSegment4" type="Node3D" parent="Sidewalks"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9627, 0, -6.476)
+
+[node name="SidewalkSquare_TEMP2" parent="Sidewalks/SidewalkSegment4" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014, 0, 0)
+
+[node name="SidewalkSquare_TEMP3" parent="Sidewalks/SidewalkSegment4" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
+
+[node name="SidewalkSquare_TEMP" parent="Sidewalks/SidewalkSegment4" instance=ExtResource("4_s6k41")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
 
 [node name="FPSController" parent="." instance=ExtResource("5_yp6ap")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -0.5)
+
+[node name="LaundryRoom" parent="." instance=ExtResource("14_uhq2o")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.5, 0, 17.0082)
+
+[node name="Region_LaundryRoom" type="Area3D" parent="LaundryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.40679)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 2
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LaundryRoom/Region_LaundryRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00204468, 0, -3.8147e-06)
+shape = SubResource("BoxShape3D_uc2hx")
+
+[node name="Office" parent="." instance=ExtResource("13_4r2ku")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.03869, 0, 17.633)
+
+[node name="Region_Office" type="Area3D" parent="Office"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, 3)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 1
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Office/Region_Office"]
+shape = SubResource("BoxShape3D_n0ka0")
+
+[node name="Region_Office2" type="Area3D" parent="Office"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 0, -2.15)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 1
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Office/Region_Office2"]
+shape = SubResource("BoxShape3D_n0ka0")
+
+[node name="Region_Office_Bathroom" type="Area3D" parent="Office"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.225, 0, -2.175)
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("13_cuxto")
+footsteps = 1
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Office/Region_Office_Bathroom"]
+shape = SubResource("BoxShape3D_n0ka0")
+
+[node name="ClosedCircuitCamera" parent="Office" instance=ExtResource("15_m2f66")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.65, 2.675, -3.425)
+
+[node name="MotelSign" parent="." instance=ExtResource("16_et0bv")]
+transform = Transform3D(0.890062, 0, -0.45584, 0, 1, 0, 0.45584, 0, 0.890062, -11.0448, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ngn8q")
@@ -452,21 +632,6 @@ bus = &"Ambient_Outdoor"
 stream = ExtResource("9_emy2i")
 autoplay = true
 bus = &"Ambient_Outdoor"
-
-[node name="LaundryRoom" parent="." instance=ExtResource("14_uhq2o")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 15.5, 0, 15.5721)
-
-[node name="Region_LaundryRoom" type="Area3D" parent="LaundryRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.40679)
-collision_layer = 2
-collision_mask = 2
-script = ExtResource("13_cuxto")
-footsteps = 2
-ambient_level = 0.1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LaundryRoom/Region_LaundryRoom"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00204468, 0, -3.8147e-06)
-shape = SubResource("BoxShape3D_uc2hx")
 
 [node name="Terrain3D" type="Terrain3D" parent="."]
 storage = ExtResource("15_rejoo")

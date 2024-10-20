@@ -463,7 +463,6 @@ bus = &"SFX"
 
 [node name="FlashlightHandler" type="Node" parent="."]
 script = ExtResource("4_278ho")
-available = true
 
 [node name="FootstepHandler" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("6_q7jba")

@@ -1,15 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu4h5lmh88iul"]
+[gd_scene load_steps=7 format=3 uid="uid://bu4h5lmh88iul"]
 
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_japhb"]
 [ext_resource type="PackedScene" uid="uid://vaqbaobs6f2f" path="res://assets/Models/LaundryRoom_Floor.glb" id="2_x4cse"]
 [ext_resource type="PackedScene" uid="uid://i35rtyr8ljkd" path="res://assets/Models/LaundryRoom_Walls.glb" id="3_f8rm3"]
 [ext_resource type="PackedScene" uid="uid://be75ncm5bdwid" path="res://assets/Models/LaundryRoom_Roof.glb" id="4_h8hi3"]
+[ext_resource type="PackedScene" uid="uid://dabxjsyocr0gr" path="res://objects/dryer/dryer.tscn" id="5_141y7"]
+[ext_resource type="PackedScene" uid="uid://ci34i5u5y8yox" path="res://objects/washer/washer.tscn" id="6_qe57e"]
 
-[node name="LaundryRoom" type="Node3D"]
+[node name="LaundryRoom" type="Node3D" node_paths=PackedStringArray("roof_node")]
 script = ExtResource("1_japhb")
+roof_node = NodePath("LaundryRoom_Roof")
 
 [node name="LaundryRoom_Floor" parent="." instance=ExtResource("2_x4cse")]
 
 [node name="LaundryRoom_Walls" parent="." instance=ExtResource("3_f8rm3")]
 
 [node name="LaundryRoom_Roof" parent="." instance=ExtResource("4_h8hi3")]
+
+[node name="Dryer" parent="." instance=ExtResource("5_141y7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="Washer" parent="." instance=ExtResource("6_qe57e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, 0, 0)
+
+[node name="Dryer2" parent="." instance=ExtResource("5_141y7")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0, 2.325)
+
+[node name="Washer2" parent="." instance=ExtResource("6_qe57e")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -2.25, 0, 2.325)

@@ -124,7 +124,11 @@ func _CheckForInteractable() -> void:
 			_interactable = node
 			node.show_message()
 	elif _interactable != null:
-		_interactable.show_message(false)
+		if is_instance_valid(_interactable):
+			_interactable.show_message(false)
+		else:
+			if InteractMessage.Is_Showing():
+				InteractMessage.Hide_Message()
 		_interactable = null
 
 

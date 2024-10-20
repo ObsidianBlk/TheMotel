@@ -1,15 +1,20 @@
+@tool
 extends Node
 
 # ------------------------------------------------------------------------------
 # Signals
 # ------------------------------------------------------------------------------
-signal relayed(action : StringName, payload : Dictionary)
+signal player_inventory_item_added(item_name : StringName)
+signal player_inventory_item_removed(item_name : StringName)
 
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
 const GROUP_PLAYER : StringName = &"Player"
 enum FootstepType {Asphalt=0, Carpet=1, Wood=2}
+
+const INV_OBJECT_FLASHLIGHT : StringName = &"flashlight"
+const INV_OBJECT_KEY : StringName = &"room key"
 
 const ACTION_FOOTSTEPS : StringName = &"footsteps"
 
@@ -22,6 +27,7 @@ const ACTION_FOOTSTEPS : StringName = &"footsteps"
 # Variables
 # ------------------------------------------------------------------------------
 var _registered_actions : Dictionary = {}
+var _player_inventory : Dictionary = {}
 
 # ------------------------------------------------------------------------------
 # Onready Variables
@@ -69,6 +75,21 @@ func send_action(action : StringName, args : Array) -> void:
 	if action in _registered_actions:
 		for fn : Callable in _registered_actions[action]:
 			fn.callv(args)
+
+func add_player_item(item_name : StringName) -> int:
+	if item_name in _player_inventory: return ERR_ALREADY_EXISTS
+	_player_inventory[item_name] = true
+	player_inventory_item_added.emit(item_name)
+	return OK
+
+func remove_player_item(item_name : StringName) -> int:
+	if not item_name in _player_inventory: return ERR_CANT_ACQUIRE_RESOURCE
+	_player_inventory.erase(item_name)
+	player_inventory_item_removed.emit(item_name)
+	return OK
+
+func player_has_item(item_name : StringName) -> bool:
+	return item_name in _player_inventory
 
 # ------------------------------------------------------------------------------
 # Handler Methods

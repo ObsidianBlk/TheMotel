@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://semg45julkco"]
+[gd_scene load_steps=5 format=3 uid="uid://semg45julkco"]
 
 [ext_resource type="PackedScene" uid="uid://cac3ocswaath8" path="res://assets/Models/Flashlight.glb" id="1_qn3ln"]
 [ext_resource type="Script" path="res://objects/flashlight/flashlight.gd" id="1_ulucw"]
 [ext_resource type="Material" uid="uid://bedk7ysdrtb8o" path="res://objects/flashlight/light_off.material" id="2_fuh2n"]
+[ext_resource type="AudioStream" uid="uid://ymsik2wmtnv3" path="res://assets/audio/sfx/flashlight_click/457463__rudmer_rotteveel__small_flashlight_click_on_02.wav" id="4_fynh8"]
 
 [node name="Flashlight" type="Node3D"]
 script = ExtResource("1_ulucw")
@@ -23,5 +24,9 @@ shadow_enabled = true
 spot_range = 20.0
 spot_angle = 35.0
 spot_angle_attenuation = 1.7411
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_fynh8")
+bus = &"SFX"
 
 [editable path="Flashlight"]

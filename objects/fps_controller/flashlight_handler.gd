@@ -17,12 +17,13 @@ const ANIM_FLASHLIGHT_OUT : StringName = &"flashlight_out"
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
-@export var available : bool = false:	set = set_available
+#@export var available : bool = false:	set = set_available
 @export var enabled : bool = false:		set = set_enabled
 
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
+var _available : bool = false
 var _can_interact : bool = true
 
 # ------------------------------------------------------------------------------
@@ -35,16 +36,16 @@ var _can_interact : bool = true
 # ------------------------------------------------------------------------------
 # Setters / Getters
 # ------------------------------------------------------------------------------
-func set_available(a : bool) -> void:
-	if available != a:
-		if not a:
-			enabled = false
-		available = a
-		if _flashlight != null:
-			_flashlight.visible = available
+#func set_available(a : bool) -> void:
+	#if available != a:
+		#if not a:
+			#enabled = false
+		#available = a
+		#if _flashlight != null:
+			#_flashlight.visible = available
 
 func set_enabled(e : bool) -> void:
-	if available and enabled != e:
+	if _available and enabled != e:
 		enabled = e
 		_UpdateEnableState()
 
@@ -53,7 +54,9 @@ func set_enabled(e : bool) -> void:
 # ------------------------------------------------------------------------------
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		_flashlight.visible = available
+		Game.player_inventory_item_added.connect(_on_player_inventory_item_changed.bind(true))
+		Game.player_inventory_item_removed.connect(_on_player_inventory_item_changed.bind(false))
+		_flashlight.visible = _available
 		_can_interact = false
 		_anims.play(ANIM_FLASHLIGHT_OFF)
 
@@ -72,3 +75,11 @@ func _UpdateEnableState() -> void:
 # ------------------------------------------------------------------------------
 func _on_anim_finished(anim_name : StringName) -> void:
 	_can_interact = true
+
+func _on_player_inventory_item_changed(item_name : StringName, item_added : bool) -> void:
+	if item_name == Game.INV_OBJECT_FLASHLIGHT:
+		if not item_added:
+			enabled = false
+		_available = item_added
+		if _flashlight != null:
+			_flashlight.visible = _available

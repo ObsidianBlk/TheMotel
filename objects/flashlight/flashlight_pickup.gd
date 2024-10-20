@@ -1,5 +1,4 @@
-extends Control
-class_name InteractMessage
+extends Node3D
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -17,14 +16,14 @@ class_name InteractMessage
 
 
 # ------------------------------------------------------------------------------
-# Static Variables
+# Variables
 # ------------------------------------------------------------------------------
-static var _instance : InteractMessage = null
+
 
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
-@onready var _label: RichTextLabel = %RichTextLabel
+@onready var _interactable: Interactable = $Interactable
 
 
 # ------------------------------------------------------------------------------
@@ -35,13 +34,7 @@ static var _instance : InteractMessage = null
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
-func _enter_tree() -> void:
-	if _instance == null:
-		_instance = self
 
-func _exit_tree() -> void:
-	if _instance == self:
-		_instance = null
 
 # ------------------------------------------------------------------------------
 # Private Methods
@@ -49,27 +42,15 @@ func _exit_tree() -> void:
 
 
 # ------------------------------------------------------------------------------
-# Static Public Methods
-# ------------------------------------------------------------------------------
-static func Set_Message(msg : String) -> void:
-	if _instance != null:
-		_instance.visible = true
-		_instance.set_message(msg)
-
-static func Hide_Message() -> void:
-	if _instance != null:
-		_instance.visible = false
-
-static func Is_Showing() -> bool:
-	if _instance != null:
-		return _instance.visible
-	return false
-
-# ------------------------------------------------------------------------------
 # Public Methods
 # ------------------------------------------------------------------------------
-func set_message(msg : String) -> void:
-	_label.text = msg
+func interact(payload : Dictionary = {}) -> void:
+	if not Game.player_has_item(Game.INV_OBJECT_FLASHLIGHT):
+		if not _interactable == null:
+			_interactable.message = ""
+			_interactable.enabled = false
+		Game.add_player_item(Game.INV_OBJECT_FLASHLIGHT)
+		queue_free.call_deferred()
 
 # ------------------------------------------------------------------------------
 # Handler Methods

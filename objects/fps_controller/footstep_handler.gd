@@ -62,6 +62,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if audio_player == null: return
+	#print("Delay: ", _delay)
 	if _delay <= 0.0:
 		if not audio_player.playing:
 			audio_player.play()
@@ -76,10 +77,13 @@ func _UpdateAudioStreamSet() -> void:
 	if audio_player == null: return
 	match audio_set:
 		Game.FootstepType.Asphalt:
+			#print("Setting Steps to Asphalt")
 			audio_player.stream = STREAMSET_ASPHALT
 		Game.FootstepType.Carpet:
+			#print("Setting Steps to Carpet")
 			audio_player.stream = STREAMSET_CARPET
 		Game.FootstepType.Wood:
+			#print("Setting Steps to Wood")
 			audio_player.stream = STREAMSET_WOOD
 
 # ------------------------------------------------------------------------------
