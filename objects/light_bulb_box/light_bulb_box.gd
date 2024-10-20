@@ -1,4 +1,4 @@
-extends Level
+extends Node3D
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -8,8 +8,7 @@ extends Level
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
-const GROUP_ROOM_LAMP : StringName = &"RoomLamp"
-const GROUP_ROOM_AC : StringName = &"RoomAC"
+
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -24,6 +23,7 @@ const GROUP_ROOM_AC : StringName = &"RoomAC"
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
+@onready var _interactable: Interactable = $Interactable
 
 
 # ------------------------------------------------------------------------------
@@ -35,32 +35,26 @@ const GROUP_ROOM_AC : StringName = &"RoomAC"
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
-	_BreakRandomAC()
-	_BreakRandomLamp()
+	Game.player_inventory_item_added.connect(_on_player_item_changed.bind(true))
+	Game.player_inventory_item_removed.connect(_on_player_item_changed.bind(false))
 
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
-func _BreakRandomLamp() -> void:
-	var lamps : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_LAMP)
-	lamps = lamps.filter(func(item : Node): return item is Lamp)
-	if lamps.size() > 0:
-		print("Getting random lamp")
-		var idx = randi() % lamps.size()
-		lamps[idx].functional = false
 
-func _BreakRandomAC() -> void:
-	var ac : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_AC)
-	ac = ac.filter(func(item : Node): return item is AirConditioner)
-	if ac.size() > 0:
-		var idx = randi() % ac.size()
-		ac[idx].state = AirConditioner.State.BROKEN
 
 # ------------------------------------------------------------------------------
 # Public Methods
 # ------------------------------------------------------------------------------
-
+func interact(payload : Dictionary = {}) -> void:
+	var player_has : bool = Game.player_has_item(Game.INV_OBJECT_BULB)
+	if not player_has:
+		Game.add_player_item(Game.INV_OBJECT_BULB)
 
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
+func _on_player_item_changed(item_name : StringName, item_added : bool) -> void:
+	if item_name == Game.INV_OBJECT_BULB:
+		if _interactable != null:
+			_interactable.enabled = not item_added

@@ -1,4 +1,5 @@
 extends Node3D
+class_name Lamp
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -13,12 +14,16 @@ extends Node3D
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
-@export var enabled : bool = false:						set = set_enable
-@export_range(0.0, 16.0) var min_energy : float = 1.0:	set = set_min_energy
-@export_range(0.0, 16.0) var max_energy : float = 1.0:	set = set_max_energy
-@export var flicker_noise : FastNoiseLite = null:		set = set_flicker_noise
-@export_multiline var enabled_message : String = "":	set = set_enabled_message
-@export_multiline var disabled_message : String = "":	set = set_disabled_message
+@export var functional : bool = true:						set = set_functional
+@export var enabled : bool = false:							set = set_enable
+@export var region : Region = null
+@export_range(0.0, 16.0) var min_energy : float = 1.0:		set = set_min_energy
+@export_range(0.0, 16.0) var max_energy : float = 1.0:		set = set_max_energy
+@export var flicker_noise : FastNoiseLite = null:			set = set_flicker_noise
+@export_multiline var enabled_message : String = "":		set = set_enabled_message
+@export_multiline var disabled_message : String = "":		set = set_disabled_message
+@export_multiline var broken_bulb_message : String = "":	set = set_broken_bulb_message
+@export_multiline var broken_no_bulb_message : String = "":	set = set_broken_no_bulb_message
 
 
 
@@ -38,9 +43,19 @@ extends Node3D
 # ------------------------------------------------------------------------------
 # Setters / Getters
 # ------------------------------------------------------------------------------
+func set_functional(f : bool) -> void:
+	if functional != f:
+		if not f:
+			enabled = false
+		functional = f
+		_UpdateInteractMessage()
+
+
 func set_enable(e : bool) -> void:
-	if e != enabled:
+	if functional and e != enabled:
 		enabled = e
+		if region != null:
+			region.lights_on = enabled
 		_UpdateFlicker()
 		_PlayClick()
 
@@ -67,6 +82,14 @@ func set_disabled_message(m : String) -> void:
 	disabled_message = m
 	_UpdateInteractMessage()
 
+func set_broken_bulb_message(m : String) -> void:
+	broken_bulb_message = m
+	_UpdateInteractMessage()
+
+func set_broken_no_bulb_message(m : String) -> void:
+	broken_no_bulb_message = m
+	_UpdateInteractMessage()
+
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
@@ -90,7 +113,12 @@ func _UpdateFlickerNoise() -> void:
 
 func _UpdateInteractMessage() -> void:
 	if _interactable == null: return
-	var msg : String = enabled_message if enabled else disabled_message
+	var msg : String = ""
+	if functional:
+		msg = enabled_message if enabled else disabled_message
+	else:
+		var player_has : bool = Game.player_has_item(Game.INV_OBJECT_BULB)
+		msg = broken_bulb_message if player_has else broken_no_bulb_message
 	_interactable.message = msg
 
 func _PlayClick() -> void:
@@ -102,7 +130,11 @@ func _PlayClick() -> void:
 # Public Methods
 # ------------------------------------------------------------------------------
 func interact(payload : Dictionary = {}) -> void:
-	enabled = not enabled
+	if functional:
+		enabled = not enabled
+	elif Game.player_has_item(Game.INV_OBJECT_BULB):
+		Game.remove_player_item(Game.INV_OBJECT_BULB)
+		functional = true
 
 # ------------------------------------------------------------------------------
 # Handler Methods

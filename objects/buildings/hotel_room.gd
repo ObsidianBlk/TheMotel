@@ -23,5 +23,8 @@ func set_hide_roof(h : bool) -> void:
 # Private Methods
 # ------------------------------------------------------------------------------
 func _UpdateRoofVisibility() -> void:
-	if not Engine.is_editor_hint() or roof_node == null: return
-	roof_node.visible = not hide_roof
+	if roof_node == null: return
+	if not Engine.is_editor_hint():
+		roof_node.visible = true
+	else:	
+		roof_node.visible = not hide_roof

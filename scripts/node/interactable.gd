@@ -35,14 +35,16 @@ func set_enabled(e : bool) -> void:
 	if e != enabled:
 		enabled = e
 		_UpdateEnabled()
+		update_message()
 
 func set_message(m : String) -> void:
 	message = m
-	if _showing:
-		if message.is_empty():
-			InteractMessage.Hide_Message()
-		else:
-			InteractMessage.Set_Message(message)
+	update_message()
+	#if _showing:
+		#if message.is_empty():
+			#InteractMessage.Hide_Message()
+		#else:
+			#InteractMessage.Set_Message(message)
 
 # ------------------------------------------------------------------------------
 # Override Methods
@@ -63,6 +65,13 @@ func _UpdateEnabled() -> void:
 # ------------------------------------------------------------------------------
 func interact(payload : Dictionary = {}) -> void:
 	interacted.emit(payload)
+
+func update_message() -> void:
+	if _showing and enabled and not message.is_empty():
+		InteractMessage.Set_Message(message)
+	else:
+		_showing = false
+		InteractMessage.Hide_Message()
 
 func show_message(show : bool = true) -> void:
 	if not message.is_empty():

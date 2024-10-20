@@ -14,7 +14,7 @@ const CAMERA_PITCH_ANGLE : float = deg_to_rad(70.0)
 # Export Variables
 # ------------------------------------------------------------------------------
 @export var speed : float = 5.0
-@export var jump_speed : float = 5.0
+@export var jump_speed : float = 2.0
 
 # ------------------------------------------------------------------------------
 # Variables
@@ -96,7 +96,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = jump_speed
 	_jump = false
 	
-	_footstep_handler.enabled = velocity.length_squared() > 0.01
+	var hvel : Vector2 = Vector2(velocity.x, velocity.z)
+	_footstep_handler.enabled = is_on_floor() and hvel.length_squared() > 0.01
 
 # ------------------------------------------------------------------------------
 # Private Methods

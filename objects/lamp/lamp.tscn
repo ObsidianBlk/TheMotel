@@ -26,6 +26,8 @@ stream_3/stream = ExtResource("9_dr1pi")
 script = ExtResource("1_mjsxl")
 enabled_message = "[center]Turn Off[/center]"
 disabled_message = "[center]Turn On[/center]"
+broken_bulb_message = "[center]Fix Lamp[/center]"
+broken_no_bulb_message = "[center]Bulb needed[/center]"
 
 [node name="Flicker" type="Node" parent="." node_paths=PackedStringArray("light")]
 script = ExtResource("2_aexde")

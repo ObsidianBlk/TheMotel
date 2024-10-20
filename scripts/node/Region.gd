@@ -4,7 +4,7 @@ class_name Region
 # ------------------------------------------------------------------------------
 # Signals
 # ------------------------------------------------------------------------------
-
+signal lights_changed(active : bool)
 
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
@@ -16,6 +16,7 @@ const AUDIO_BUS_AMBIENT : StringName = &"Ambient_Outdoor"
 # ------------------------------------------------------------------------------
 @export var footsteps : Game.FootstepType = Game.FootstepType.Asphalt
 @export_range(0.0, 1.0, 0.01) var ambient_level : float = 1.0
+@export var lights_on : bool = false:									set=set_lights_on
 
 # ------------------------------------------------------------------------------
 # Static Variables
@@ -32,7 +33,10 @@ static var _AmbientTarget : float = 1.0
 # ------------------------------------------------------------------------------
 # Setters / Getters
 # ------------------------------------------------------------------------------
-
+func set_lights_on(e : bool) -> void:
+	if e != lights_on:
+		lights_on = e
+		lights_changed.emit(lights_on)
 
 # ------------------------------------------------------------------------------
 # Override Methods

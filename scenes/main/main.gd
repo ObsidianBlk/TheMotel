@@ -31,7 +31,7 @@ var _loading : bool = false
 # ------------------------------------------------------------------------------
 func _ready() -> void:
 	get_tree().paused = true
-	Clock24.set_seconds_per_minute(2.0)
+	Clock24.set_seconds_per_minute(1.0)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_APPLICATION, _UIQuitApplication)
 	_ui.register_action_handler(UIAT.ACTION_START_SINGLEPLAYER, _UIStartGame)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_GAME, _UIQuitGame)

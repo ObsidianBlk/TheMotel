@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dt4qwuu8l7tya"]
+[gd_scene load_steps=19 format=3 uid="uid://dt4qwuu8l7tya"]
 
 [ext_resource type="PackedScene" uid="uid://bj0oi8bnhw32v" path="res://assets/Models/MotelRoomFlipped.glb" id="1_3s4u2"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_6vd7o"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://cfs282fw2cv1a" path="res://assets/Models/Seating.glb" id="11_fa5ii"]
 [ext_resource type="PackedScene" uid="uid://bcudxtf6nokr" path="res://objects/air_conditioner/air_conditioner.tscn" id="12_6be2i"]
 [ext_resource type="PackedScene" uid="uid://dvybxyc6uo031" path="res://objects/shower/shower.tscn" id="13_3jdnv"]
+[ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="13_b5c8u"]
 [ext_resource type="PackedScene" uid="uid://crkmr27wjjsfr" path="res://objects/lamp/lamp.tscn" id="13_n7med"]
+[ext_resource type="Script" path="res://scripts/node/Region.gd" id="15_e61bh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_agrf6"]
 size = Vector3(5.21, 0.115, 5.57)
@@ -21,10 +23,14 @@ size = Vector3(5.21, 0.115, 5.57)
 material = ExtResource("4_6jhve")
 size = Vector3(1.2, 1.2, 0.02)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_jhbh3"]
+size = Vector3(5.15, 1, 3.925)
+
 [node name="HotelRoom" type="Node3D" node_paths=PackedStringArray("roof_node")]
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_6vd7o")
 roof_node = NodePath("MotelRoomFlipped/UnitRoof")
+hide_roof = true
 
 [node name="MotelRoomFlipped" parent="." instance=ExtResource("1_3s4u2")]
 
@@ -33,6 +39,7 @@ disabled = true
 
 [node name="UnitRoof" parent="MotelRoomFlipped" instance=ExtResource("2_c6sm3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.508443, 0, 0)
+visible = false
 
 [node name="FloorBody" type="StaticBody3D" parent="MotelRoomFlipped"]
 
@@ -43,6 +50,9 @@ shape = SubResource("BoxShape3D_agrf6")
 [node name="Glass" type="MeshInstance3D" parent="MotelRoomFlipped"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.34295, 1.5, 2.725)
 mesh = SubResource("BoxMesh_ngnt7")
+
+[node name="UnitRoofColumn" parent="." instance=ExtResource("13_b5c8u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0896, -0.075, 4.1)
 
 [node name="Toilet" parent="." instance=ExtResource("5_lps7j")]
 transform = Transform3D(-4.50169e-08, 0, 1, 0, 1, 0, -1.02987, 0, -4.37114e-08, -1.01533, 0.00249989, -2.30331)
@@ -57,18 +67,30 @@ transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, 0.415692, 0, -2.27319)
 transform = Transform3D(-4.50169e-08, 0, -1, 0, 1, 0, 1.02987, 0, -4.37114e-08, 1.75267, 0.00249512, -1.36725)
 
 [node name="AlarmClock" parent="." instance=ExtResource("10_n10m1")]
-transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, 0.29208, 0.884399, -2.45145)
+transform = Transform3D(0.772434, 0, 0.661404, 0, 1, 0, -0.68116, 0, 0.75003, 0.607449, 0.884399, -2.45145)
 
 [node name="Seating" parent="." instance=ExtResource("11_fa5ii")]
 transform = Transform3D(-4.50169e-08, 0, 1, 0, 1, 0, -1.02987, 0, -4.37114e-08, -1.54201, 0.00249941, 1.30609)
 
-[node name="AirConditioner" parent="." instance=ExtResource("12_6be2i")]
+[node name="AirConditioner" parent="." groups=["RoomAC"] instance=ExtResource("12_6be2i")]
 transform = Transform3D(-1.02987, 0, 8.74228e-08, 0, 1, 0, -9.00338e-08, 0, -1, 2.36014, 0.486559, 2.6428)
 
 [node name="Shower" parent="." instance=ExtResource("13_3jdnv")]
 transform = Transform3D(1.02987, 0, 0, 0, 1, 0, 0, 0, 1, -0.439922, 0.00237305, -2.05137)
 
-[node name="Lamp" parent="." instance=ExtResource("13_n7med")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.586, 0.884, -2.414)
+[node name="Lamp" parent="." node_paths=PackedStringArray("region") groups=["RoomLamp"] instance=ExtResource("13_n7med")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.369713, 0.874289, -2.28668)
+region = NodePath("../Region_ModelRoomFlipped")
+
+[node name="Region_ModelRoomFlipped" type="Area3D" parent="."]
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("15_e61bh")
+footsteps = 1
+ambient_level = 0.1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Region_ModelRoomFlipped"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.525, 0, 0.6125)
+shape = SubResource("BoxShape3D_jhbh3")
 
 [editable path="MotelRoomFlipped"]

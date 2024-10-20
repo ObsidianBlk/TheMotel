@@ -28,7 +28,7 @@ const ATTACK_TIME_MAX : float = 1.4
 # ------------------------------------------------------------------------------
 # Variables
 # ------------------------------------------------------------------------------
-var _lights_out : bool = false
+var _lights_out : bool = true
 var _player : WeakRef = weakref(null)
 var _next_pos : Vector3 = Vector3.ZERO
 var _need_dest : bool = true
@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 	_UpdateGhostVis()
 	if _need_dest:
 		if _wait_time <= 0.0:
+			print("Finding destination")
 			_FindNewDestination()
 		else:
 			#print("Wait Time: ", _wait_time)
@@ -144,17 +145,28 @@ func _PlayStep() -> void:
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
-func _on_relayed(action : StringName, payload : Dictionary) -> void:
-	match action:
-		&"lights_out":
-			var dstlist : Array = get_tree().get_nodes_in_group(nav_group)
-			if dstlist.size() >= 1 :
-				_need_dest = true
-				var didx : int = randi_range(0, dstlist.size() - 1)
-				global_position = dstlist[didx].global_position
-			_lights_out = true
-		&"lights_on":
-			_lights_out = false
+#func _on_relayed(action : StringName, payload : Dictionary) -> void:
+	#match action:
+		#&"lights_out":
+			#var dstlist : Array = get_tree().get_nodes_in_group(nav_group)
+			#if dstlist.size() >= 1 :
+				#_need_dest = true
+				#var didx : int = randi_range(0, dstlist.size() - 1)
+				#global_position = dstlist[didx].global_position
+			#_lights_out = true
+		#&"lights_on":
+			#_lights_out = false
+
+func _on_lights_changed(lights_on : bool) -> void:
+	if lights_on:
+		_lights_out = false
+	else:
+		var dstlist : Array = get_tree().get_nodes_in_group(nav_group)
+		if dstlist.size() >= 1 :
+			_need_dest = true
+			var didx : int = randi_range(0, dstlist.size() - 1)
+			global_position = dstlist[didx].global_position
+		_lights_out = true
 
 func _on_agent_target_reached() -> void:
 	_need_dest = true

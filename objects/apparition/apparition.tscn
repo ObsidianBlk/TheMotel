@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://prykewiwfg3x"]
+[gd_scene load_steps=18 format=3 uid="uid://prykewiwfg3x"]
 
 [ext_resource type="Texture2D" uid="uid://cecajaq66gnd7" path="res://assets/Ghost.png" id="1_4xi3e"]
 [ext_resource type="Script" path="res://objects/apparition/apparition.gd" id="1_44d83"]
 [ext_resource type="AudioStream" uid="uid://b11btbtgf7oeo" path="res://assets/audio/sfx/bare_footstep.wav" id="3_c0ou0"]
 [ext_resource type="AudioStream" uid="uid://bcn2f4tgwo4l3" path="res://assets/audio/sfx/bare_footstep_02.wav" id="4_idg4c"]
+[ext_resource type="Script" path="res://objects/apparition/light_detector.gd" id="5_spsba"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_18lwc"]
 atlas = ExtResource("1_4xi3e")
@@ -92,13 +93,17 @@ _data = {
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_jq45d"]
 radius = 2.0
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kxf8q"]
+height = 1.0
+
 [node name="Apparition" type="Node3D"]
 script = ExtResource("1_44d83")
+nav_group = &"GhostPath"
 
 [node name="Ghost" type="AnimatedSprite3D" parent="."]
 centered = false
 offset = Vector2(-16, 0)
-pixel_size = 0.035
+pixel_size = 0.03
 billboard = 2
 shaded = true
 texture_filter = 2
@@ -137,7 +142,15 @@ collision_mask = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CylinderShape3D_jq45d")
 
+[node name="LightDetector" type="Area3D" parent="."]
+script = ExtResource("5_spsba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LightDetector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_kxf8q")
+
 [connection signal="target_reached" from="Agent" to="." method="_on_agent_target_reached"]
 [connection signal="timeout" from="PlayerAttackTimer" to="." method="_on_player_attack_timer_timeout"]
 [connection signal="area_entered" from="FoodArea" to="." method="_on_food_area_entered"]
 [connection signal="area_exited" from="FoodArea" to="." method="_on_food_area_exited"]
+[connection signal="lights_changed" from="LightDetector" to="." method="_on_lights_changed"]

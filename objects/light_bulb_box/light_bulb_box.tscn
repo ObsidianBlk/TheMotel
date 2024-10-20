@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://xhxg2m2t8cay"]
+
+[ext_resource type="Script" path="res://objects/light_bulb_box/light_bulb_box.gd" id="1_1552p"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_n17i2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pdvpj"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="LightBulbBox" type="Node3D"]
+script = ExtResource("1_1552p")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("2_n17i2")
+message = "[center]Take Bulb[/center]"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape3D_pdvpj")
+
+[connection signal="interacted" from="Interactable" to="." method="interact"]
