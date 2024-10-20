@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc4ham5ol4df6"]
+
+[ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="1_dgx72"]
+
+[node name="Column" type="Node3D"]
+
+[node name="UnitRoofColumn" parent="." instance=ExtResource("1_dgx72")]

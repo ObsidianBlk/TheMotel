@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba7u2hojtaw1k"]
+
+[ext_resource type="PackedScene" uid="uid://b6wap18l6wy68" path="res://assets/Models/RoomKeyPeg.glb" id="1_qbfdu"]
+
+[node name="RoomkeyPeg" type="Node3D"]
+
+[node name="RoomKeyPeg" parent="." instance=ExtResource("1_qbfdu")]

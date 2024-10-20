@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3ggowy5cxi0b"]
+
+[ext_resource type="PackedScene" uid="uid://ckv3f5od45se" path="res://assets/Models/RoomKey.glb" id="1_71snq"]
+
+[node name="RoomKey" type="Node3D"]
+
+[node name="RoomKey" parent="." instance=ExtResource("1_71snq")]

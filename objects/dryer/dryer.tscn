@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dabxjsyocr0gr"]
+
+[ext_resource type="PackedScene" uid="uid://biro5ly6c7g8s" path="res://assets/Models/Dryer.glb" id="1_0punj"]
+
+[node name="Dryer" type="Node3D"]
+
+[node name="Dryer" parent="." instance=ExtResource("1_0punj")]

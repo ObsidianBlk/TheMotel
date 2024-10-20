@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc6ue6cwqoy8t"]
+
+[ext_resource type="PackedScene" uid="uid://mrgcouj74d0" path="res://assets/Models/RoomKeyPegBoard.glb" id="1_7q2nc"]
+[ext_resource type="PackedScene" uid="uid://ba7u2hojtaw1k" path="res://objects/roomkey peg/roomkey_peg.tscn" id="2_fkro5"]
+
+[node name="RoomkeyPegBoard" type="Node3D"]
+
+[node name="RoomKeyPegBoard" parent="." instance=ExtResource("1_7q2nc")]
+
+[node name="RoomkeyPeg" parent="." instance=ExtResource("2_fkro5")]
+
+[node name="RoomkeyPeg2" parent="." instance=ExtResource("2_fkro5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.204967, 0, 0)
+
+[node name="RoomkeyPeg3" parent="." instance=ExtResource("2_fkro5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.431739, 0, 0)
+
+[node name="RoomkeyPeg4" parent="." instance=ExtResource("2_fkro5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.673774, 0, 0)
+
+[node name="RoomkeyPeg5" parent="." instance=ExtResource("2_fkro5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.228952, 0, 0)
+
+[node name="RoomkeyPeg6" parent="." instance=ExtResource("2_fkro5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.468807, 0, 0)
+
+[node name="RoomkeyPeg7" parent="." instance=ExtResource("2_fkro5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.69994, 0, 0)

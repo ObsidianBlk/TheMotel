@@ -121,7 +121,7 @@ light_energy = 0.5
 shadow_enabled = true
 omni_range = 3.0
 
-[node name="AirConditioner" parent="HotelRoom" instance=ExtResource("7_stjqu")]
+[node name="AirConditioner2" parent="HotelRoom" instance=ExtResource("7_stjqu")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -1.89328, 0.465386, 2.62608)
 state = 1
 

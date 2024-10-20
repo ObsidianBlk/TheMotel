@@ -36,9 +36,6 @@ _subresources={
 "PATH:Floor_001LT": {
 "generate/physics": true
 },
-"PATH:Glass_002LT": {
-"generate/physics": true
-},
 "PATH:LowResRoomLowTexture": {
 "generate/physics": true
 }

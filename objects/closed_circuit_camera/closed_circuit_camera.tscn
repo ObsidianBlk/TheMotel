@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb1mb6it4gpu5"]
+
+[ext_resource type="PackedScene" uid="uid://bdfk2heixpfij" path="res://assets/Models/CC_Camera_Arm.glb" id="1_3g0ed"]
+[ext_resource type="PackedScene" uid="uid://cq5elhg4yf5cp" path="res://assets/Models/CC_Camera.glb" id="2_3secj"]
+
+[node name="ClosedCircuitCamera" type="Node3D"]
+
+[node name="CC_Camera_Arm2" parent="." instance=ExtResource("1_3g0ed")]
+
+[node name="CC_Camera2" parent="." instance=ExtResource("2_3secj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0817393, 0.296505)

@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://dt4qwuu8l7tya"]
+[gd_scene load_steps=14 format=3 uid="uid://dt4qwuu8l7tya"]
 
 [ext_resource type="PackedScene" uid="uid://bj0oi8bnhw32v" path="res://assets/Models/MotelRoomFlipped.glb" id="1_3s4u2"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_6vd7o"]
 [ext_resource type="PackedScene" uid="uid://cdgeuhwcrr1sb" path="res://assets/Models/UnitRoof.glb" id="2_c6sm3"]
-[ext_resource type="Material" uid="uid://cpuhgm0mnor4p" path="res://objects/buildings/HotelRoomGlass.material" id="2_g5x1k"]
 [ext_resource type="PackedScene" uid="uid://der28xp4tlinb" path="res://assets/Models/Toilet.glb" id="5_lps7j"]
 [ext_resource type="PackedScene" uid="uid://c3buncyi86j0s" path="res://assets/Models/Vanity.glb" id="6_4rkb1"]
 [ext_resource type="PackedScene" uid="uid://weyichuvh831" path="res://assets/Models/NightTable.glb" id="7_jp58l"]
@@ -23,12 +22,6 @@ script = ExtResource("1_6vd7o")
 roof_node = NodePath("MotelRoomFlipped/UnitRoof")
 
 [node name="MotelRoomFlipped" parent="." instance=ExtResource("1_3s4u2")]
-
-[node name="Glass_002LT" parent="MotelRoomFlipped" index="4"]
-surface_material_override/0 = ExtResource("2_g5x1k")
-
-[node name="CollisionShape3D" parent="MotelRoomFlipped/Glass_002LT/StaticBody3D" index="0"]
-disabled = true
 
 [node name="CollisionShape3D" parent="MotelRoomFlipped/Floor_001LT/StaticBody3D" index="0"]
 disabled = true

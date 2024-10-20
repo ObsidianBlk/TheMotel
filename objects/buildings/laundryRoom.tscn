@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu4h5lmh88iul"]
+[gd_scene load_steps=5 format=3 uid="uid://bu4h5lmh88iul"]
 
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_japhb"]
-[ext_resource type="PackedScene" uid="uid://c0c13k4rl78x" path="res://assets/Models/LaundryRoom.glb" id="1_pflac"]
+[ext_resource type="PackedScene" uid="uid://vaqbaobs6f2f" path="res://assets/Models/LaundryRoom_Floor.glb" id="2_x4cse"]
+[ext_resource type="PackedScene" uid="uid://i35rtyr8ljkd" path="res://assets/Models/LaundryRoom_Walls.glb" id="3_f8rm3"]
+[ext_resource type="PackedScene" uid="uid://be75ncm5bdwid" path="res://assets/Models/LaundryRoom_Roof.glb" id="4_h8hi3"]
 
 [node name="LaundryRoom" type="Node3D"]
 script = ExtResource("1_japhb")
 
-[node name="LaundryRoom" parent="." instance=ExtResource("1_pflac")]
+[node name="LaundryRoom_Floor" parent="." instance=ExtResource("2_x4cse")]
 
-[editable path="LaundryRoom"]
+[node name="LaundryRoom_Walls" parent="." instance=ExtResource("3_f8rm3")]
+
+[node name="LaundryRoom_Roof" parent="." instance=ExtResource("4_h8hi3")]

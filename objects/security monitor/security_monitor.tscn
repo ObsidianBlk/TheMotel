@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://csfwy22wuhjpq"]
+
+[ext_resource type="PackedScene" uid="uid://ccthqpgjar1w6" path="res://assets/Models/SecurityMonitor.glb" id="1_31ocn"]
+
+[node name="SecurityMonitor" type="Node3D"]
+
+[node name="SecurityMonitor" parent="." instance=ExtResource("1_31ocn")]

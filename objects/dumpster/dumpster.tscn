@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://j2fj7xmprr0y"]
+
+[ext_resource type="PackedScene" uid="uid://deic304742urb" path="res://assets/Models/DumpsterBase.glb" id="1_6b3q6"]
+[ext_resource type="PackedScene" uid="uid://c7yaetgj2in6s" path="res://assets/Models/DumpsterLid.glb" id="2_j618l"]
+
+[node name="Dumpster" type="Node3D"]
+
+[node name="DumpsterBase" parent="." instance=ExtResource("1_6b3q6")]
+
+[node name="DumpsterLid" parent="." instance=ExtResource("2_j618l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47949, -0.660077)

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://juu0jtiveafj"]
+
+[ext_resource type="PackedScene" uid="uid://cjoydi4ccpoxo" path="res://assets/Models/Office.glb" id="1_k8mec"]
+[ext_resource type="PackedScene" uid="uid://cc4ham5ol4df6" path="res://objects/column/column.tscn" id="2_yscr6"]
+
+[node name="Office" type="Node3D"]
+
+[node name="Office" parent="." instance=ExtResource("1_k8mec")]
+
+[node name="Column" parent="Office" instance=ExtResource("2_yscr6")]
+transform = Transform3D(1, 0, 0, 0, 1.145, 0, 0, 0, 1, -4.27019, 0, 7.99701)
+
+[node name="Column2" parent="Office" instance=ExtResource("2_yscr6")]
+transform = Transform3D(1, 0, 0, 0, 1.145, 0, 0, 0, 1, 4.289, 0, 7.99701)

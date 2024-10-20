@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfhrd6skl01dl"]
+
+[ext_resource type="PackedScene" uid="uid://d1o76pldiyjyc" path="res://assets/Models/TV.glb" id="1_h6dy6"]
+
+[node name="Television" type="Node3D"]
+
+[node name="TV" parent="." instance=ExtResource("1_h6dy6")]

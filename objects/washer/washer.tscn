@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci34i5u5y8yox"]
+
+[ext_resource type="PackedScene" uid="uid://cohd2sh6gak8j" path="res://assets/Models/Washer.glb" id="1_suhky"]
+
+[node name="Washer" type="Node3D"]
+
+[node name="Washer2" parent="." instance=ExtResource("1_suhky")]
