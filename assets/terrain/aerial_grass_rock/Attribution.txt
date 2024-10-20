@@ -1,0 +1,8 @@
+Original Source:
+https://polyhaven.com/a/aerial_grass_rock
+
+Author: Rob Tuytel
+Licence: CC0
+
+Modified: Original textures texture compressed for the Godot Terrain_3D plugin, and reduced in size to 256px
+

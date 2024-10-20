@@ -26,7 +26,7 @@ Game="*res://scripts/autos/Game.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/OBSControlLibrary/plugin.cfg")
+enabled=PackedStringArray("res://addons/OBSControlLibrary/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [input]
 
