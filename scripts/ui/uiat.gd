@@ -12,6 +12,8 @@ const ACTION_START_MULTIPLAYER : StringName = &"start_multiplayer"
 const ACtION_RESUME_GAME : StringName = &"resume_game"
 const ACTION_RESPAWN : StringName = &"respawn" 
 
+const ACTION_UPDATE_LOAD_PROGRESS : StringName = &"update_load_progress"
+
 const DIALOG_MODE_OK : int = 0
 const DIALOG_MODE_YESNO : int = 1
 

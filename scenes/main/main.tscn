@@ -1,15 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://cjb031s75fq1o"]
+[gd_scene load_steps=9 format=3 uid="uid://cjb031s75fq1o"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1jvga"]
 [ext_resource type="Script" path="res://scripts/ui/ui_layer.gd" id="2_q6rcc"]
 [ext_resource type="PackedScene" uid="uid://dc1arcrryh0rk" path="res://scenes/ui/main_menu/main_menu.tscn" id="3_brvpx"]
 [ext_resource type="PackedScene" uid="uid://c7etkj4myo7kn" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="4_d7rgh"]
 [ext_resource type="PackedScene" uid="uid://cb6d5843yessc" path="res://scenes/ui/options_menu/options_menu.tscn" id="5_appbs"]
+[ext_resource type="PackedScene" uid="uid://bjixbbdp7syis" path="res://scenes/ui/load_screen/load_screen.tscn" id="6_qpc5r"]
+[ext_resource type="Script" path="res://scripts/resources/line_bank.gd" id="7_35op3"]
+
+[sub_resource type="Resource" id="Resource_qhrf2"]
+script = ExtResource("7_35op3")
+lines = Array[String](["Should be a nice quiet night.", "What could possibly go wrong?", "Wonder why the Cypress was originally abandoned.", "Should be a pretty chill shift", "I'm sure the reports are exaggerated."])
 
 [node name="Main" type="Node"]
 process_mode = 3
 script = ExtResource("1_1jvga")
 pause_menu = &"PauseMenu"
+load_screen = &"LoadScreen"
 
 [node name="UI" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -24,3 +31,6 @@ options_menu = &"OptionsMenu"
 options_menu = &"OptionsMenu"
 
 [node name="OptionsMenu" parent="UI" instance=ExtResource("5_appbs")]
+
+[node name="LoadScreen" parent="UI" instance=ExtResource("6_qpc5r")]
+lines = SubResource("Resource_qhrf2")

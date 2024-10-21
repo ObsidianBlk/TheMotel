@@ -15,6 +15,8 @@ signal ui_hidden()
 const ACTION_OPEN_UI : StringName = &"reveal_ui"
 const ACTION_CLOSE_UI : StringName = &"hide_ui"
 const ACTION_CLOSE_ALL_UI : StringName = &"hide_all_ui"
+const ACTION_REGISTER_HANDLER : StringName = &"register_action_handler"
+const ACTION_UNREGISTER_HANDLER : StringName = &"unregister_action_handler"
 
 const OPTION_PREVIOUS_MENU : String = "previous_menu"
 
@@ -72,6 +74,12 @@ func set_options(options : Dictionary) -> void:
 # ------------------------------------------------------------------------------
 func request(action : StringName, args : Array = []) -> void:
 	action_requested.emit(action, args)
+
+func register_action_handler(action_name : StringName, handler : Callable) -> void:
+	request(ACTION_REGISTER_HANDLER, [action_name, handler])
+
+func unregister_action_handler(action_name : StringName, handler : Callable) -> void:
+	request(ACTION_UNREGISTER_HANDLER, [action_name, handler])
 
 func open_ui(ui_name : StringName, immediate : bool = false, options : Dictionary = {}) -> void:
 	request(ACTION_OPEN_UI, [ui_name, immediate, options])

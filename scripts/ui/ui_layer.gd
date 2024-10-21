@@ -37,6 +37,8 @@ func _ready() -> void:
 	register_action_handler(UIControl.ACTION_OPEN_UI, open_ui)
 	register_action_handler(UIControl.ACTION_CLOSE_UI, close_ui)
 	register_action_handler(UIControl.ACTION_CLOSE_ALL_UI, close_all_ui)
+	register_action_handler(UIControl.ACTION_REGISTER_HANDLER, register_action_handler)
+	register_action_handler(UIControl.ACTION_UNREGISTER_HANDLER, unregister_action_handler)
 	
 	open_ui(initial_ui, immediate_open)
 
@@ -97,6 +99,9 @@ func is_ui_active(ui_name : StringName) -> bool:
 
 func ui_active() -> bool:
 	return get_active_ui().size() > 0
+
+func call_action(action_name : StringName, args : Array = []) -> void:
+	_on_action_requested(action_name, args)
 
 # ------------------------------------------------------------------------------
 # Handler Methods

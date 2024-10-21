@@ -16,7 +16,15 @@ extends UIControl
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
+func _ready() -> void:
+	set_process_input(false)
+	super._ready()
 
+func _input(event: InputEvent) -> void:
+	if not is_equal_approx(_slideout_menu.slide_amount, 0.0): return
+	if event.is_action_pressed("ui_cancel"):
+		_on_btn_resume_pressed.call_deferred()
+		get_viewport().set_input_as_handled()
 
 # ------------------------------------------------------------------------------
 # "Virtual" Methods
@@ -25,9 +33,11 @@ func on_reveal() -> void:
 	_slideout_menu.slide_amount = 1.0
 	_slideout_menu.slide_in()
 	_btn_resume.grab_focus()
+	set_process_input(true)
 	super.on_reveal()
 
 func on_hide() -> void:
+	set_process_input(false)
 	_slideout_menu.slide_out()
 	await _slideout_menu.slide_finished
 	super.on_hide()

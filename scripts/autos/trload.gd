@@ -1,4 +1,3 @@
-@tool
 extends Node
 
 # ------------------------------------------------------------------------------
@@ -34,7 +33,17 @@ var _queue : Dictionary = {}
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
-func _process(_delta: float) -> void:
+
+
+# ------------------------------------------------------------------------------
+# Private Methods
+# ------------------------------------------------------------------------------
+
+
+# ------------------------------------------------------------------------------
+# Public Methods
+# ------------------------------------------------------------------------------
+func update_queue() -> void:
 	for key : String in _queue.keys():
 		var progress : Array = []
 		var status : int = ResourceLoader.load_threaded_get_status(key, progress)
@@ -52,15 +61,6 @@ func _process(_delta: float) -> void:
 				_queue[key].call(null, 0.0, ERR_INVALID_DATA)
 				_queue.erase(key)
 
-
-# ------------------------------------------------------------------------------
-# Private Methods
-# ------------------------------------------------------------------------------
-
-
-# ------------------------------------------------------------------------------
-# Public Methods
-# ------------------------------------------------------------------------------
 func request_resource(resource_path : String, callback : Callable) -> int:
 	if resource_path in _queue: return ERR_FILE_ALREADY_IN_USE
 	if callback == null: return ERR_INVALID_PARAMETER
