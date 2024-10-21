@@ -11,6 +11,8 @@ signal player_inventory_item_removed(item_name : StringName)
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
 const GROUP_PLAYER : StringName = &"Player"
+const GROUP_CLOWN_DOLL : StringName = &"ClownDoll"
+
 enum FootstepType {Asphalt=0, Carpet=1, Wood=2}
 
 const INV_OBJECT_FLASHLIGHT : StringName = &"flashlight"

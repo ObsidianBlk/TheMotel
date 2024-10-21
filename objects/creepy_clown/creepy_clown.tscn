@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://b76qboi1fqnd6"]
+[gd_scene load_steps=7 format=3 uid="uid://b76qboi1fqnd6"]
 
 [ext_resource type="PackedScene" uid="uid://cmnoa4qswmvx" path="res://assets/Models/CreepyClownDoll.glb" id="1_4et3j"]
 [ext_resource type="Script" path="res://objects/creepy_clown/creepy_clown.gd" id="1_muprf"]
 [ext_resource type="AudioStream" uid="uid://d2idc485fdjs2" path="res://objects/creepy_clown/fallover_stream.tres" id="3_dyh0r"]
+[ext_resource type="Script" path="res://scripts/node/hitbox.gd" id="4_5v3cu"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cnrex"]
+radius = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mkl1h"]
+height = 1.0
+radius = 0.3
 
 [node name="CreepyClown" type="Node3D"]
 script = ExtResource("1_muprf")
@@ -250,7 +258,24 @@ stream = ExtResource("3_dyh0r")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 aabb = AABB(-0.375, -0.525, -0.4, 0.75, 1.05, 0.8)
 
+[node name="PlayerDetector" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetector"]
+shape = SubResource("CylinderShape3D_cnrex")
+
+[node name="Hitbox" type="Area3D" parent="."]
+script = ExtResource("4_5v3cu")
+group = &"ClownDoll"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CylinderShape3D_mkl1h")
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier3D" to="." method="_on_screen_exited"]
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
 
 [editable path="CreepyClownDoll"]

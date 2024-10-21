@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bxk16wwx7fbxo"]
+
+[ext_resource type="PackedScene" uid="uid://niq8u11qjaly" path="res://objects/motel_sign/motel_sign.tscn" id="3_envnn"]
+[ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="4_52i66"]
+[ext_resource type="Environment" uid="uid://si7hgxmevvdi" path="res://scenes/the_motel_environment.tres" id="5_jmvrd"]
+[ext_resource type="Texture2D" path="res://assets/terrain/aerial_grass_rock/aerial_grass_rock_albedo_ht_256.dds" id="5_ol3t7"]
+[ext_resource type="CameraAttributesPractical" uid="uid://dyfle2cy6uers" path="res://scenes/the_motel_camera_attribs.tres" id="6_eeb7o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jdyj7"]
+disable_ambient_light = true
+albedo_texture = ExtResource("5_ol3t7")
+albedo_texture_force_srgb = true
+uv1_triplanar = true
+
+[node name="MainBackdrop" type="Node3D"]
+
+[node name="MotelSign" parent="." instance=ExtResource("3_envnn")]
+
+[node name="HotelRoom" parent="." instance=ExtResource("4_52i66")]
+transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0.1, -5)
+
+[node name="CameraBob" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.11578, 5.13985, 2.95496)
+
+[node name="Camera3D" type="Camera3D" parent="CameraBob"]
+transform = Transform3D(0.915831, 0.130173, -0.37988, 0, 0.946001, 0.324165, 0.401564, -0.29688, 0.866376, 0, 0, 0)
+fov = 41.2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("5_jmvrd")
+camera_attributes = ExtResource("6_eeb7o")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.932179, 0.156762, -0.326296, 0, 0.901372, 0.433046, 0.361999, -0.403676, 0.84024, 0, 6.38504, 0)
+light_color = Color(1, 0.83, 0.83, 1)
+light_energy = 0.25
+directional_shadow_mode = 0
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.248596, 0)
+size = Vector3(1000, 0.503, 1000)
+material = SubResource("StandardMaterial3D_jdyj7")

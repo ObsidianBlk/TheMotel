@@ -6,8 +6,8 @@ extends UIControl
 const MODULATE_COLOR_INVISIBLE : Color = Color(1.0, 1.0, 1.0, 0.0)
 const MODULATE_COLOR_VISIBLE : Color = Color.WHITE
 
-const LINE_DISPLAY_DURATION : float = 0.5
-const LINE_CHANGE_DELAY : float = 1.0
+const LINE_DISPLAY_DURATION : float = 2.0
+const LINE_CHANGE_DELAY : float = 0.5
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -44,6 +44,7 @@ func _process(delta: float) -> void:
 		if is_equal_approx(_line_delay, LINE_CHANGE_DELAY):
 			_lbl_load_line.visible_ratio = 0.0
 			_lbl_load_line.text = _GetRandomLine()
+			_line_delay = 0.0
 	else:
 		_line_delay = clampf(_line_delay + delta, 0.0, LINE_DISPLAY_DURATION)
 		_lbl_load_line.visible_ratio = clampf(_line_delay / LINE_DISPLAY_DURATION, 0.0, 1.0)

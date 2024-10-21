@@ -1,9 +1,35 @@
-[gd_scene load_steps=2 format=3 uid="uid://niq8u11qjaly"]
+[gd_scene load_steps=6 format=3 uid="uid://niq8u11qjaly"]
 
 [ext_resource type="PackedScene" uid="uid://bc43qdo8isnmq" path="res://assets/Models/HotelSign.glb" id="1_48rhe"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hokc6"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+emission_energy_multiplier = 2.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xjdjw"]
+albedo_color = Color(1, 0.21, 0.21, 1)
+emission_enabled = true
+emission = Color(1, 0.211765, 0.211765, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1sgce"]
+albedo_color = Color(0.61, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r10al"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.81, 0, 0, 1)
 
 [node name="MotelSign" type="Node3D"]
 
 [node name="HotelSign" parent="." instance=ExtResource("1_48rhe")]
+
+[node name="HotelSign" parent="HotelSign" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_hokc6")
+surface_material_override/2 = SubResource("StandardMaterial3D_xjdjw")
+surface_material_override/3 = SubResource("StandardMaterial3D_1sgce")
+surface_material_override/4 = SubResource("StandardMaterial3D_r10al")
 
 [editable path="HotelSign"]

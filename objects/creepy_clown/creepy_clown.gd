@@ -42,6 +42,9 @@ var _state : State = State.Set1
 var _fell : bool = false
 var _wrc : WeightedRandomCollection = null
 
+var _on_screen : bool = false
+var _player_detected : bool = false
+
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
@@ -60,8 +63,8 @@ var _wrc : WeightedRandomCollection = null
 func _ready() -> void:
 	_Play(ANIM_S1_SITTING)
 	_wrc = WeightedRandomCollection.new()
-	_wrc.add_entry(ACTION_NOTHING, 5)
-	_wrc.add_entry(ACTION_SIT_UP, 4)
+	_wrc.add_entry(ACTION_NOTHING, 20)
+	_wrc.add_entry(ACTION_SIT_UP, 10)
 	_wrc.add_entry(ACTION_BELL_TINKLE, 3)
 	_wrc.add_entry(ACTION_FALL_OVER, 1)
 
@@ -83,6 +86,14 @@ func _Play(anim_name : StringName) -> void:
 			_audio.stream = stream
 			_audio.play()
 
+func _ProcessForEntered() -> void:
+	if is_static or not _player_detected: return
+	if _state == State.Set1:
+		var prob : float = randf()
+		if prob >= STATE_SWAP_PROBABILITY.x and prob <= STATE_SWAP_PROBABILITY.y:
+			_Play(ANIM_S1_TO_S2)
+			_state = State.Set2
+
 # ------------------------------------------------------------------------------
 # Public Methods
 # ------------------------------------------------------------------------------
@@ -92,15 +103,12 @@ func _Play(anim_name : StringName) -> void:
 # Handler Methods
 # ------------------------------------------------------------------------------
 func _on_screen_entered() -> void:
-	if is_static: return
-	if _state == State.Set1:
-		var prob : float = randf()
-		if prob >= STATE_SWAP_PROBABILITY.x and prob <= STATE_SWAP_PROBABILITY.y:
-			_Play(ANIM_S1_TO_S2)
-			_state = State.Set2
+	_on_screen = true
+	_ProcessForEntered()
 
 func _on_screen_exited() -> void:
-	if _wrc != null and not is_static:
+	_on_screen = false
+	if _wrc != null and not is_static and _player_detected:
 		var action : StringName = _wrc.get_random()
 		var anim_name : StringName = &""
 		if not _fell:
@@ -116,3 +124,13 @@ func _on_screen_exited() -> void:
 		print("Screen Exit Action: ", action)
 		if not anim_name.is_empty():
 			_Play(anim_name)
+
+
+func _on_player_detector_body_entered(body: Node3D) -> void:
+	if body.is_in_group(Game.GROUP_PLAYER):
+		_player_detected = true
+		_ProcessForEntered()
+
+func _on_player_detector_body_exited(body: Node3D) -> void:
+	if body.is_in_group(Game.GROUP_PLAYER):
+		_player_detected = false

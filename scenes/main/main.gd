@@ -70,6 +70,7 @@ func _CloseActiveLevel() -> void:
 	remove_child(_active_level)
 	_active_level.queue_free()
 	_active_level = null
+	_active_level_src = ""
 
 func _HasScene(src : String) -> bool:
 	return src in _loaded_scenes
@@ -152,7 +153,7 @@ func _CreateSceneAsLevel(src : String) -> int:
 		_CloseActiveLevel()
 	
 	lvl.process_mode = Node.PROCESS_MODE_PAUSABLE
-	add_child(lvl)
+	add_child.call_deferred(lvl)
 	
 	_active_level = lvl
 	_active_level_src = src
