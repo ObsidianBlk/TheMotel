@@ -33,15 +33,10 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Text_013": {
-"generate/physics": true,
-"physics/shape_type": 5,
-"primitive/height": 3.965,
-"primitive/position": Vector3(0, 0, -2),
-"primitive/radius": 0.1,
-"primitive/rotation": Vector3(0, 90, 90)
+"PATH:HotelSign": {
+"generate/physics": true
 }
 }
 }
 gltf/naming_version=1
-gltf/embedded_image_handling=1
+gltf/embedded_image_handling=2

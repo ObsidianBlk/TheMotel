@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://beaiplntp6qug"]
+
+[ext_resource type="PackedScene" uid="uid://bblwki22b1u1c" path="res://assets/Models/CoffeeTable.glb" id="1_ihnlk"]
+
+[node name="CoffeeTable" type="Node3D"]
+
+[node name="CoffeeTable" parent="." instance=ExtResource("1_ihnlk")]

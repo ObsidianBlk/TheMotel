@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://beg6m72kwbn07"]
+[gd_scene load_steps=20 format=3 uid="uid://beg6m72kwbn07"]
 
 [ext_resource type="PackedScene" uid="uid://d4avrfo24c0dj" path="res://assets/Models/HotelRoom.glb" id="1_0rpph"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_cq312"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b4fpwo48wbpfn" path="res://assets/Models/HotelDoorsWindowsAndFloor.glb" id="2_ahfc3"]
 [ext_resource type="Material" uid="uid://cpuhgm0mnor4p" path="res://objects/buildings/HotelRoomGlass.material" id="4_7brqj"]
 [ext_resource type="PackedScene" uid="uid://c3buncyi86j0s" path="res://assets/Models/Vanity.glb" id="6_wqa1l"]
+[ext_resource type="PackedScene" uid="uid://dfhrd6skl01dl" path="res://objects/television/television.tscn" id="6_wqtbw"]
 [ext_resource type="PackedScene" uid="uid://der28xp4tlinb" path="res://assets/Models/Toilet.glb" id="7_q44wb"]
 [ext_resource type="PackedScene" uid="uid://weyichuvh831" path="res://assets/Models/NightTable.glb" id="8_k7kdw"]
 [ext_resource type="PackedScene" uid="uid://b88oic4ald48o" path="res://assets/Models/MessyBed.glb" id="9_ikcnp"]
@@ -16,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://crkmr27wjjsfr" path="res://objects/lamp/lamp.tscn" id="14_cbgwg"]
 [ext_resource type="Script" path="res://scripts/node/Region.gd" id="15_jmrhn"]
 [ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="16_qc31d"]
+[ext_resource type="PackedScene" uid="uid://beaiplntp6qug" path="res://objects/tables/coffee_table.tscn" id="18_uplop"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_135k3"]
 size = Vector3(4.96283, 1, 0.570618)
@@ -24,15 +26,20 @@ size = Vector3(4.96283, 1, 0.570618)
 transform = Transform3D(0.971, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 script = ExtResource("1_cq312")
 roof_node = NodePath("HotelRoom/UnitRoof")
+hide_roof = true
 
 [node name="HotelRoom" parent="." instance=ExtResource("1_0rpph")]
 
 [node name="UnitRoof" parent="HotelRoom" instance=ExtResource("2_0yf4e")]
+visible = false
 
 [node name="HotelDoorsWindowsAndFloor" parent="." instance=ExtResource("2_ahfc3")]
 
 [node name="Glass_002LT" parent="HotelDoorsWindowsAndFloor" index="4"]
 surface_material_override/0 = ExtResource("4_7brqj")
+
+[node name="Television" parent="HotelDoorsWindowsAndFloor" instance=ExtResource("6_wqtbw")]
+transform = Transform3D(3.06924e-08, 0, 1, 0, 1, 0, -1.02987, 0, 2.98023e-08, -2.13907, 0, 1.00977)
 
 [node name="Vanity" parent="." instance=ExtResource("6_wqa1l")]
 transform = Transform3D(0.785, 0, 0, 0, 0.785, 0, 0, 0, 0.785, 2.16273, 0, -2.37358)
@@ -75,6 +82,9 @@ shape = SubResource("BoxShape3D_135k3")
 
 [node name="UnitRoofColumn" parent="." instance=ExtResource("16_qc31d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.57467, -0.135014, 4.15888)
+
+[node name="CoffeeTable" parent="." instance=ExtResource("18_uplop")]
+transform = Transform3D(-4.50169e-08, 0, 1, 0, 1, 0, -1.02987, 0, -4.37114e-08, 1.17036, -4.76837e-07, 1.29784)
 
 [editable path="HotelRoom"]
 [editable path="HotelDoorsWindowsAndFloor"]

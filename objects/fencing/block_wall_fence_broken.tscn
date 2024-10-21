@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://e73rluovw3qd"]
+
+[ext_resource type="PackedScene" uid="uid://6q7hjjm804pj" path="res://assets/Models/Block Wall Fencing Broken.glb" id="1_s4sad"]
+[ext_resource type="PackedScene" uid="uid://de2rcbij1ghng" path="res://assets/Models/Block Wall Fencing Column.glb" id="2_e80bh"]
+
+[node name="BlockWallFenceBroken" type="Node3D"]
+
+[node name="Block Wall Fencing Broken" parent="." instance=ExtResource("1_s4sad")]
+
+[node name="Block Wall Fencing Column" parent="." instance=ExtResource("2_e80bh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08319, 0, 0)

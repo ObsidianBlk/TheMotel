@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dt4qwuu8l7tya"]
+[gd_scene load_steps=21 format=3 uid="uid://dt4qwuu8l7tya"]
 
 [ext_resource type="PackedScene" uid="uid://bj0oi8bnhw32v" path="res://assets/Models/MotelRoomFlipped.glb" id="1_3s4u2"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_6vd7o"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="13_b5c8u"]
 [ext_resource type="PackedScene" uid="uid://crkmr27wjjsfr" path="res://objects/lamp/lamp.tscn" id="13_n7med"]
 [ext_resource type="Script" path="res://scripts/node/Region.gd" id="15_e61bh"]
+[ext_resource type="PackedScene" uid="uid://beaiplntp6qug" path="res://objects/tables/coffee_table.tscn" id="16_k13gq"]
+[ext_resource type="PackedScene" uid="uid://dfhrd6skl01dl" path="res://objects/television/television.tscn" id="17_k3nhs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_agrf6"]
 size = Vector3(5.21, 0.115, 5.57)
@@ -92,5 +94,11 @@ ambient_level = 0.1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Region_ModelRoomFlipped"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.525, 0, 0.6125)
 shape = SubResource("BoxShape3D_jhbh3")
+
+[node name="CoffeeTable" parent="." instance=ExtResource("16_k13gq")]
+transform = Transform3D(-4.50169e-08, 0, -1, 0, 1, 0, 1.02987, 0, -4.37114e-08, -0.66062, 0.00249989, 1.18583)
+
+[node name="Television" parent="." instance=ExtResource("17_k3nhs")]
+transform = Transform3D(-4.50169e-08, 0, -1, 0, 1, 0, 1.02987, 0, -4.37114e-08, 2.53247, 0.00249941, 1.13492)
 
 [editable path="MotelRoomFlipped"]

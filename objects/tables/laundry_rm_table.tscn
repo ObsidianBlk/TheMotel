@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhs8vy6tsutk6"]
+
+[ext_resource type="PackedScene" uid="uid://eys0c8h278fb" path="res://assets/Models/LaundryRoomTable.glb" id="1_3rus0"]
+
+[node name="LaundryRmTable" type="Node3D"]
+
+[node name="LaundryRoomTable" parent="." instance=ExtResource("1_3rus0")]

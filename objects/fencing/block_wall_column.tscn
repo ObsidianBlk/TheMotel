@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfix37ylne1ni"]
+
+[ext_resource type="PackedScene" uid="uid://de2rcbij1ghng" path="res://assets/Models/Block Wall Fencing Column.glb" id="1_17vtq"]
+
+[node name="BlockWallColumn" type="Node3D"]
+
+[node name="Block Wall Fencing Column" parent="." instance=ExtResource("1_17vtq")]

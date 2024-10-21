@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckog3t8mbo4mi"]
+
+[ext_resource type="PackedScene" uid="uid://bju5tui4wobxh" path="res://assets/Models/Brochure Rack.glb" id="1_lwylb"]
+
+[node name="BrochureRack" type="Node3D"]
+
+[node name="Brochure Rack2" parent="." instance=ExtResource("1_lwylb")]

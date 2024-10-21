@@ -1,19 +1,7 @@
-[gd_scene format=3 uid="uid://br7bfypdssatm"]
+[gd_scene load_steps=2 format=3 uid="uid://br7bfypdssatm"]
+
+[ext_resource type="PackedScene" uid="uid://b1sb0rs0of8q3" path="res://assets/Models/Reception Counter.glb" id="1_vh26m"]
 
 [node name="ReceptionCounter" type="Node3D"]
 
-[node name="Body" type="CSGCombiner3D" parent="."]
-use_collision = true
-
-[node name="CSGBox3D" type="CSGBox3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-size = Vector3(3, 1.2, 1)
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.1)
-operation = 2
-size = Vector3(2.9, 1.1, 1)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.05)
-size = Vector3(2.9, 0.1, 0.9)
+[node name="Reception Counter" parent="." instance=ExtResource("1_vh26m")]
