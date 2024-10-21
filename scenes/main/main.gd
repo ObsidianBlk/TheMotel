@@ -7,6 +7,8 @@ extends Node
 #const DEFAULT_LEVEL_PATH : String = "res://scenes/test_scene/test_scene.tscn"
 const DEFAULT_LEVEL_PATH : String = "res://scenes/the_motel/the_motel.tscn"
 
+const BACKDROP_SCENE : PackedScene = preload("res://scenes/backdrops/main_backdrop/main_backdrop.tscn")
+
 const DICT_SCENE : StringName = &"scene"
 const DICT_LOADING : StringName = &"loading"
 
@@ -24,6 +26,7 @@ const AUDIO_BUS_AMBIENT : StringName = &"Ambient_Outdoor"
 var _loaded_scenes : Dictionary = {}
 var _active_level : Node3D = null
 var _active_level_src : String = ""
+var _backdrop : Node3D = null
 
 # ------------------------------------------------------------------------------
 # Onready Variables
@@ -42,6 +45,7 @@ func _ready() -> void:
 	_ui.register_action_handler(UIAT.ACTION_QUIT_GAME, _UIQuitGame)
 	_ui.register_action_handler(UIAT.ACtION_RESUME_GAME, _UIResumeGame)
 	_LoadSettings()
+	_AddBackdrop.call_deferred()
 
 func _process(_delta: float) -> void:
 	TRLoad.update_queue()
@@ -64,6 +68,13 @@ func _LoadSettings() -> void:
 	if Settings.load() != OK:
 		Settings.request_reset()
 		Settings.save()
+
+func _AddBackdrop() -> void:
+	if _backdrop == null:
+		var bg : Node3D = BACKDROP_SCENE.instantiate()
+		if bg != null:
+			_backdrop = bg
+		add_child.call_deferred(_backdrop)
 
 func _CloseActiveLevel() -> void:
 	if _active_level == null: return
@@ -151,6 +162,8 @@ func _CreateSceneAsLevel(src : String) -> int:
 	
 	if _active_level != null:
 		_CloseActiveLevel()
+	if _backdrop != null:
+		remove_child(_backdrop)
 	
 	lvl.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child.call_deferred(lvl)
@@ -175,6 +188,10 @@ func _UIQuitGame() -> void:
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_CloseActiveLevel()
+	if _backdrop == null:
+		_AddBackdrop.call_deferred()
+	else:
+		add_child.call_deferred(_backdrop)
 	_ui.close_all_ui()
 	_ui.open_default_ui()
 

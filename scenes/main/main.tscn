@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cjb031s75fq1o"]
+[gd_scene load_steps=9 format=3 uid="uid://cjb031s75fq1o"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_1jvga"]
 [ext_resource type="Script" path="res://scripts/ui/ui_layer.gd" id="2_q6rcc"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cb6d5843yessc" path="res://scenes/ui/options_menu/options_menu.tscn" id="5_appbs"]
 [ext_resource type="PackedScene" uid="uid://bjixbbdp7syis" path="res://scenes/ui/load_screen/load_screen.tscn" id="6_qpc5r"]
 [ext_resource type="Script" path="res://scripts/resources/line_bank.gd" id="7_35op3"]
-[ext_resource type="PackedScene" uid="uid://bxk16wwx7fbxo" path="res://scenes/backdrops/main_backdrop/main_backdrop.tscn" id="8_nnhvb"]
 
 [sub_resource type="Resource" id="Resource_qhrf2"]
 script = ExtResource("7_35op3")
@@ -35,5 +34,3 @@ options_menu = &"OptionsMenu"
 
 [node name="LoadScreen" parent="UI" instance=ExtResource("6_qpc5r")]
 lines = SubResource("Resource_qhrf2")
-
-[node name="MainBackdrop" parent="." instance=ExtResource("8_nnhvb")]
