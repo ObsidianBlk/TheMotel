@@ -1,0 +1,8 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=2 format=3 uid="uid://d2idc485fdjs2"]
+
+[ext_resource type="AudioStream" uid="uid://c6pu6dbuohx1f" path="res://assets/audio/sfx/body_fall/346693__deleted_user_2104797__body-fall_03.wav" id="1_b8e54"]
+
+[resource]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("1_b8e54")

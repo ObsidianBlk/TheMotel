@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://capiwdemgn6sk"]
+[gd_scene load_steps=36 format=3 uid="uid://capiwdemgn6sk"]
 
 [ext_resource type="Script" path="res://scenes/the_motel/the_motel.gd" id="1_ggejn"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="1_oyi4t"]
@@ -20,6 +20,7 @@
 [ext_resource type="Terrain3DStorage" uid="uid://cstfv1gi5we2m" path="res://assets/terrain/terrain_data.res" id="15_rejoo"]
 [ext_resource type="Terrain3DAssets" uid="uid://dr3yv5ygoc6nw" path="res://assets/terrain/terrain_assets.res" id="16_8waf1"]
 [ext_resource type="PackedScene" uid="uid://niq8u11qjaly" path="res://objects/motel_sign/motel_sign.tscn" id="16_et0bv"]
+[ext_resource type="PackedScene" uid="uid://b76qboi1fqnd6" path="res://objects/creepy_clown/creepy_clown.tscn" id="16_yye5m"]
 [ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="21_c6de5"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_l8ybt"]
@@ -589,6 +590,9 @@ shape = SubResource("BoxShape3D_n0ka0")
 
 [node name="ClosedCircuitCamera" parent="Office" instance=ExtResource("15_m2f66")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.65, 2.675, -3.425)
+
+[node name="CreepyClown" parent="Office" instance=ExtResource("16_yye5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -0.5)
 
 [node name="MotelSign" parent="." instance=ExtResource("16_et0bv")]
 transform = Transform3D(0.890062, 0, -0.45584, 0, 1, 0, 0.45584, 0, 0.890062, -11.0448, 0, 0)
