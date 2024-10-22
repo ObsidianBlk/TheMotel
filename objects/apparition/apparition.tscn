@@ -160,16 +160,15 @@ nav_group = &"GhostPath"
 min_distance = 3.0
 
 [node name="Ghost" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.072, 0, 0, 0, 0.072, 0, 0, 0, 0.072, -0.359207, -0.09, 0)
-centered = false
-offset = Vector2(-16, 0)
-pixel_size = 0.03
+transform = Transform3D(0.072, 0, 0, 0, 0.072, 0, 0, 0, 0.072, 0, 0, 0)
+offset = Vector2(0, 350)
+pixel_size = 0.028
 billboard = 2
 shaded = true
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_7a4i6")
 autoplay = "default"
-frame_progress = 0.252146
+frame_progress = 0.685118
 
 [node name="Agent" type="NavigationAgent3D" parent="."]
 

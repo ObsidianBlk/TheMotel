@@ -7,8 +7,6 @@ extends Node
 #const DEFAULT_LEVEL_PATH : String = "res://scenes/test_scene/test_scene.tscn"
 const DEFAULT_LEVEL_PATH : String = "res://scenes/the_motel/the_motel.tscn"
 
-const BACKDROP_SCENE : PackedScene = preload("res://scenes/backdrops/main_backdrop/main_backdrop.tscn")
-
 const DICT_SCENE : StringName = &"scene"
 const DICT_LOADING : StringName = &"loading"
 
@@ -26,7 +24,9 @@ const AUDIO_BUS_AMBIENT : StringName = &"Ambient_Outdoor"
 var _loaded_scenes : Dictionary = {}
 var _active_level : Node3D = null
 var _active_level_src : String = ""
-var _backdrop : Node3D = null
+
+var _backdrop_name : String = ""
+var _backdrop_node : Node3D = null
 
 # ------------------------------------------------------------------------------
 # Onready Variables
@@ -39,13 +39,17 @@ var _backdrop : Node3D = null
 # ------------------------------------------------------------------------------
 func _ready() -> void:
 	get_tree().paused = true
-	Clock24.set_seconds_per_minute(1.0)
+	Clock24.set_seconds_per_minute(0.25)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_APPLICATION, _UIQuitApplication)
 	_ui.register_action_handler(UIAT.ACTION_START_SINGLEPLAYER, _UIStartGame)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_GAME, _UIQuitGame)
 	_ui.register_action_handler(UIAT.ACtION_RESUME_GAME, _UIResumeGame)
+	
+	Game.register_action_handler(UIAT.ACTION_QUIT_GAME, _UIQuitGame) # Yes... this is a cheat of sorts.
+	Game.register_action_handler(Game.ACTION_SHOW_SCREEN, _UIShowScreen)
+	
 	_LoadSettings()
-	_AddBackdrop.call_deferred()
+	_ChangeBackdrop.call_deferred(Game.BACKDROP_MAIN)
 
 func _process(_delta: float) -> void:
 	TRLoad.update_queue()
@@ -69,12 +73,23 @@ func _LoadSettings() -> void:
 		Settings.request_reset()
 		Settings.save()
 
-func _AddBackdrop() -> void:
-	if _backdrop == null:
-		var bg : Node3D = BACKDROP_SCENE.instantiate()
+func _ClearBackdrop() -> void:
+	if _backdrop_node == null: return
+	remove_child(_backdrop_node)
+	_backdrop_node = null
+	_backdrop_name = ""
+
+
+func _ChangeBackdrop(backdrop_name : String) -> void:
+	if Game.has_backdrop_scene(backdrop_name) and backdrop_name != _backdrop_name:
+		_ClearBackdrop()
+		
+		var bg : Node3D = Game.get_backdrop_node(backdrop_name)
 		if bg != null:
-			_backdrop = bg
-		add_child.call_deferred(_backdrop)
+			_backdrop_node = bg
+			_backdrop_name = backdrop_name
+		add_child.call_deferred(_backdrop_node)
+
 
 func _CloseActiveLevel() -> void:
 	if _active_level == null: return
@@ -162,8 +177,7 @@ func _CreateSceneAsLevel(src : String) -> int:
 	
 	if _active_level != null:
 		_CloseActiveLevel()
-	if _backdrop != null:
-		remove_child(_backdrop)
+	_ClearBackdrop()
 	
 	lvl.process_mode = Node.PROCESS_MODE_PAUSABLE
 	add_child.call_deferred(lvl)
@@ -184,16 +198,21 @@ func _CreateSceneAsLevel(src : String) -> int:
 func _UIQuitApplication() -> void:
 	get_tree().quit()
 
-func _UIQuitGame() -> void:
+func _UIQuitGame(exit_screen : StringName = &"", backdrop : String = "") -> void:
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_CloseActiveLevel()
-	if _backdrop == null:
-		_AddBackdrop.call_deferred()
+	
+	if not backdrop.is_empty():
+		_ChangeBackdrop(backdrop)
 	else:
-		add_child.call_deferred(_backdrop)
+		_ChangeBackdrop(Game.BACKDROP_MAIN)
+	
 	_ui.close_all_ui()
-	_ui.open_default_ui()
+	if not exit_screen.is_empty():
+		_ui.open_ui(exit_screen, false, {"exit_action":UIAT.ACTION_QUIT_GAME})
+	else:
+		_ui.open_default_ui()
 
 func _UIStartGame() -> void:
 	get_tree().paused = true
@@ -209,10 +228,15 @@ func _UIStartGame() -> void:
 
 func _UIResumeGame() -> void:
 	if _active_level != null:
+		print("Resuming game!")
 		_ui.close_all_ui()
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		Clock24.enable(true)
 		get_tree().paused = false
+
+func _UIShowScreen(screen_name : StringName) -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_ui.open_ui(screen_name, false, {"exit_action":UIAT.ACtION_RESUME_GAME})
 
 # ------------------------------------------------------------------------------
 # Handler Methods

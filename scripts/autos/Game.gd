@@ -22,6 +22,11 @@ const INV_OBJECT_CLOWN : StringName = &"clown"
 
 const ACTION_FOOTSTEPS : StringName = &"footsteps"
 const ACTION_LIGHTS_CHANGED : StringName = &"lights_changed"
+const ACTION_SHOW_SCREEN : StringName = &"show_screen"
+
+const BDD_SCENE : StringName = &"scene"
+const BDD_INSTANCE : StringName = &"instance"
+const BACKDROP_MAIN : StringName = &"backdrop_main"
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -33,6 +38,13 @@ const ACTION_LIGHTS_CHANGED : StringName = &"lights_changed"
 # ------------------------------------------------------------------------------
 var _registered_actions : Dictionary = {}
 var _player_inventory : Dictionary = {}
+
+var _backdrops : Dictionary = {
+	BACKDROP_MAIN:{
+		BDD_SCENE: preload("res://scenes/backdrops/main_backdrop/main_backdrop.tscn"),
+		BDD_INSTANCE: null
+	}
+}
 
 # ------------------------------------------------------------------------------
 # Onready Variables
@@ -95,6 +107,21 @@ func remove_player_item(item_name : StringName) -> int:
 
 func player_has_item(item_name : StringName) -> bool:
 	return item_name in _player_inventory
+
+func has_backdrop_scene(backdrop_name : String) -> bool:
+	return backdrop_name in _backdrops
+
+func get_backdrop_node(backdrop_name : String) -> Node3D:
+	if backdrop_name in _backdrops:
+		if _backdrops[backdrop_name][BDD_INSTANCE] != null:
+			return _backdrops[backdrop_name][BDD_INSTANCE]
+		if _backdrops[backdrop_name][BDD_SCENE] is PackedScene:
+			var inst : Node = _backdrops[backdrop_name][BDD_SCENE].instantiate()
+			if inst is Node3D:
+				_backdrops[backdrop_name][BDD_INSTANCE] = inst
+				return inst
+	return null
+
 
 # ------------------------------------------------------------------------------
 # Handler Methods

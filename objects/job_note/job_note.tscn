@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnynle845fjog"]
+
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="1_5nrmb"]
+[ext_resource type="Script" path="res://objects/job_note/job_note.gd" id="1_pqovf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mnr03"]
+size = Vector3(0.21, 0.012, 0.26)
+
+[node name="JobNote" type="Node3D"]
+script = ExtResource("1_pqovf")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.005, 0)
+size = Vector3(0.2, 0.01, 0.25)
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("1_5nrmb")
+message = "Read Note"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.006, 0)
+shape = SubResource("BoxShape3D_mnr03")
+
+[connection signal="interacted" from="Interactable" to="." method="interactable"]

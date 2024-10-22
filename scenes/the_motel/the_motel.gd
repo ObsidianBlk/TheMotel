@@ -35,6 +35,7 @@ const GROUP_ROOM_AC : StringName = &"RoomAC"
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
+	Clock24.clock_ticked.connect(_on_clock_tick)
 	_BreakRandomAC()
 	_BreakRandomLamp()
 
@@ -64,6 +65,10 @@ func _BreakRandomAC() -> void:
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
+func _on_clock_tick(hour : int, minutes: int) -> void:
+	if hour == 6:
+		Game.send_action(UIAT.ACTION_QUIT_GAME, [&"OOTScreen"])
+
 func _on_creepy_clown_returned_home() -> void:
 	pass # Replace with function body.
 
