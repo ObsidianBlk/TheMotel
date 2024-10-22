@@ -1,4 +1,4 @@
-extends Level
+extends Node3D
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -8,8 +8,7 @@ extends Level
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
-const GROUP_ROOM_LAMP : StringName = &"RoomLamp"
-const GROUP_ROOM_AC : StringName = &"RoomAC"
+
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -24,6 +23,7 @@ const GROUP_ROOM_AC : StringName = &"RoomAC"
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
+@onready var arrow: CSGCylinder3D = $Arrow
 
 
 # ------------------------------------------------------------------------------
@@ -35,26 +35,12 @@ const GROUP_ROOM_AC : StringName = &"RoomAC"
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
-	_BreakRandomAC()
-	_BreakRandomLamp()
+	arrow.visible = false
 
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
-func _BreakRandomLamp() -> void:
-	var lamps : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_LAMP)
-	lamps = lamps.filter(func(item : Node): return item is Lamp)
-	if lamps.size() > 0:
-		print("Getting random lamp")
-		var idx = randi() % lamps.size()
-		lamps[idx].functional = false
 
-func _BreakRandomAC() -> void:
-	var ac : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_AC)
-	ac = ac.filter(func(item : Node): return item is AirConditioner)
-	if ac.size() > 0:
-		var idx = randi() % ac.size()
-		ac[idx].state = AirConditioner.State.BROKEN
 
 # ------------------------------------------------------------------------------
 # Public Methods
@@ -64,8 +50,3 @@ func _BreakRandomAC() -> void:
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
-func _on_creepy_clown_returned_home() -> void:
-	pass # Replace with function body.
-
-func _on_creepy_clown_transported() -> void:
-	pass # Replace with function body.

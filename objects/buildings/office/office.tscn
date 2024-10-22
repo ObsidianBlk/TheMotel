@@ -25,7 +25,7 @@ roof_node = NodePath("Building/Office_Roof")
 hide_roof = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 1)
 light_color = Color(0.89, 0.838083, 0.801, 1)
 omni_range = 8.0
 
@@ -55,7 +55,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.75, 1.87646, -0.768007)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0531853, 0, 0.0261662)
 
 [node name="FlashlightPickup" parent="Furnishings_MainRoom/ReceptionCounter" instance=ExtResource("7_76v4h")]
-transform = Transform3D(0.818755, -0.0311316, -0.573298, 0.0255015, 0.999515, -0.0178564, 0.573576, 0, 0.819152, 1, 1.1695, 0)
+transform = Transform3D(0.818755, -0.0311316, -0.573298, 0.0255015, 0.999515, -0.0178564, 0.573576, 0, 0.819152, 1, 1.23625, 0)
 
 [node name="RoomDoor" parent="Furnishings_MainRoom" instance=ExtResource("10_o0g6s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.19678, 0, 3.62946)

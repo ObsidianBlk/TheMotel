@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cj6refhsthcxk"]
+
+[ext_resource type="Script" path="res://scripts/node/hitbox.gd" id="1_7wv7j"]
+[ext_resource type="Script" path="res://objects/clown_home/clown_home.gd" id="1_n7sgs"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_ecm44"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kx4gj"]
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o78ag"]
+size = Vector3(1, 0.1, 1)
+
+[node name="ClownHome" type="Node3D"]
+script = ExtResource("1_n7sgs")
+
+[node name="Hitbox" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_7wv7j")
+group = &"ClownHome"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_kx4gj")
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("2_ecm44")
+message = "Put Clown Down"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+shape = SubResource("BoxShape3D_o78ag")
+
+[node name="EditorRef" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
+size = Vector3(1, 0.1, 1)
+
+[connection signal="interacted" from="Interactable" to="." method="interact"]

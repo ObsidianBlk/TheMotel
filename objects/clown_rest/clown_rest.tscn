@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dixslu8qi7x3e"]
+
+[ext_resource type="Script" path="res://objects/clown_rest/clown_rest.gd" id="1_2jirk"]
+
+[node name="ClownRest" type="Node3D" groups=["ClownRest"]]
+script = ExtResource("1_2jirk")
+
+[node name="Arrow" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -0.1, 0, 1, -4.37114e-09, 0, 0, 0.2)
+radius = 0.1
+height = 0.4
+cone = true

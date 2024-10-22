@@ -1,4 +1,4 @@
-extends Level
+extends Node3D
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -8,8 +8,7 @@ extends Level
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
-const GROUP_ROOM_LAMP : StringName = &"RoomLamp"
-const GROUP_ROOM_AC : StringName = &"RoomAC"
+const GROUP_CLOWN : StringName = &"Clown"
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -24,6 +23,8 @@ const GROUP_ROOM_AC : StringName = &"RoomAC"
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
+@onready var _interactable: Interactable = $Interactable
+@onready var _editor_ref: CSGBox3D = $EditorRef
 
 
 # ------------------------------------------------------------------------------
@@ -35,37 +36,34 @@ const GROUP_ROOM_AC : StringName = &"RoomAC"
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
-	_BreakRandomAC()
-	_BreakRandomLamp()
+	Game.player_inventory_item_added.connect(_on_player_item_changed.bind(true))
+	Game.player_inventory_item_removed.connect(_on_player_item_changed.bind(false))
+	_editor_ref.visible = false
+	_on_player_item_changed(Game.INV_OBJECT_CLOWN, Game.player_has_item(Game.INV_OBJECT_CLOWN))
 
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
-func _BreakRandomLamp() -> void:
-	var lamps : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_LAMP)
-	lamps = lamps.filter(func(item : Node): return item is Lamp)
-	if lamps.size() > 0:
-		print("Getting random lamp")
-		var idx = randi() % lamps.size()
-		lamps[idx].functional = false
-
-func _BreakRandomAC() -> void:
-	var ac : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_AC)
-	ac = ac.filter(func(item : Node): return item is AirConditioner)
-	if ac.size() > 0:
-		var idx = randi() % ac.size()
-		ac[idx].state = AirConditioner.State.BROKEN
+func _ReturnClown() -> void:
+	var cl : Array[Node] = get_tree().get_nodes_in_group(GROUP_CLOWN)
+	if cl.size() > 0:
+		if cl[0] is Node3D:
+			cl[0].global_position = global_position
+			cl[0].global_basis = Basis(global_basis)
 
 # ------------------------------------------------------------------------------
 # Public Methods
 # ------------------------------------------------------------------------------
-
+func interact(playload : Dictionary = {}) -> void:
+	if Game.player_has_item(Game.INV_OBJECT_CLOWN):
+		Game.remove_player_item(Game.INV_OBJECT_CLOWN)
+		_ReturnClown()
 
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
-func _on_creepy_clown_returned_home() -> void:
-	pass # Replace with function body.
-
-func _on_creepy_clown_transported() -> void:
-	pass # Replace with function body.
+func _on_player_item_changed(item_name : StringName, item_added : bool) -> void:
+	if item_name == Game.INV_OBJECT_CLOWN:
+		if not item_added:
+			_interactable.show_message(false)
+		_interactable.enabled = item_added

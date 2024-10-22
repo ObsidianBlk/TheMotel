@@ -74,12 +74,15 @@ func _UpdateEnableState() -> void:
 # Handler Methods
 # ------------------------------------------------------------------------------
 func _on_anim_finished(anim_name : StringName) -> void:
-	_can_interact = true
+	if [ANIM_FLASHLIGHT_OUT, ANIM_FLASHLIGHT_AWAY].find(anim_name) >= 0:
+		_can_interact = true
 
 func _on_player_inventory_item_changed(item_name : StringName, item_added : bool) -> void:
 	if item_name == Game.INV_OBJECT_FLASHLIGHT:
 		if not item_added:
 			enabled = false
+		else:
+			_anims.play(ANIM_FLASHLIGHT_OFF)
 		_available = item_added
 		if _flashlight != null:
 			_flashlight.visible = _available

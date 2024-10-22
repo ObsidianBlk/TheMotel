@@ -5,3 +5,11 @@
 [node name="ReceptionCounter" type="Node3D"]
 
 [node name="Reception Counter" parent="." instance=ExtResource("1_vh26m")]
+
+[node name="Cube_001" parent="Reception Counter" index="1"]
+visible = false
+
+[node name="CollisionShape3D" parent="Reception Counter/Cube_001/StaticBody3D" index="0"]
+disabled = true
+
+[editable path="Reception Counter"]

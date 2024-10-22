@@ -50,15 +50,21 @@ func set_message(m : String) -> void:
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
+	_coll_layer = collision_layer
 	_UpdateEnabled()
 
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
 func _UpdateEnabled() -> void:
-	if _coll_layer < 0:
-		_coll_layer = collision_layer
-	collision_layer = _coll_layer if enabled else 0
+	for child : Node in get_children():
+		if child is CollisionShape3D:
+			child.disabled = not enabled
+		elif child is CollisionPolygon3D:
+			child.disabled = not enabled
+	#if _coll_layer < 0:
+		#_coll_layer = collision_layer
+	#collision_layer = _coll_layer if enabled else 0
 
 # ------------------------------------------------------------------------------
 # Public Methods

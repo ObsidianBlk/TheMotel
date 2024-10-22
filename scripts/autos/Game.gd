@@ -18,6 +18,7 @@ enum FootstepType {Asphalt=0, Carpet=1, Wood=2}
 const INV_OBJECT_FLASHLIGHT : StringName = &"flashlight"
 const INV_OBJECT_KEY : StringName = &"room key"
 const INV_OBJECT_BULB : StringName = &"bulb"
+const INV_OBJECT_CLOWN : StringName = &"clown"
 
 const ACTION_FOOTSTEPS : StringName = &"footsteps"
 const ACTION_LIGHTS_CHANGED : StringName = &"lights_changed"
