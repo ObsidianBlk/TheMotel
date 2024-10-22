@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://m0kqgt2v42um"]
+
+[ext_resource type="PackedScene" uid="uid://bb75kj8xd3frn" path="res://assets/Models/waste bin.glb" id="1_o16ni"]
+
+[node name="WasteBasket" type="Node3D"]
+
+[node name="waste bin" parent="." instance=ExtResource("1_o16ni")]

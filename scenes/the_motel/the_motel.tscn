@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cfix37ylne1ni" path="res://objects/fencing/block_wall_column.tscn" id="24_4g4jd"]
 [ext_resource type="PackedScene" uid="uid://e73rluovw3qd" path="res://objects/fencing/block_wall_fence_broken.tscn" id="25_87t2k"]
 [ext_resource type="PackedScene" uid="uid://dixslu8qi7x3e" path="res://objects/clown_rest/clown_rest.tscn" id="26_ve8n4"]
-[ext_resource type="PackedScene" uid="uid://cj6refhsthcxk" path="res://objects/clown_home/clown_home.tscn" id="27_0ginw"]
+[ext_resource type="PackedScene" uid="uid://bnptqt7nfj435" path="res://objects/streetlight/streetlight.tscn" id="27_alhr4"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_l8ybt"]
 noise_type = 3
@@ -129,6 +129,7 @@ dof_blur_far_transition = 10.0
 [sub_resource type="NavigationMesh" id="NavigationMesh_51xjj"]
 vertices = PackedVector3Array(0, 0.525, -7.25, 1.5, 0.525, -7.25, 1.75, 0.525, -8, -0.25, 0.525, -8, 3.75, 0.525, -8, 6, 0.525, -8, 8.25, 0.525, -12, 4, 0.525, -7.25, 5.75, 0.525, -7.25, -1.75, 0.525, -12, -1.75, 0.525, -8, 8.25, 0.525, -8, 10.5, 0.525, -8, 10.75, 0.525, -7.25, 12.5, 0.525, -7.25, 14.25, 0.525, -8, 14.5, 0.525, -7.25, 16.25, 0.525, -7.25, 16.5, 0.525, -8, 12.75, 0.525, -8, 18, 0.525, -12, 18, 0.525, -8, -1.25, 0.525, 14, -0.25, 0.525, 14, 0, 0.525, 13.25, -0.25, 0.525, -6.75, -2.5, 0.525, -6.75, -1.5, 0.525, 13.25, 19.5, 0.525, -3.25, 14.25, 0.525, -6.75, 12.75, 0.525, -6.75, 19.5, 0.525, -1, 10, 0.525, 13.25, 10.25, 0.525, 13.75, 11.75, 0.525, 13.75, 12, 0.525, 13.25, 1.75, 0.525, -6.75, 19.5, 0.525, 2.75, 3.75, 0.525, -6.75, 19.5, 0.525, 13.25, 20, 0.525, 2.5, 20, 0.525, 0.75, 19.5, 0.525, 0.5, 20, 0.525, -1.25, 20, 0.525, -3, 16.5, 0.525, -6.75, 6, 0.525, -6.75, 10.5, 0.525, -6.75, 19.5, 0.525, -6.75, -2.5, 0.525, 13.25, 20.75, 0.525, -1, 20.75, 0.525, -3.25, 20.75, 0.525, 0.5, 20.75, 0.525, 2.75, 25, 0.525, -5, 25, 0.525, 4.5, 20.75, 0.525, 4.5, 20.75, 0.525, -5, 10.25, 0.525, 20.75, 11.75, 0.525, 20.75, 11.75, 0.525, 19.75, 12, 0.525, 18.5, 18, 0.525, 14.5, 13, 0.525, 14.5, 13, 0.525, 18.25, 18, 0.525, 19.25, 12.75, 0.525, 19.25, 0, 0.525, 14.5, -1.25, 0.525, 20.75, 5.25, 0.525, 20.75, 5.25, 0.525, 14.5)
 polygons = [PackedInt32Array(0, 3, 1), PackedInt32Array(1, 3, 2), PackedInt32Array(6, 5, 4), PackedInt32Array(7, 4, 8), PackedInt32Array(8, 4, 5), PackedInt32Array(2, 9, 4), PackedInt32Array(4, 9, 6), PackedInt32Array(3, 10, 9), PackedInt32Array(6, 11, 5), PackedInt32Array(2, 3, 9), PackedInt32Array(13, 12, 14), PackedInt32Array(16, 15, 17), PackedInt32Array(17, 15, 18), PackedInt32Array(14, 12, 19), PackedInt32Array(19, 12, 6), PackedInt32Array(15, 19, 20), PackedInt32Array(20, 19, 6), PackedInt32Array(20, 21, 18), PackedInt32Array(12, 11, 6), PackedInt32Array(20, 18, 15), PackedInt32Array(22, 27, 23), PackedInt32Array(23, 27, 24), PackedInt32Array(24, 27, 25), PackedInt32Array(25, 27, 26), PackedInt32Array(29, 28, 30), PackedInt32Array(30, 28, 31), PackedInt32Array(33, 32, 34), PackedInt32Array(34, 32, 35), PackedInt32Array(1, 36, 0), PackedInt32Array(0, 36, 25), PackedInt32Array(25, 36, 24), PackedInt32Array(38, 37, 36), PackedInt32Array(36, 37, 32), PackedInt32Array(36, 32, 24), PackedInt32Array(37, 39, 35), PackedInt32Array(40, 37, 41), PackedInt32Array(41, 37, 42), PackedInt32Array(43, 31, 44), PackedInt32Array(44, 31, 28), PackedInt32Array(16, 17, 45), PackedInt32Array(13, 14, 30), PackedInt32Array(7, 8, 46), PackedInt32Array(37, 35, 32), PackedInt32Array(42, 37, 47), PackedInt32Array(47, 37, 46), PackedInt32Array(16, 45, 29), PackedInt32Array(29, 45, 28), PackedInt32Array(13, 30, 47), PackedInt32Array(47, 30, 31), PackedInt32Array(47, 31, 42), PackedInt32Array(7, 46, 38), PackedInt32Array(38, 46, 37), PackedInt32Array(45, 48, 28), PackedInt32Array(27, 49, 26), PackedInt32Array(44, 51, 43), PackedInt32Array(43, 51, 50), PackedInt32Array(41, 52, 40), PackedInt32Array(40, 52, 53), PackedInt32Array(54, 50, 51), PackedInt32Array(50, 54, 52), PackedInt32Array(52, 54, 55), PackedInt32Array(55, 56, 53), PackedInt32Array(51, 57, 54), PackedInt32Array(55, 53, 52), PackedInt32Array(60, 59, 58), PackedInt32Array(60, 58, 61), PackedInt32Array(61, 58, 34), PackedInt32Array(34, 58, 33), PackedInt32Array(63, 62, 64), PackedInt32Array(64, 62, 65), PackedInt32Array(65, 66, 64), PackedInt32Array(64, 66, 61), PackedInt32Array(61, 66, 60), PackedInt32Array(23, 67, 22), PackedInt32Array(22, 67, 68), PackedInt32Array(70, 69, 67), PackedInt32Array(67, 69, 68)]
+agent_max_climb = 0.35
 
 [node name="TheMotel" type="Node3D"]
 script = ExtResource("1_ggejn")
@@ -551,7 +552,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
 
 [node name="FPSController" parent="." instance=ExtResource("5_yp6ap")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -8.65255, 0, 7.82334)
+transform = Transform3D(-0.99858, 0, 0.0532772, 0, 1, 0, -0.0532772, 0, -0.99858, -12.0932, 4.76837e-07, 6.76793)
 
 [node name="LaundryRoom" parent="." instance=ExtResource("14_uhq2o")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.5, 0, 17.0082)
@@ -608,10 +609,10 @@ shape = SubResource("BoxShape3D_n0ka0")
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.65, 2.675, -3.425)
 
 [node name="CreepyClown" parent="Office" instance=ExtResource("16_yye5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91771, 1.4293, -0.396763)
 
 [node name="MotelSign" parent="." instance=ExtResource("16_et0bv")]
-transform = Transform3D(-0.670672, 0, -0.741754, 0, 1, 0, 0.741754, 0, -0.670672, -4.0904, 0, 2.91829)
+transform = Transform3D(0.999765, 0, -0.0216744, 0, 1, 0, 0.0216744, 0, 0.999765, -10.853, 0, -1.89777)
 
 [node name="MotelSign2" parent="." instance=ExtResource("16_et0bv")]
 transform = Transform3D(0.542896, 0, -0.8398, 0, 1, 0, 0.8398, 0, 0.542896, -4.0904, 0, 11.9933)
@@ -750,7 +751,7 @@ collision_mask = 4
 size = Vector3(1.25, 1, 2.75)
 
 [node name="Apparition" parent="NavigationRegion3D" instance=ExtResource("21_c6de5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 0, -9.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 0, -9.35963)
 
 [node name="GhostPath" type="Node3D" parent="NavigationRegion3D"]
 
@@ -758,31 +759,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.75, 0, -9.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 0, -10.75)
 
 [node name="GhostPathMarker_02" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -11)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.8327, 0, -11)
 
 [node name="GhostPathMarker_03" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.75, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.75, 0, -3.21589)
 
 [node name="GhostPathMarker_04" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.25, 0, 3.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.7144, -1.06748, 3.75)
 
 [node name="GhostPathMarker_05" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.25, 0, 16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.1102, 0, 16.5)
 
 [node name="GhostPathMarker_06" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.25, 0, 17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9431, 0, 17)
 
 [node name="GhostPathMarker_07" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 14.75)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.75, 0, 15.3399)
 
 [node name="GhostPathMarker_08" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15.5572)
 
 [node name="GhostPathMarker_09" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 12)
 
 [node name="GhostPathMarker_10" type="Marker3D" parent="NavigationRegion3D/GhostPath" groups=["GhostPath"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -6.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.73605, 0, -5.63628)
 
 [node name="Fencing" type="Node3D" parent="."]
 
@@ -947,8 +948,29 @@ transform = Transform3D(-0.0440205, 0, -0.999031, 0, 1, 0, 0.999031, 0, -0.04402
 [node name="ClownRest8" parent="ClownRests" instance=ExtResource("26_ve8n4")]
 transform = Transform3D(0.999974, 0, -0.00715578, 0, 1, 0, 0.00715578, 0, 0.999974, 15.4614, -0.0650153, 21.8609)
 
-[node name="ClownHome" parent="ClownRests" instance=ExtResource("27_0ginw")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.75, 0, 17.975)
+[node name="Streetlight" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(0.0828256, 0, -0.996564, 0, 1, 0, 0.996564, 0, 0.0828256, -12.0346, 0, 3.54362)
+
+[node name="Streetlight2" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(0.22211, 0, -0.975022, 0, 1, 0, 0.975022, 0, 0.22211, -11.4875, -0.066461, 11.3396)
+
+[node name="Streetlight3" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(-0.0515517, 0, 0.99867, 0, 1, 0, -0.99867, 0, -0.0515517, 9.70239, -0.0664582, 21.3315)
+
+[node name="Streetlight4" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(-0.994733, 0, 0.102497, 0, 1, 0, -0.102497, 0, -0.994733, 8.88138, -0.0664582, 15.0389)
+
+[node name="Streetlight5" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(-0.652707, 0, -0.75761, 0, 1, 0, 0.75761, 0, -0.652707, 20.167, -0.0664582, 13.8075)
+
+[node name="Streetlight6" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(0.640244, 0, -0.768172, 0, 1, 0, 0.768172, 0, 0.640244, 20.8992, -0.0664572, -7.03702)
+
+[node name="Streetlight7" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.73007, 0.0249962, 3.68769)
+
+[node name="Streetlight8" parent="." instance=ExtResource("27_alhr4")]
+transform = Transform3D(-0.975265, 0, -0.221038, 0, 1, 0, 0.221038, 0, -0.975265, -3.73007, 0.0249962, 11.4968)
 
 [connection signal="returned_home" from="Office/CreepyClown" to="." method="_on_creepy_clown_returned_home"]
 [connection signal="transported" from="Office/CreepyClown" to="." method="_on_creepy_clown_transported"]

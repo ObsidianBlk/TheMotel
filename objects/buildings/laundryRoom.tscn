@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu4h5lmh88iul"]
+[gd_scene load_steps=13 format=3 uid="uid://bu4h5lmh88iul"]
 
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_japhb"]
 [ext_resource type="PackedScene" uid="uid://vaqbaobs6f2f" path="res://assets/Models/LaundryRoom_Floor.glb" id="2_x4cse"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://xhxg2m2t8cay" path="res://objects/light_bulb_box/light_bulb_box.tscn" id="8_fus5q"]
 [ext_resource type="PackedScene" uid="uid://dhs8vy6tsutk6" path="res://objects/tables/laundry_rm_table.tscn" id="9_dmnuu"]
 [ext_resource type="PackedScene" uid="uid://dqnl832x45pqv" path="res://objects/breaker box/fuse_box.tscn" id="10_c4a2e"]
+[ext_resource type="PackedScene" uid="uid://dixri84qmdp53" path="res://objects/room_door/room_door.tscn" id="11_xpcg2"]
+[ext_resource type="PackedScene" uid="uid://djykeu8q40cda" path="res://objects/ceiling light/ceiling_light.tscn" id="12_18pqt"]
 
 [node name="LaundryRoom" type="Node3D" node_paths=PackedStringArray("roof_node")]
 script = ExtResource("1_japhb")
@@ -51,3 +53,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.64933, 0, -0.0830157)
 
 [node name="FuseBox" parent="." instance=ExtResource("10_c4a2e")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -2.89932, 1.27978, -1.89072)
+
+[node name="RoomDoor" parent="." instance=ExtResource("11_xpcg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.74282, -4.76837e-07, 3.01237)
+open_angle = 2.35619
+
+[node name="RoomDoor2" parent="." instance=ExtResource("11_xpcg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.73924, 0, -0.569299)
+open_angle = 1.57381
+
+[node name="CeilingLight" parent="." instance=ExtResource("12_18pqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0266414, 2.46712, 1.46304)
+
+[node name="CeilingLight2" parent="." instance=ExtResource("12_18pqt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0266414, 2.46712, -1.91075)

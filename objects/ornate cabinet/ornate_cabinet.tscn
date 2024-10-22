@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxsr1du486tsc"]
+
+[ext_resource type="PackedScene" uid="uid://ce42gqxvb8aaj" path="res://assets/Models/ornate cabinet.glb" id="1_u073x"]
+[ext_resource type="PackedScene" uid="uid://cj6refhsthcxk" path="res://objects/clown_home/clown_home.tscn" id="2_1qd3t"]
+
+[node name="OrnateCabinet" type="Node3D"]
+
+[node name="ornate cabinet" parent="." instance=ExtResource("1_u073x")]
+transform = Transform3D(1.385, 0, 0, 0, 1.385, 0, 0, 0, 1.385, 0, 0, 0)
+
+[node name="ClownHome" parent="." instance=ExtResource("2_1qd3t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.238022, 1.42917, -0.0161929)

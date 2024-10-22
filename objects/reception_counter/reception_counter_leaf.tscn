@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp6jkexgjxpkv"]
+
+[ext_resource type="Script" path="res://objects/reception_counter/reception_counter_leaf.gd" id="1_i3h5o"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_pwvhv"]
+[ext_resource type="PackedScene" uid="uid://sciouqh2tl30" path="res://assets/Models/ReceptionCounterLeaf.glb" id="3_wbtb5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_i7hgm"]
+
+[node name="ReceptionCounterLeaf" type="Node3D"]
+script = ExtResource("1_i3h5o")
+
+[node name="ReceptionCounterLeaf" parent="." instance=ExtResource("3_wbtb5")]
+
+[node name="Interactable" type="Area3D" parent="ReceptionCounterLeaf"]
+script = ExtResource("2_pwvhv")
+message = "interact"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ReceptionCounterLeaf/Interactable"]
+shape = SubResource("SphereShape3D_i7hgm")
+
+[connection signal="interacted" from="ReceptionCounterLeaf/Interactable" to="." method="_on_interactable_interacted"]

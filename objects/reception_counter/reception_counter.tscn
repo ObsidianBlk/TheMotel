@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://br7bfypdssatm"]
+[gd_scene load_steps=3 format=3 uid="uid://br7bfypdssatm"]
 
 [ext_resource type="PackedScene" uid="uid://b1sb0rs0of8q3" path="res://assets/Models/Reception Counter.glb" id="1_vh26m"]
+[ext_resource type="PackedScene" uid="uid://sciouqh2tl30" path="res://assets/Models/ReceptionCounterLeaf.glb" id="2_8a2lh"]
 
 [node name="ReceptionCounter" type="Node3D"]
 
@@ -11,5 +12,8 @@ visible = false
 
 [node name="CollisionShape3D" parent="Reception Counter/Cube_001/StaticBody3D" index="0"]
 disabled = true
+
+[node name="ReceptionCounterLeaf" parent="Reception Counter" instance=ExtResource("2_8a2lh")]
+transform = Transform3D(0.999992, -0.00259121, 0.00313919, 0.00258963, 0.999997, 0.00050759, -0.00314049, -0.000499463, 0.999995, -2.51158, 1.24316, 0.77361)
 
 [editable path="Reception Counter"]
