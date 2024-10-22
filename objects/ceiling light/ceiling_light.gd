@@ -1,5 +1,4 @@
-extends Control
-class_name InteractMessage
+extends Node3D
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -9,7 +8,7 @@ class_name InteractMessage
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
-
+const LIGHTS_OFF_MATERIAL : Material = preload("res://assets/materials/light_off.material")
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -17,16 +16,15 @@ class_name InteractMessage
 
 
 # ------------------------------------------------------------------------------
-# Static Variables
+# Variables
 # ------------------------------------------------------------------------------
-static var _instance : InteractMessage = null
+
 
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
-@onready var _label: RichTextLabel = %RichTextLabel
-@onready var _panel: PanelContainer = %PanelContainer
-@onready var _arc: ArcProgress = %ArcProgress
+@onready var _sphere: MeshInstance3D = $"ceiling light interior/Sphere"
+@onready var _light: OmniLight3D = $"ceiling light interior/Light"
 
 
 # ------------------------------------------------------------------------------
@@ -37,13 +35,9 @@ static var _instance : InteractMessage = null
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
-func _enter_tree() -> void:
-	if _instance == null:
-		_instance = self
-
-func _exit_tree() -> void:
-	if _instance == self:
-		_instance = null
+func _ready() -> void:
+	Game.player_inventory_item_added.connect(_on_player_inventory_changed.bind(true))
+	Game.player_inventory_item_removed.connect(_on_player_inventory_changed.bind(false))
 
 # ------------------------------------------------------------------------------
 # Private Methods
@@ -51,42 +45,18 @@ func _exit_tree() -> void:
 
 
 # ------------------------------------------------------------------------------
-# Static Public Methods
-# ------------------------------------------------------------------------------
-static func Set_Message(msg : String) -> void:
-	if _instance != null:
-		_instance.visible = true
-		_instance.set_message(msg)
-
-static func Set_Progress(progress : float) -> void:
-	if _instance != null:
-		_instance.visible = true
-		_instance.set_progress(progress)
-
-static func Hide_Message() -> void:
-	if _instance != null:
-		_instance.visible = false
-
-static func Is_Showing() -> bool:
-	if _instance != null:
-		return _instance.visible
-	return false
-
-# ------------------------------------------------------------------------------
 # Public Methods
 # ------------------------------------------------------------------------------
-func set_message(msg : String) -> void:
-	if _label != null:
-		_arc.visible = false
-		_panel.visible = true
-		_label.text = msg
 
-func set_progress(progress : float) -> void:
-	if _arc != null:
-		_arc.visible = true
-		_panel.visible = false
-		_arc.value = _arc.max_value * progress
 
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
+func _on_player_inventory_changed(item_name : StringName, item_added : bool) -> void:
+	if item_name == Game.INV_OBJECT_POWEROUT:
+		if item_added:
+			_light.visible = false
+			_sphere.set_surface_override_material(1, LIGHTS_OFF_MATERIAL)
+		else:
+			_light.visible = true
+			_sphere.set_surface_override_material(1, null)

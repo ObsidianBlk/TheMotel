@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bnptqt7nfj435"]
+[gd_scene load_steps=3 format=3 uid="uid://bnptqt7nfj435"]
 
+[ext_resource type="Script" path="res://objects/streetlight/streetlight.gd" id="1_jxfu7"]
 [ext_resource type="PackedScene" uid="uid://vvxewm825fg4" path="res://assets/Models/StreetLight.glb" id="1_mgm7i"]
 
 [node name="Streetlight" type="Node3D"]
+script = ExtResource("1_jxfu7")
 
 [node name="StreetLight" parent="." instance=ExtResource("1_mgm7i")]
 
@@ -13,3 +15,5 @@ light_energy = 8.811
 [node name="OmniLight3D" type="OmniLight3D" parent="StreetLight/SpotLight3D"]
 light_color = Color(1, 1, 0.839216, 1)
 light_volumetric_fog_energy = 0.874
+
+[editable path="StreetLight"]

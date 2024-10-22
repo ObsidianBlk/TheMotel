@@ -19,6 +19,7 @@ const INV_OBJECT_FLASHLIGHT : StringName = &"flashlight"
 const INV_OBJECT_KEY : StringName = &"room key"
 const INV_OBJECT_BULB : StringName = &"bulb"
 const INV_OBJECT_CLOWN : StringName = &"clown"
+const INV_OBJECT_POWEROUT : StringName = &"power_out" # This is a late hour hack!!
 
 const ACTION_FOOTSTEPS : StringName = &"footsteps"
 const ACTION_LIGHTS_CHANGED : StringName = &"lights_changed"
@@ -29,6 +30,7 @@ const BDD_INSTANCE : StringName = &"instance"
 
 const BACKDROP_MAIN : StringName = &"backdrop_main"
 const BACKDROP_GHOST : StringName = &"backdrop_ghost"
+const BACKDROP_CLOWN : StringName = &"backdrop_clown"
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -48,6 +50,10 @@ var _backdrops : Dictionary = {
 	},
 	BACKDROP_GHOST:{
 		BDD_SCENE: preload("res://scenes/backdrops/ghost_backdrop/ghost_backdrop.tscn"),
+		BDD_INSTANCE: null
+	},
+	BACKDROP_CLOWN:{
+		BDD_SCENE: preload("res://scenes/backdrops/clown_backdrop/clown_backdrop.tscn"),
 		BDD_INSTANCE: null
 	}
 }

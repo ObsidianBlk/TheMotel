@@ -56,6 +56,9 @@ func set_flicker_noise(n : FastNoiseLite) -> void:
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
+	Game.player_inventory_item_added.connect(_on_player_inventory_changed.bind(true))
+	Game.player_inventory_item_removed.connect(_on_player_inventory_changed.bind(false))
+	
 	_flicker.material = _light_bar.material
 	_UpdateFlickerNoise()
 	_UpdateFlicker()
@@ -63,9 +66,12 @@ func _ready() -> void:
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
+func _Powerout() -> bool:
+	return Game.player_has_item(Game.INV_OBJECT_POWEROUT)
+
 func _UpdateFlicker() -> void:
 	if _flicker == null: return
-	_flicker.enabled = enabled
+	_flicker.enabled = enabled and not _Powerout()
 	_flicker.min_energy = min_energy
 	_flicker.max_energy = max_energy
 
@@ -81,3 +87,5 @@ func _UpdateFlickerNoise() -> void:
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
+func _on_player_inventory_changed(item_name : StringName, item_added : bool) -> void:
+	_UpdateFlicker()

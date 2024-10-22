@@ -1,5 +1,4 @@
-extends Control
-class_name InteractMessage
+extends Node3D
 
 # ------------------------------------------------------------------------------
 # Signals
@@ -9,41 +8,44 @@ class_name InteractMessage
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
 # ------------------------------------------------------------------------------
-
+const FULL_VOLUME_TIME : float = 10.0
 
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
-
+@export var active : bool = false:			set = set_active
 
 # ------------------------------------------------------------------------------
-# Static Variables
+# Variables
 # ------------------------------------------------------------------------------
-static var _instance : InteractMessage = null
+var _volume : float = 0.0
 
 # ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
-@onready var _label: RichTextLabel = %RichTextLabel
-@onready var _panel: PanelContainer = %PanelContainer
-@onready var _arc: ArcProgress = %ArcProgress
+@onready var _asp: AudioStreamPlayer3D = $AudioStreamPlayer3D
 
 
 # ------------------------------------------------------------------------------
 # Setters / Getters
 # ------------------------------------------------------------------------------
-
+func set_active(a : bool) -> void:
+	active = a
 
 # ------------------------------------------------------------------------------
 # Override Methods
 # ------------------------------------------------------------------------------
-func _enter_tree() -> void:
-	if _instance == null:
-		_instance = self
-
-func _exit_tree() -> void:
-	if _instance == self:
-		_instance = null
+func _process(delta: float) -> void:
+	if active:
+		if not is_equal_approx(_volume, FULL_VOLUME_TIME):
+			_volume = clampf(_volume + delta, 0.0, FULL_VOLUME_TIME)
+			_asp.volume_db = linear_to_db(_volume / FULL_VOLUME_TIME)
+			if not _asp.playing:
+				_asp.play()
+	elif _asp.playing:
+		_asp.stop()
+		_asp.volume_db = linear_to_db(0.0)
+		_volume = 0.0
 
 # ------------------------------------------------------------------------------
 # Private Methods
@@ -51,41 +53,9 @@ func _exit_tree() -> void:
 
 
 # ------------------------------------------------------------------------------
-# Static Public Methods
-# ------------------------------------------------------------------------------
-static func Set_Message(msg : String) -> void:
-	if _instance != null:
-		_instance.visible = true
-		_instance.set_message(msg)
-
-static func Set_Progress(progress : float) -> void:
-	if _instance != null:
-		_instance.visible = true
-		_instance.set_progress(progress)
-
-static func Hide_Message() -> void:
-	if _instance != null:
-		_instance.visible = false
-
-static func Is_Showing() -> bool:
-	if _instance != null:
-		return _instance.visible
-	return false
-
-# ------------------------------------------------------------------------------
 # Public Methods
 # ------------------------------------------------------------------------------
-func set_message(msg : String) -> void:
-	if _label != null:
-		_arc.visible = false
-		_panel.visible = true
-		_label.text = msg
 
-func set_progress(progress : float) -> void:
-	if _arc != null:
-		_arc.visible = true
-		_panel.visible = false
-		_arc.value = _arc.max_value * progress
 
 # ------------------------------------------------------------------------------
 # Handler Methods

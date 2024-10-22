@@ -73,9 +73,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action("look_up") or event.is_action("look_down"):
 		_look_input.y = Input.get_axis("look_up", "look_down")
 		_look_input_from_mouse = false
-	elif event.is_action_pressed("interact_a"):
+	elif event.is_action("interact_a") and not event.is_echo():
 		if _interactable != null:
-			_interactable.interact()
+			if event.is_pressed():
+				_interactable.interact()
+				_interactable.interact_long(true)
+			else:
+				_interactable.interact_long(false)
 	elif event.is_action_pressed("interact_b"):
 		_flashlight_handler.enabled = not _flashlight_handler.enabled
 	elif event.is_action_pressed("jump"):

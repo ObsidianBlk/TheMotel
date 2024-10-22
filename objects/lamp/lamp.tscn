@@ -63,5 +63,6 @@ stream = SubResource("AudioStreamRandomizer_g3j6x")
 bus = &"SFX"
 
 [connection signal="interacted" from="Interactable" to="." method="interact"]
+[connection signal="interacted_long" from="Interactable" to="." method="interact_long"]
 
 [editable path="Lamp_Shade"]

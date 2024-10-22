@@ -23,6 +23,7 @@ enum PanelType {NOTE=0, PAPER=1}
 # Variables
 # ------------------------------------------------------------------------------
 var _exit_action : StringName = &""
+var _active : bool = false
 
 # ------------------------------------------------------------------------------
 # Onready Variables
@@ -59,6 +60,12 @@ func _ready() -> void:
 	_UpdateExitText()
 	_UpdatePanelType()
 
+func _input(event: InputEvent) -> void:
+	if not _active: return
+	if event.is_action_pressed("ui_cancel"):
+		_on_btn_exit_pressed()
+		get_viewport().set_input_as_handled()
+
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
@@ -94,9 +101,11 @@ func on_reveal() -> void:
 	_slideout_info.slide_amount = 1.0
 	_slideout_info.slide_in()
 	_btn_exit.grab_focus()
+	_active = true
 	super.on_reveal()
 
 func on_hide() -> void:
+	_active = false
 	_slideout_info.slide_out()
 	await _slideout_info.slide_finished
 	super.on_hide()

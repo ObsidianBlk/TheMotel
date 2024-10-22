@@ -47,3 +47,11 @@ exit_text = "Close Note"
 note = "You ran out of time...
 YOU'RE FIRED!"
 exit_text = "Return to Main"
+
+[node name="ClownScreen" parent="UI" instance=ExtResource("8_pv0yn")]
+note = "When the manager arrived at the Cypress come morning, he wasn't surprised when he didn't find you.
+
+He looked towards the odd looking clown, once more sitting upon it's cabinet and said of you, [i]\"Just another lazy slacker\"[/i]
+
+He did not notice, however, the small speckles on blood on the clown's hands."
+exit_text = "Return to Main"

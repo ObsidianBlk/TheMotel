@@ -186,6 +186,7 @@ func _CreateSceneAsLevel(src : String) -> int:
 	_active_level_src = src
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Clock24.reset()
 	Clock24.enable(true)
 	get_tree().paused = false
 	

@@ -22,6 +22,8 @@ const ANIM_S2_SITTING : StringName = &"SET2_Clown_Sitting"
 const ANIM_S2_SITTING_BELL : StringName = &"SET2_Clown_Sitting_BellTinkle"
 const ANIM_S2_FALL_OVER : StringName = &"SET2_Clown_FallOver"
 
+const ANIM_S4_POSSESSION : StringName = &"SET4_Clown_Possession"
+
 const ACTION_NOTHING : StringName = &"Nothing"
 const ACTION_SIT_UP : StringName = &"SitUp"
 const ACTION_BELL_TINKLE : StringName = &"BellTinkle"
@@ -64,7 +66,8 @@ var _can_jump : bool = false
 # ------------------------------------------------------------------------------
 # Setters / Getters
 # ------------------------------------------------------------------------------
-
+func set_is_static(s : bool) -> void:
+	is_static = s
 
 # ------------------------------------------------------------------------------
 # Override Methods
@@ -72,7 +75,10 @@ var _can_jump : bool = false
 func _ready() -> void:
 	Game.player_inventory_item_added.connect(_on_player_inventory_changed.bind(true))
 	Game.player_inventory_item_removed.connect(_on_player_inventory_changed.bind(false))
-	_Play(ANIM_S1_SITTING)
+	if is_static: # This is a quick hack
+		_Play(ANIM_S4_POSSESSION)
+	else:
+		_Play(ANIM_S1_SITTING)
 	_wrc = WeightedRandomCollection.new()
 	_wrc.add_entry(ACTION_NOTHING, 20)
 	_wrc.add_entry(ACTION_SIT_UP, 10)
@@ -200,3 +206,7 @@ func _on_player_inventory_changed(item_name : StringName, item_added : bool) -> 
 		else:
 			_interactable.enabled = true
 			visible = true
+
+func _on_animation_finished(anim_name: StringName) -> void:
+	if is_static and anim_name == ANIM_S4_POSSESSION:
+		_Play(ANIM_S4_POSSESSION)

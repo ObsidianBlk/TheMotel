@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcudxtf6nokr"]
+[gd_scene load_steps=10 format=3 uid="uid://bcudxtf6nokr"]
 
 [ext_resource type="PackedScene" uid="uid://5seoka587mgg" path="res://assets/Models/AirConditioner.glb" id="1_ppakw"]
 [ext_resource type="Script" path="res://objects/air_conditioner/air_conditioner.gd" id="1_xhy1w"]
 [ext_resource type="PackedScene" uid="uid://bnoicg706gggo" path="res://assets/Models/AirConditionerGreenLight.glb" id="2_eub2y"]
 [ext_resource type="PackedScene" uid="uid://cjsf0esyekjlm" path="res://assets/Models/AirConditionerRedLight.glb" id="3_lcuox"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="5_n4qpt"]
+[ext_resource type="AudioStream" uid="uid://jplmsuxtu3oi" path="res://assets/audio/sfx/air_conditionar/AC_Button_Chime.wav" id="6_e7wi6"]
+[ext_resource type="AudioStream" uid="uid://tcprw614u45c" path="res://assets/audio/sfx/air_conditionar/AC_WhiteNoise.wav" id="7_gkofi"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6lnj4"]
 size = Vector3(0.1, 0.1, 0.1)
@@ -35,14 +37,26 @@ unique_name_in_owner = true
 collision_mask = 0
 script = ExtResource("5_n4qpt")
 enabled = false
+long_press_duration = 3.0
 message = "Fix Unit"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Int_Repair"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.111853, 0.256207)
 shape = SubResource("BoxShape3D_mm4xn")
 
+[node name="ASP_Beep" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_e7wi6")
+bus = &"SFX"
+
+[node name="ASP_WhiteNoise" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_gkofi")
+attenuation_model = 1
+max_db = -14.0
+max_distance = 8.0
+bus = &"SFX"
+
 [connection signal="interacted" from="Int_Power" to="." method="_on_int_power_interacted"]
-[connection signal="interacted" from="Int_Repair" to="." method="_on_int_repair_interacted"]
+[connection signal="interacted_long" from="Int_Repair" to="." method="_on_int_repair_interacted"]
 
 [editable path="AirConditioner"]
 [editable path="AirConditioner/AirConditionerGreenLight"]

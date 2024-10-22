@@ -10,6 +10,8 @@ size = Vector3(0.971191, 0.0795898, 0.862305)
 
 [node name="ReceptionCounter" type="Node3D"]
 script = ExtResource("1_6t0os")
+opened_message = "Close Leaf"
+closed_message = "Open Leaf"
 
 [node name="Reception Counter" parent="." instance=ExtResource("1_vh26m")]
 
@@ -24,10 +26,13 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.51158, 1.24316, 0.77361)
 
 [node name="Interactable" type="Area3D" parent="Reception Counter/ReceptionCounterLeaf"]
+unique_name_in_owner = true
 script = ExtResource("3_2kyh2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Reception Counter/ReceptionCounterLeaf/Interactable"]
 transform = Transform3D(1, 5.6369e-08, 0, -4.28599e-11, 1, 0, 0, -1.38534e-08, 1, -0.44995, -0.0144031, 0.00341821)
 shape = SubResource("BoxShape3D_116i5")
+
+[connection signal="interacted" from="Reception Counter/ReceptionCounterLeaf/Interactable" to="." method="interact"]
 
 [editable path="Reception Counter"]

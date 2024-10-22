@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://djykeu8q40cda"]
+[gd_scene load_steps=3 format=3 uid="uid://djykeu8q40cda"]
 
 [ext_resource type="PackedScene" uid="uid://k3fyvcylrmh" path="res://assets/Models/ceiling light interior.glb" id="1_f73uq"]
+[ext_resource type="Script" path="res://objects/ceiling light/ceiling_light.gd" id="1_uuxqu"]
 
 [node name="CeilingLight" type="Node3D"]
+script = ExtResource("1_uuxqu")
 
 [node name="ceiling light interior" parent="." instance=ExtResource("1_f73uq")]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="ceiling light interior"]
+[node name="Light" type="OmniLight3D" parent="ceiling light interior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.127178, 0)
 light_color = Color(1, 1, 0.819608, 1)
+
+[editable path="ceiling light interior"]

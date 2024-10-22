@@ -1,9 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://capiwdemgn6sk"]
+[gd_scene load_steps=44 format=3 uid="uid://capiwdemgn6sk"]
 
 [ext_resource type="Script" path="res://scenes/the_motel/the_motel.gd" id="1_ggejn"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="1_oyi4t"]
 [ext_resource type="PackedScene" uid="uid://ca4a48vlljlxe" path="res://objects/florecent_red/florecent_red.tscn" id="2_a02ax"]
 [ext_resource type="PackedScene" uid="uid://dixri84qmdp53" path="res://objects/room_door/room_door.tscn" id="2_ja0tx"]
+[ext_resource type="PackedScene" uid="uid://cwvxykn2cobyk" path="res://objects/dark_carnival/dark_carnival.tscn" id="2_we0vb"]
 [ext_resource type="PackedScene" uid="uid://dt4qwuu8l7tya" path="res://objects/buildings/hotel_Room_Flipped.tscn" id="3_hhicw"]
 [ext_resource type="PackedScene" uid="uid://n0382xk60h4n" path="res://objects/sidewalk_square/sidewalk_square_temp.tscn" id="4_s6k41"]
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="5_yp6ap"]
@@ -133,6 +134,20 @@ agent_max_climb = 0.35
 
 [node name="TheMotel" type="Node3D"]
 script = ExtResource("1_ggejn")
+
+[node name="DarkCarnivalGroup" type="Node3D" parent="."]
+
+[node name="DarkCarnival" parent="DarkCarnivalGroup" instance=ExtResource("2_we0vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3, -5.25)
+
+[node name="DarkCarnival2" parent="DarkCarnivalGroup" instance=ExtResource("2_we0vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3, 20.75)
+
+[node name="DarkCarnival3" parent="DarkCarnivalGroup" instance=ExtResource("2_we0vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 3, 20.75)
+
+[node name="DarkCarnival4" parent="DarkCarnivalGroup" instance=ExtResource("2_we0vb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.75, 3, -8.5)
 
 [node name="RoomGroup" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
@@ -552,7 +567,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
 
 [node name="FPSController" parent="." instance=ExtResource("5_yp6ap")]
-transform = Transform3D(-0.99858, 0, 0.0532772, 0, 1, 0, -0.0532772, 0, -0.99858, -12.0932, 4.76837e-07, 6.76793)
+transform = Transform3D(0.545429, 0, 0.838157, 0, 1, 0, -0.838157, 0, 0.545429, -10.8432, 4.76837e-07, 6.76793)
 
 [node name="LaundryRoom" parent="." instance=ExtResource("14_uhq2o")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.5, 0, 17.0082)
@@ -612,10 +627,10 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.65,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91771, 1.4293, -0.396763)
 
 [node name="MotelSign" parent="." instance=ExtResource("16_et0bv")]
-transform = Transform3D(0.999765, 0, -0.0216744, 0, 1, 0, 0.0216744, 0, 0.999765, -10.853, 0, -1.89777)
+transform = Transform3D(0.806528, 0, -0.591196, 0, 1, 0, 0.591196, 0, 0.806528, -4.103, 0, -1.89777)
 
 [node name="MotelSign2" parent="." instance=ExtResource("16_et0bv")]
-transform = Transform3D(0.542896, 0, -0.8398, 0, 1, 0, 0.8398, 0, 0.542896, -4.0904, 0, 11.9933)
+transform = Transform3D(-0.883921, 0, -0.467637, 0, 1, 0, 0.467637, 0, -0.883921, -4.0904, 0, 20.0683)
 
 [node name="Terrain3D" type="Terrain3D" parent="."]
 storage = ExtResource("15_rejoo")
@@ -972,5 +987,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.73007, 0.0249962, 3.68769)
 [node name="Streetlight8" parent="." instance=ExtResource("27_alhr4")]
 transform = Transform3D(-0.975265, 0, -0.221038, 0, 1, 0, 0.221038, 0, -0.975265, -3.73007, 0.0249962, 11.4968)
 
+[connection signal="dark_music_requested" from="." to="DarkCarnivalGroup/DarkCarnival" method="set_active"]
+[connection signal="dark_music_requested" from="." to="DarkCarnivalGroup/DarkCarnival2" method="set_active"]
+[connection signal="dark_music_requested" from="." to="DarkCarnivalGroup/DarkCarnival3" method="set_active"]
+[connection signal="dark_music_requested" from="." to="DarkCarnivalGroup/DarkCarnival4" method="set_active"]
 [connection signal="returned_home" from="Office/CreepyClown" to="." method="_on_creepy_clown_returned_home"]
 [connection signal="transported" from="Office/CreepyClown" to="." method="_on_creepy_clown_transported"]

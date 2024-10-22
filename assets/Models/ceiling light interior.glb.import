@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/ceiling light interior.glb-e8e8ac363198f5a02a
 
 [params]
 
-nodes/root_type="Area3D"
+nodes/root_type="Node3D"
 nodes/root_name=""
 nodes/apply_root_scale=true
 nodes/root_scale=1.0

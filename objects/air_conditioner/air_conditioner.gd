@@ -15,6 +15,7 @@ enum State {FUNCTIONAL=0, BROKEN=1}
 const MATERIAL_EMISSIVE_RED : Material = preload("res://assets/materials/emissive_red.material")
 const MATERIAL_EMISSIVE_GREEN : Material = preload("res://assets/materials/emissive_green.material")
 
+const FULL_VOLUME_TIME : float = 2.0
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -23,11 +24,18 @@ const MATERIAL_EMISSIVE_GREEN : Material = preload("res://assets/materials/emiss
 @export var enabled : bool = false:					set=set_enabled
 
 # ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+var _volume : float = 0.0
+
+# ------------------------------------------------------------------------------
 # Onready Variables
 # ------------------------------------------------------------------------------
 @onready var _green_light: MeshInstance3D = $"AirConditioner/AirConditionerGreenLight/Air ConditionerGreenLight"
 @onready var _red_light: MeshInstance3D = $AirConditioner/AirConditionerRedLight2/AirConditionerRedLight
 @onready var _int_repair: Interactable = %Int_Repair
+@onready var _asp_beep: AudioStreamPlayer3D = $ASP_Beep
+@onready var _asp_white_noise: AudioStreamPlayer3D = $ASP_WhiteNoise
 
 # ------------------------------------------------------------------------------
 # Setters
@@ -46,13 +54,27 @@ func set_enabled(e : bool) -> void:
 # ------------------------------------------------------------------------------
 # Override methods
 # ------------------------------------------------------------------------------
-
+func _process(delta: float) -> void:
+	if enabled and state == State.FUNCTIONAL and not _Powerout():
+		if not is_equal_approx(_volume, FULL_VOLUME_TIME):
+			if not _asp_white_noise.playing:
+				_asp_white_noise.play()
+			_volume = clampf(_volume + delta, 0.0, FULL_VOLUME_TIME)
+			_asp_white_noise.volume_db = linear_to_db(_volume / FULL_VOLUME_TIME)
+	elif not is_equal_approx(_volume, 0.0):
+		_volume = clampf(_volume - delta, 0.0, FULL_VOLUME_TIME)
+		_asp_white_noise.volume_db = linear_to_db(_volume / FULL_VOLUME_TIME)
+		if is_equal_approx(_volume, 0.0):
+			_asp_white_noise.stop()
 
 # ------------------------------------------------------------------------------
 # Private methods
 # ------------------------------------------------------------------------------
+func _Powerout() -> bool:
+	return Game.player_has_item(Game.INV_OBJECT_POWEROUT)
+
 func _UpdateControlLights() -> void:
-	if enabled:
+	if enabled and not _Powerout():
 		match state:
 			State.FUNCTIONAL:
 				if _int_repair != null:
@@ -82,6 +104,8 @@ func _UpdateControlLights() -> void:
 
 func _on_int_power_interacted(payload: Dictionary) -> void:
 	enabled = not enabled
+	if not _asp_beep.playing:
+		_asp_beep.play()
 
 
 func _on_int_repair_interacted(payload: Dictionary) -> void:

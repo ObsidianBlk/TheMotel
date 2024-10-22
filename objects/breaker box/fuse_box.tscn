@@ -1,11 +1,27 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqnl832x45pqv"]
+[gd_scene load_steps=6 format=3 uid="uid://dqnl832x45pqv"]
 
+[ext_resource type="Script" path="res://objects/breaker box/fuse_box.gd" id="1_e72q1"]
 [ext_resource type="PackedScene" uid="uid://b6e76qbidh6h0" path="res://assets/Models/Breakerbox.glb" id="1_png6v"]
 [ext_resource type="PackedScene" uid="uid://bhye62bi7o5lo" path="res://assets/Models/Breakerbox_Handle.glb" id="2_b736y"]
+[ext_resource type="Script" path="res://scripts/node/interactable.gd" id="4_bxtia"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1m6ns"]
+size = Vector3(0.692383, 1, 0.233643)
 
 [node name="FuseBox" type="Node3D"]
+script = ExtResource("1_e72q1")
 
 [node name="Breakerbox" parent="." instance=ExtResource("1_png6v")]
 
 [node name="Breakerbox_Handle" parent="Breakerbox" instance=ExtResource("2_b736y")]
 transform = Transform3D(1, 0, 0, 0, 0.856231, 0.516593, 0, -0.516593, 0.856231, 0.31656, 0.0812025, 0.0534026)
+
+[node name="Interactable" type="Area3D" parent="."]
+script = ExtResource("4_bxtia")
+message = "Toggle Fuse Box"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0209961, 0, 0.126099)
+shape = SubResource("BoxShape3D_1m6ns")
+
+[connection signal="interacted" from="Interactable" to="." method="_on_interactable_interacted"]

@@ -20,6 +20,7 @@ class_name Lamp
 @export_range(0.0, 16.0) var min_energy : float = 1.0:		set = set_min_energy
 @export_range(0.0, 16.0) var max_energy : float = 1.0:		set = set_max_energy
 @export var flicker_noise : FastNoiseLite = null:			set = set_flicker_noise
+@export var fix_duration : float = 1.0:						set = set_fix_duration
 @export_multiline var enabled_message : String = "":		set = set_enabled_message
 @export_multiline var disabled_message : String = "":		set = set_disabled_message
 @export_multiline var broken_bulb_message : String = "":	set = set_broken_bulb_message
@@ -57,7 +58,7 @@ func set_enable(e : bool) -> void:
 		if region != null:
 			region.lights_on = enabled
 		_UpdateFlicker()
-		_PlayClick()
+	_PlayClick()
 
 func set_min_energy(e : float) -> void:
 	if e >= 0.0 and e <= 16.0:
@@ -73,6 +74,10 @@ func set_flicker_noise(n : FastNoiseLite) -> void:
 	if n != flicker_noise:
 		flicker_noise = n
 		_UpdateFlickerNoise()
+
+func set_fix_duration(d : float) -> void:
+	if d >= 0.0:
+		fix_duration = d
 
 func set_enabled_message(m : String) -> void:
 	enabled_message = m
@@ -94,6 +99,8 @@ func set_broken_no_bulb_message(m : String) -> void:
 # Override Methods
 # ------------------------------------------------------------------------------
 func _ready() -> void:
+	Game.player_inventory_item_added.connect(_on_player_inventory_changed)
+	Game.player_inventory_item_removed.connect(_on_player_inventory_changed)
 	_UpdateFlickerNoise()
 	_UpdateFlicker()
 	_UpdateInteractMessage()
@@ -101,9 +108,12 @@ func _ready() -> void:
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
+func _Powerout() -> bool:
+	return Game.player_has_item(Game.INV_OBJECT_POWEROUT)
+
 func _UpdateFlicker() -> void:
 	if _flicker == null: return
-	_flicker.enabled = enabled
+	_flicker.enabled = enabled and not _Powerout()
 	_flicker.min_energy = min_energy
 	_flicker.max_energy = max_energy
 
@@ -115,9 +125,11 @@ func _UpdateInteractMessage() -> void:
 	if _interactable == null: return
 	var msg : String = ""
 	if functional:
+		_interactable.long_press_duration = 0.0
 		msg = enabled_message if enabled else disabled_message
 	else:
 		var player_has : bool = Game.player_has_item(Game.INV_OBJECT_BULB)
+		_interactable.long_press_duration = fix_duration if player_has else 0.0
 		msg = broken_bulb_message if player_has else broken_no_bulb_message
 	_interactable.message = msg
 
@@ -132,10 +144,18 @@ func _PlayClick() -> void:
 func interact(payload : Dictionary = {}) -> void:
 	if functional:
 		enabled = not enabled
-	elif Game.player_has_item(Game.INV_OBJECT_BULB):
+
+func interact_long(payload : Dictionary = {}) -> void:
+	if functional: return
+	if Game.player_has_item(Game.INV_OBJECT_BULB):
 		Game.remove_player_item(Game.INV_OBJECT_BULB)
 		functional = true
 
 # ------------------------------------------------------------------------------
 # Handler Methods
 # ------------------------------------------------------------------------------
+func _on_player_inventory_changed(item_name : StringName) -> void:
+	if item_name == Game.INV_OBJECT_BULB:
+		_UpdateInteractMessage()
+	elif _Powerout():
+		enabled = false
