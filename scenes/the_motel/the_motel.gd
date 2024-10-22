@@ -67,7 +67,7 @@ func _BreakRandomAC() -> void:
 # ------------------------------------------------------------------------------
 func _on_clock_tick(hour : int, minutes: int) -> void:
 	if hour == 6:
-		Game.send_action(UIAT.ACTION_QUIT_GAME, [&"OOTScreen"])
+		Game.send_action(UIAT.ACTION_QUIT_GAME, [&"OOTScreen", Game.BACKDROP_GHOST])
 
 func _on_creepy_clown_returned_home() -> void:
 	pass # Replace with function body.

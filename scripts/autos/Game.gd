@@ -26,7 +26,9 @@ const ACTION_SHOW_SCREEN : StringName = &"show_screen"
 
 const BDD_SCENE : StringName = &"scene"
 const BDD_INSTANCE : StringName = &"instance"
+
 const BACKDROP_MAIN : StringName = &"backdrop_main"
+const BACKDROP_GHOST : StringName = &"backdrop_ghost"
 
 # ------------------------------------------------------------------------------
 # Export Variables
@@ -42,6 +44,10 @@ var _player_inventory : Dictionary = {}
 var _backdrops : Dictionary = {
 	BACKDROP_MAIN:{
 		BDD_SCENE: preload("res://scenes/backdrops/main_backdrop/main_backdrop.tscn"),
+		BDD_INSTANCE: null
+	},
+	BACKDROP_GHOST:{
+		BDD_SCENE: preload("res://scenes/backdrops/ghost_backdrop/ghost_backdrop.tscn"),
 		BDD_INSTANCE: null
 	}
 }

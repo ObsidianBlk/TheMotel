@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdiug6ivcknqn"]
+
+[ext_resource type="PackedScene" uid="uid://bnptqt7nfj435" path="res://objects/streetlight/streetlight.tscn" id="1_7au2k"]
+[ext_resource type="Material" uid="uid://c5av5m4ael85h" path="res://assets/materials/asphalt/asphalt.material" id="2_kb50m"]
+[ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="3_f0530"]
+[ext_resource type="Environment" uid="uid://dj7ttae0c5grh" path="res://scenes/the_motel_environment.tres" id="4_ufpnl"]
+
+[node name="GhostBackdrop" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="." groups=["Player"]]
+transform = Transform3D(-0.207246, -0.2532, 0.944955, -3.86276e-09, 0.965926, 0.258819, -0.978289, 0.0536392, -0.200184, 1.72062, 1.55653, 0.0562298)
+fov = 52.9
+
+[node name="Streetlight" parent="." instance=ExtResource("1_7au2k")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+size = Vector3(100, 0.1, 100)
+material = ExtResource("2_kb50m")
+
+[node name="Apparition" parent="." instance=ExtResource("3_f0530")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36921, 0, 2.29856)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_ufpnl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.860689, -0.509132, 0, 0.509132, 0.860689, 0, 1.73015, 1.66099)
+light_color = Color(0.47788, 0.47788, 0.47788, 1)
+light_energy = 0.1
+directional_shadow_mode = 0
