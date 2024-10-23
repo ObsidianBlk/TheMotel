@@ -12,6 +12,8 @@ const DICT_LOADING : StringName = &"loading"
 
 const AUDIO_BUS_AMBIENT : StringName = &"Ambient_Outdoor"
 
+const SECONDS_PER_CLOCK_MINUTE : float = 2.0
+
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
@@ -39,7 +41,7 @@ var _backdrop_node : Node3D = null
 # ------------------------------------------------------------------------------
 func _ready() -> void:
 	get_tree().paused = true
-	Clock24.set_seconds_per_minute(1.0)
+	Clock24.set_seconds_per_minute(SECONDS_PER_CLOCK_MINUTE)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_APPLICATION, _UIQuitApplication)
 	_ui.register_action_handler(UIAT.ACTION_START_SINGLEPLAYER, _UIStartGame)
 	_ui.register_action_handler(UIAT.ACTION_QUIT_GAME, _UIQuitGame)
