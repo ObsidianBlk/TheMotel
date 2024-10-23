@@ -28,9 +28,11 @@ var _active_option : Control = null
 
 @onready var _btn_gameplay: Button = %BTN_Gameplay
 @onready var _btn_audio: Button = %BTN_Audio
+@onready var _btn_graphics: Button = %BTN_Graphics
 
 @onready var _options_audio: PanelContainer = %OptionsAudio
 @onready var _options_gameplay: PanelContainer = %OptionsGameplay
+@onready var _options_graphics: PanelContainer = %OptionsGraphics
 
 
 
@@ -52,6 +54,7 @@ func _ready() -> void:
 func _HideAll() -> void:
 	_options_audio.visible = false
 	_options_gameplay.visible = false
+	_options_graphics.visible = false
 
 func _InitialOptionGroupReveal() -> void:
 	if _btn_gameplay.button_pressed:
@@ -60,6 +63,8 @@ func _InitialOptionGroupReveal() -> void:
 	elif _btn_audio.button_pressed:
 		_btn_audio.grab_focus()
 		_on_btn_audio_pressed()
+	elif _btn_graphics.button_pressed:
+		_btn_graphics.grab_focus()
 
 func _ChangeActiveOptionGroup(op : Control) -> void:
 	if _active_option != null and _active_option != op:
@@ -104,3 +109,6 @@ func _on_btn_audio_pressed() -> void:
 
 func _on_btn_gameplay_pressed() -> void:
 	_ChangeActiveOptionGroup(_options_gameplay)
+
+func _on_btn_graphics_pressed() -> void:
+	_ChangeActiveOptionGroup(_options_graphics)

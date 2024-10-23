@@ -90,7 +90,6 @@ bones/67/scale = Vector3(0.240214, 0.442967, 0.442967)
 bones/68/position = Vector3(-1.59021e-08, 0.0288082, 0.221665)
 bones/69/position = Vector3(0.0594339, 0.0450758, 0.193036)
 bones/70/position = Vector3(0.113499, 0.0285673, 0.088104)
-bones/70/scale = Vector3(1, 1, 1)
 bones/71/position = Vector3(-0.0494951, 0.0256358, -0.0240247)
 bones/72/position = Vector3(-0.0357328, -0.0341993, -0.00745239)
 bones/72/rotation = Quaternion(0.203288, 0.0813016, 0.426876, 0.877406)
@@ -110,13 +109,11 @@ bones/77/position = Vector3(-1.5687e-08, 0.0147279, 0.0573303)
 bones/77/rotation = Quaternion(0.990026, 2.1867e-07, 1.72458e-07, 0.140882)
 bones/78/position = Vector3(1.04059e-08, 0.149117, -0.00961589)
 bones/78/rotation = Quaternion(-0.516267, 6.00794e-09, -2.46976e-07, 0.856427)
-bones/78/scale = Vector3(1, 1, 1)
 bones/79/position = Vector3(6.22041e-09, 0.0804968, -0.00337201)
 bones/79/rotation = Quaternion(0.636978, -5.81566e-09, 3.01074e-07, -0.770882)
 bones/79/scale = Vector3(1.43221, 1.50018, 1.50018)
 bones/80/position = Vector3(0.0513585, 0.116627, -0.0142865)
 bones/80/rotation = Quaternion(-0.477256, 0.143084, -0.218034, 0.839175)
-bones/80/scale = Vector3(1, 1, 1)
 bones/81/position = Vector3(-0.0513586, 0.116627, -0.0142867)
 bones/81/rotation = Quaternion(-0.477256, -0.143084, 0.218034, 0.839175)
 bones/81/scale = Vector3(1, 1, 1)
@@ -309,6 +306,7 @@ shape = SubResource("CylinderShape3D_2vkr1")
 
 [node name="JumpCheckTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 5.0
 
 [connection signal="animation_finished" from="CreepyClownDoll/AnimationPlayer" to="." method="_on_animation_finished"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier3D" to="." method="_on_screen_entered"]

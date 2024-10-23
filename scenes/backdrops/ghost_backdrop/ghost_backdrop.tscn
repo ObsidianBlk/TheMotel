@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdiug6ivcknqn"]
+[gd_scene load_steps=6 format=3 uid="uid://cdiug6ivcknqn"]
 
 [ext_resource type="PackedScene" uid="uid://bnptqt7nfj435" path="res://objects/streetlight/streetlight.tscn" id="1_7au2k"]
 [ext_resource type="Material" uid="uid://c5av5m4ael85h" path="res://assets/materials/asphalt/asphalt.material" id="2_kb50m"]
+[ext_resource type="Script" path="res://scripts/node/EnvironmentSettings.gd" id="4_dq62x"]
 [ext_resource type="PackedScene" uid="uid://i63u3gfnq3m7" path="res://objects/ghost/ghost.tscn" id="4_pinxl"]
 [ext_resource type="Environment" uid="uid://dj7ttae0c5grh" path="res://scenes/the_motel_environment.tres" id="4_ufpnl"]
 
@@ -25,6 +26,9 @@ transform = Transform3D(1, 0, 0, 0, 0.860689, -0.509132, 0, 0.509132, 0.860689, 
 light_color = Color(0.47788, 0.47788, 0.47788, 1)
 light_energy = 0.1
 directional_shadow_mode = 0
+
+[node name="EnvironmentSettings" type="Node" parent="WorldEnvironment"]
+script = ExtResource("4_dq62x")
 
 [node name="Ghost" parent="." instance=ExtResource("4_pinxl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2)

@@ -184,7 +184,7 @@ func _on_jump_check_timer_timeout() -> void:
 		print("Clown can't jump yet")
 		_can_jump = true
 	elif _on_screen or _player_detected:
-		print("Clown things player can see")
+		print("Clown thinks player can see")
 	else:
 		if randf() < 0.1:
 			print("Clown AWAY!")

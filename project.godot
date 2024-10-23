@@ -95,3 +95,8 @@ look_down={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
 ]
 }
+
+[rendering]
+
+global_illumination/gi/use_half_resolution=true
+global_illumination/sdfgi/frames_to_converge=2

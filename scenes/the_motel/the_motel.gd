@@ -30,6 +30,9 @@ const POWEROUT_WAIT : float = 30.0
 var _clown_active : bool = false
 var _clown_time : float = 0.0
 
+var _broken_lamps : Dictionary = {}
+var _broken_ac : Dictionary = {}
+
 var _wrc : WeightedRandomCollection = null
 var _pow : float = 0.0
 
@@ -49,8 +52,11 @@ var _pow : float = 0.0
 func _ready() -> void:
 	Clock24.clock_ticked.connect(_on_clock_tick)
 	_wrc = WeightedRandomCollection.new()
-	_wrc.add_entry(ACTION_NOTHING, 100)
+	_wrc.add_entry(ACTION_NOTHING, 50)
 	_wrc.add_entry(ACTION_POWEROUT, 10)
+	
+	_ConnectAC()
+	_ConnectLamps()
 	
 	_BreakRandomAC()
 	_BreakRandomLamp()
@@ -78,6 +84,22 @@ func _process(delta: float) -> void:
 # ------------------------------------------------------------------------------
 # Private Methods
 # ------------------------------------------------------------------------------
+func _ConnectLamps() -> void:
+	var lamps : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_LAMP)
+	lamps = lamps.filter(func(item : Node): return item is Lamp)
+	for idx : int in range(lamps.size()):
+		var lamp : Lamp = lamps[idx]
+		if not lamp.functional_changed.is_connected(_on_lamp_functional_changed.bind(idx)):
+			lamp.functional_changed.connect(_on_lamp_functional_changed.bind(idx))
+
+func _ConnectAC() -> void:
+	var acl : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_AC)
+	acl = acl.filter(func(item : Node): return item is AirConditioner)
+	for idx : int in range(acl.size()):
+		var ac : AirConditioner = acl[idx]
+		if not ac.state_changed.is_connected(_on_ac_state_changed.bind(idx)):
+			ac.state_changed.connect(_on_ac_state_changed.bind(idx))
+
 func _BreakRandomLamp() -> void:
 	var lamps : Array[Node] = get_tree().get_nodes_in_group(GROUP_ROOM_LAMP)
 	lamps = lamps.filter(func(item : Node): return item is Lamp)
@@ -103,7 +125,11 @@ func _BreakRandomAC() -> void:
 # ------------------------------------------------------------------------------
 func _on_clock_tick(hour : int, minutes: int) -> void:
 	if hour == 6:
-		Game.send_action(UIAT.ACTION_QUIT_GAME, [&"OOTScreen", Game.BACKDROP_GHOST])
+		var total_broken : int = _broken_ac.size() + _broken_lamps.size()
+		if total_broken > 3:
+			Game.send_action(UIAT.ACTION_QUIT_GAME, [&"OOTScreen", Game.BACKDROP_GHOST])
+		else:
+			Game.send_action(UIAT.ACTION_QUIT_GAME, [&"GoodJobScreen", Game.BACKDROP_GHOST])
 
 func _on_creepy_clown_returned_home() -> void:
 	_clown_active = false
@@ -112,3 +138,17 @@ func _on_creepy_clown_returned_home() -> void:
 func _on_creepy_clown_transported() -> void:
 	_clown_active = true
 	_clown_time = 0.0
+
+func _on_lamp_functional_changed(is_functional : bool, lamp_idx : int) -> void:
+	if not is_functional:
+		_broken_lamps[lamp_idx] = true
+	elif lamp_idx in _broken_lamps:
+		_broken_lamps.erase(lamp_idx)
+	print("Total Broken Lamps: ", _broken_lamps.size())
+
+func _on_ac_state_changed(state : AirConditioner.State, ac_idx : int) -> void:
+	if state == AirConditioner.State.BROKEN:
+		_broken_ac[ac_idx] = true
+	elif ac_idx in _broken_ac:
+		_broken_ac.erase(ac_idx)
+	print("Total Broken AC: ", _broken_ac.size())

@@ -38,14 +38,41 @@ lines = SubResource("Resource_qhrf2")
 
 [node name="NoteScreen" parent="UI" instance=ExtResource("8_pv0yn")]
 panel_type = 1
-note = "Hello there SUCKER!!
+note = "Welcome to the Cypress Motel!
 
-You think you can do this job! Have AT IT!"
+Normally, I'd have rather been on site when you started your shift. Sadly, obligations have kept me from doing so. Thankfully, you're job is pretty simple... keep the motel in working order. You'd be surprised how few people I could find to do this.
+
+Below is a list of things you should keep an eye on during your shift. It's only six hours, so it shouldn't be too bad. I'm sure you'll do better than the last hire, whereevery they disappeared to... anyway...
+ 
+A list of rules to follow. Please take these seriously
+
+1) Make sure all the air conditioning units are in working order. You might want to go into each room, turn them on and let them run. If the light pops red, you'll need to fix them.
+
+2) Check the lamps next to the beds to be sure the lights work in each unit. If you need a new bulb you can find them in the storage room in the back of the laundry room.
+
+3) Leave the clown doll alone! I don't know why everyone I've hired seems to like to move it all over the place... like it's some game or something! LEAVE. IT. BE. If I find that doll anywhere else other than in it's spot on the cabinet when I get there at the end of your shift, you better have the same sense as all of the other ex-employees and make yourself scarse!
+
+4) NO! There are no carnivals, or amusement parks, or anything like that anywhere nearby! I don't know why people keep saying they here carnival music.
+
+5) Sometimes the power goes out. The electricians claim there's nothing wrong with the electrical, but still... If the power goes out, just flip the handle on the fuse box.
+
+Good Luck, your shift ends at 6:00 AM"
 exit_text = "Close Note"
 
 [node name="OOTScreen" parent="UI" instance=ExtResource("8_pv0yn")]
-note = "You ran out of time...
-YOU'RE FIRED!"
+note = "The manager startles you, having been so focused on fixing all of the electrical faults throughout the Cypress. He almost seems to glare down at you.
+
+[i]\"You're still here.\"[/i] he starts with a little huff. [i]\"Yet half my motel is broken. I thought you'd be able to do this simple job. I...\"[/i]
+
+The Manager stops and seems to look over to a nearby corner, as if something were there. After a moment, his attention snaps right back to you, [i]\"Thanks for... whatever you think you did tonight. I will not need your services any longer. I need someone who isn't going to clown around or ghost in the middle of the night!\"[/i]"
+exit_text = "Return to Main"
+
+[node name="GoodJobScreen" parent="UI" instance=ExtResource("8_pv0yn")]
+note = "You see the manager pull into the motel. It's been a long night, but you feel like you kept everything running. Still, you feel nervous as he inspects the place.
+
+After some time, he comes to stand before you, [i]\"I can't tell you how happy I am with your work.\"[/i] he says. [i]\"To be honest, I wouldn't have been surprised to find you gone when I arrived. You've earned your pay!\"[/i]
+
+Walking into the Cypress's office, the manager stops in front of the clown doll [i]\"No more problems from you, I see...\"[/i]"
 exit_text = "Return to Main"
 
 [node name="ClownScreen" parent="UI" instance=ExtResource("8_pv0yn")]

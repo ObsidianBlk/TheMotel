@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dhpx7n1llof51"]
+[gd_scene load_steps=5 format=3 uid="uid://dhpx7n1llof51"]
 
 [ext_resource type="PackedScene" uid="uid://juu0jtiveafj" path="res://objects/buildings/office/office.tscn" id="1_xanhe"]
 [ext_resource type="PackedScene" uid="uid://b76qboi1fqnd6" path="res://objects/creepy_clown/creepy_clown.tscn" id="2_s7nul"]
 [ext_resource type="Environment" uid="uid://dj7ttae0c5grh" path="res://scenes/the_motel_environment.tres" id="3_ag5l1"]
+[ext_resource type="Script" path="res://scripts/node/EnvironmentSettings.gd" id="4_6au17"]
 
 [node name="ClownBackdrop" type="Node3D"]
 
@@ -17,3 +18,6 @@ transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 1.25, 1.5,
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("3_ag5l1")
+
+[node name="EnvironmentSettings" type="Node" parent="WorldEnvironment"]
+script = ExtResource("4_6au17")

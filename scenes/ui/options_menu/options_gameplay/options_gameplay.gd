@@ -77,7 +77,7 @@ func _on_check_invert_y_toggled(toggled_on: bool) -> void:
 
 func _on_slider_sense_x_value_changed(value: float) -> void:
 	_ignore_emit = true
-	MSense.sensitivity_x = value / _slider_sense_x.max_value
+	MSense.sensitivity_x = value / _slider_sense_x.max_valueVolumetricFog2
 
 func _on_slider_sense_y_value_changed(value: float) -> void:
 	_ignore_emit = true

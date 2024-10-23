@@ -117,6 +117,9 @@ func remove_player_item(item_name : StringName) -> int:
 	player_inventory_item_removed.emit(item_name)
 	return OK
 
+func clear_player_items() -> void:
+	_player_inventory.clear()
+
 func player_has_item(item_name : StringName) -> bool:
 	return item_name in _player_inventory
 

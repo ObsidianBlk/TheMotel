@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://capiwdemgn6sk"]
+[gd_scene load_steps=45 format=3 uid="uid://capiwdemgn6sk"]
 
 [ext_resource type="Script" path="res://scenes/the_motel/the_motel.gd" id="1_ggejn"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="1_oyi4t"]
@@ -22,6 +22,7 @@
 [ext_resource type="Terrain3DAssets" uid="uid://dr3yv5ygoc6nw" path="res://assets/terrain/terrain_assets.res" id="16_8waf1"]
 [ext_resource type="PackedScene" uid="uid://niq8u11qjaly" path="res://objects/motel_sign/motel_sign.tscn" id="16_et0bv"]
 [ext_resource type="PackedScene" uid="uid://b76qboi1fqnd6" path="res://objects/creepy_clown/creepy_clown.tscn" id="16_yye5m"]
+[ext_resource type="Script" path="res://scripts/node/EnvironmentSettings.gd" id="21_lqi1r"]
 [ext_resource type="PackedScene" uid="uid://i63u3gfnq3m7" path="res://objects/ghost/ghost.tscn" id="23_8bnaj"]
 [ext_resource type="PackedScene" uid="uid://d0jwxlytw4u8s" path="res://objects/fencing/block_wall_fence.tscn" id="23_tt387"]
 [ext_resource type="PackedScene" uid="uid://cfix37ylne1ni" path="res://objects/fencing/block_wall_column.tscn" id="24_4g4jd"]
@@ -648,6 +649,9 @@ light_energy = 0.1
 light_angular_distance = 2.0
 shadow_enabled = true
 directional_shadow_mode = 0
+
+[node name="EnvironmentSettings" type="Node" parent="WorldEnvironment"]
+script = ExtResource("21_lqi1r")
 
 [node name="Audio_Wind" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_imytu")

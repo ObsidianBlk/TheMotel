@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c0pltjkfm34ca" path="res://assets/Models/Note.glb" id="2_t3033"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mnr03"]
-size = Vector3(0.222187, 0.012, 0.290278)
+size = Vector3(0.23414, 0.025043, 0.317502)
 
 [node name="JobNote" type="Node3D"]
 script = ExtResource("1_pqovf")
@@ -18,7 +18,7 @@ script = ExtResource("1_5nrmb")
 message = "Read Note"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00609375, -0.0116839, 0.0151392)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000117065, -0.00516242, 0.00152706)
 shape = SubResource("BoxShape3D_mnr03")
 
 [connection signal="interacted" from="Interactable" to="." method="interactable"]

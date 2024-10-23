@@ -4,7 +4,7 @@ class_name Lamp
 # ------------------------------------------------------------------------------
 # Signals
 # ------------------------------------------------------------------------------
-
+signal functional_changed(is_functional : bool)
 
 # ------------------------------------------------------------------------------
 # Constants and ENUMs
@@ -49,6 +49,7 @@ func set_functional(f : bool) -> void:
 		if not f:
 			enabled = false
 		functional = f
+		functional_changed.emit(functional)
 		_UpdateInteractMessage()
 
 
@@ -135,6 +136,7 @@ func _UpdateInteractMessage() -> void:
 
 func _PlayClick() -> void:
 	if _audio == null: return
+	if not _audio.is_inside_tree(): return
 	if not _audio.playing:
 		_audio.play()
 

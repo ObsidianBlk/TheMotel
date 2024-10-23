@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxk16wwx7fbxo"]
+[gd_scene load_steps=8 format=3 uid="uid://bxk16wwx7fbxo"]
 
 [ext_resource type="PackedScene" uid="uid://niq8u11qjaly" path="res://objects/motel_sign/motel_sign.tscn" id="3_envnn"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="4_52i66"]
-[ext_resource type="Environment" uid="uid://si7hgxmevvdi" path="res://scenes/the_motel_environment.tres" id="5_jmvrd"]
+[ext_resource type="Script" path="res://scripts/node/EnvironmentSettings.gd" id="5_expv8"]
+[ext_resource type="Environment" uid="uid://dj7ttae0c5grh" path="res://scenes/the_motel_environment.tres" id="5_jmvrd"]
 [ext_resource type="Texture2D" path="res://assets/terrain/aerial_grass_rock/aerial_grass_rock_albedo_ht_256.dds" id="5_ol3t7"]
 [ext_resource type="CameraAttributesPractical" uid="uid://dyfle2cy6uers" path="res://scenes/the_motel_camera_attribs.tres" id="6_eeb7o"]
 
@@ -35,6 +36,9 @@ transform = Transform3D(0.932179, 0.156762, -0.326296, 0, 0.901372, 0.433046, 0.
 light_color = Color(1, 0.83, 0.83, 1)
 light_energy = 0.25
 directional_shadow_mode = 0
+
+[node name="EnvironmentSettings" type="Node" parent="WorldEnvironment"]
+script = ExtResource("5_expv8")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.248596, 0)
