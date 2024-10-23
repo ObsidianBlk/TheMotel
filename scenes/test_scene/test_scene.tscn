@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/test_scene/test_scene.gd" id="1_ue1qn"]
 [ext_resource type="PackedScene" uid="uid://d1ips5dgrr41b" path="res://objects/fps_controller/fps_controller.tscn" id="1_wnr84"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_nl23n"]
-[ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="3_k3734"]
+[ext_resource type="PackedScene" uid="uid://i63u3gfnq3m7" path="res://objects/ghost/ghost.tscn" id="4_bprny"]
 [ext_resource type="PackedScene" uid="uid://beg6m72kwbn07" path="res://objects/buildings/hotel_Room.tscn" id="5_eeed7"]
 [ext_resource type="PackedScene" uid="uid://btdg3sbefp48r" path="res://objects/clock/clock.tscn" id="6_2akxp"]
 [ext_resource type="PackedScene" uid="uid://bey4ape38jid6" path="res://assets/Models/UnitRoofColumn.glb" id="6_wv52y"]
@@ -87,9 +87,8 @@ message = "Hello Bacon"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/CSGCylinder3D/Interactable"]
 shape = SubResource("CylinderShape3D_mgd3h")
 
-[node name="Apparition" parent="NavigationRegion3D" instance=ExtResource("3_k3734")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.25, 0, -25.5)
-always_visible = true
+[node name="Ghost" parent="NavigationRegion3D" instance=ExtResource("4_bprny")]
+max_alpha = 0.8
 
 [node name="GhostPath_01" type="Node3D" parent="." groups=["GhostPath"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.25, 0, 2.25)

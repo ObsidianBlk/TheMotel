@@ -80,7 +80,7 @@ func _BreakRandomAC() -> void:
 # Handler Methods
 # ------------------------------------------------------------------------------
 func _on_clock_tick(hour : int, minutes: int) -> void:
-	if hour == 25: # 25 disables the clock loose state
+	if hour == 3: # 25 disables the clock loose state
 		Game.send_action(UIAT.ACTION_QUIT_GAME, [&"OOTScreen", Game.BACKDROP_GHOST])
 
 func _on_creepy_clown_returned_home() -> void:

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bnptqt7nfj435" path="res://objects/streetlight/streetlight.tscn" id="1_7au2k"]
 [ext_resource type="Material" uid="uid://c5av5m4ael85h" path="res://assets/materials/asphalt/asphalt.material" id="2_kb50m"]
-[ext_resource type="PackedScene" uid="uid://prykewiwfg3x" path="res://objects/apparition/apparition.tscn" id="3_f0530"]
+[ext_resource type="PackedScene" uid="uid://i63u3gfnq3m7" path="res://objects/ghost/ghost.tscn" id="4_pinxl"]
 [ext_resource type="Environment" uid="uid://dj7ttae0c5grh" path="res://scenes/the_motel_environment.tres" id="4_ufpnl"]
 
 [node name="GhostBackdrop" type="Node3D"]
@@ -17,9 +17,6 @@ fov = 52.9
 size = Vector3(100, 0.1, 100)
 material = ExtResource("2_kb50m")
 
-[node name="Apparition" parent="." instance=ExtResource("3_f0530")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.36921, 0, 2.29856)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("4_ufpnl")
 
@@ -28,3 +25,6 @@ transform = Transform3D(1, 0, 0, 0, 0.860689, -0.509132, 0, 0.509132, 0.860689, 
 light_color = Color(0.47788, 0.47788, 0.47788, 1)
 light_energy = 0.1
 directional_shadow_mode = 0
+
+[node name="Ghost" parent="." instance=ExtResource("4_pinxl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 2)
