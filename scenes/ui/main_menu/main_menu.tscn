@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc1arcrryh0rk"]
+[gd_scene load_steps=9 format=3 uid="uid://dc1arcrryh0rk"]
 
 [ext_resource type="Theme" uid="uid://dgxt0xkl1qxl5" path="res://scenes/ui/UI.theme" id="1_fkoqd"]
 [ext_resource type="Script" path="res://scenes/ui/main_menu/main_menu.gd" id="1_tchus"]
 [ext_resource type="Script" path="res://addons/OBSControlLibrary/SlideoutContainer/slide_out_container.gd" id="2_fugu8"]
+[ext_resource type="Texture2D" uid="uid://b0ic2slr26pbo" path="res://assets/coboltgames_logo/CoboltGames_Logo.png" id="4_1apqm"]
+[ext_resource type="Texture2D" uid="uid://jplg6sqqkoxk" path="res://assets/obs_logo/ObsidianLogo_Small.png" id="4_w0e2n"]
+[ext_resource type="Texture2D" uid="uid://bsp7dohjrroxg" path="res://assets/coboltgames_logo/CoboltGames_Logo_Hover.png" id="5_0iosj"]
+[ext_resource type="Texture2D" uid="uid://bcxsmls0n7wyg" path="res://assets/obs_logo/Logo_Open_Small.png" id="5_eqgin"]
+[ext_resource type="Texture2D" uid="uid://d38renkukx5kp" path="res://assets/obs_logo/Logo_Facing_Small.png" id="6_ldu2h"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -54,6 +59,55 @@ text = "Options"
 layout_mode = 2
 text = "Check Out"
 
+[node name="SlideoutLogos" type="Container" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("2_fugu8")
+slide_edge = 2
+slide_duration = 0.5
+
+[node name="MarginContainer" type="MarginContainer" parent="SlideoutLogos"]
+layout_mode = 2
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SlideoutLogos/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SlideoutLogos/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Developers: "
+
+[node name="BTN_CoboltGames" type="TextureButton" parent="SlideoutLogos/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+tooltip_text = "CoboltGames [Itch.io Profile]"
+texture_normal = ExtResource("4_1apqm")
+texture_hover = ExtResource("5_0iosj")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="BTN_ObsidianBlk" type="TextureButton" parent="SlideoutLogos/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+tooltip_text = "ObsidianBlk [Itch.io Profile]"
+texture_normal = ExtResource("4_w0e2n")
+texture_pressed = ExtResource("5_eqgin")
+texture_hover = ExtResource("6_ldu2h")
+ignore_texture_size = true
+stretch_mode = 5
+
 [connection signal="pressed" from="SlideoutMenu/Margins/PanelContainer/VButtons/BTN_StartGame" to="." method="_on_btn_start_game_pressed"]
 [connection signal="pressed" from="SlideoutMenu/Margins/PanelContainer/VButtons/BTN_Options" to="." method="_on_btn_options_pressed"]
 [connection signal="pressed" from="SlideoutMenu/Margins/PanelContainer/VButtons/BTN_Quit" to="." method="_on_btn_quit_pressed"]
+[connection signal="pressed" from="SlideoutLogos/MarginContainer/HBoxContainer/BTN_CoboltGames" to="." method="_on_btn_cobolt_games_pressed"]
+[connection signal="pressed" from="SlideoutLogos/MarginContainer/HBoxContainer/BTN_ObsidianBlk" to="." method="_on_btn_obsidian_blk_pressed"]

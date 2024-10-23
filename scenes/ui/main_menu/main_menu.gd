@@ -1,6 +1,9 @@
 extends UIControl
 
 
+const URL_ITCHIO_OBSIDIANBLK : String = "https://obsidianblk.itch.io/"
+const URL_ITCHIO_COBOLTGAMES : String = "https://coboltgames.itch.io/"
+
 # ------------------------------------------------------------------------------
 # Export Variables
 # ------------------------------------------------------------------------------
@@ -11,6 +14,8 @@ extends UIControl
 # Onready Variables
 # ------------------------------------------------------------------------------
 @onready var _slideout_menu: SlideoutContainer = %SlideoutMenu
+@onready var _slideout_logos: SlideoutContainer = %SlideoutLogos
+
 @onready var _btn_start_game: Button = %BTN_StartGame
 
 
@@ -24,12 +29,15 @@ extends UIControl
 # ------------------------------------------------------------------------------
 func on_reveal() -> void:
 	_slideout_menu.slide_amount = 1.0
+	_slideout_logos.slide_amount = 1.0
 	_slideout_menu.slide_in()
+	_slideout_logos.slide_in()
 	_btn_start_game.grab_focus()
 	super.on_reveal()
 
 func on_hide() -> void:
 	_slideout_menu.slide_out()
+	_slideout_logos.slide_out()
 	await _slideout_menu.slide_finished
 	super.on_hide()
 
@@ -50,3 +58,11 @@ func _on_btn_options_pressed() -> void:
 func _on_btn_quit_pressed() -> void:
 	await pop_ui()
 	request(UIAT.ACTION_QUIT_APPLICATION)
+
+
+func _on_btn_obsidian_blk_pressed() -> void:
+	OS.shell_open(URL_ITCHIO_OBSIDIANBLK)
+
+
+func _on_btn_cobolt_games_pressed() -> void:
+	OS.shell_open(URL_ITCHIO_COBOLTGAMES)

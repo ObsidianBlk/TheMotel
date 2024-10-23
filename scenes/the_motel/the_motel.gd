@@ -75,7 +75,7 @@ func _process(delta: float) -> void:
 	
 	if _clown_active:
 		_clown_time += delta
-		print("Clown Time: ", _clown_time)
+		#print("Clown Time: ", _clown_time)
 		if _clown_time >=CLOWN_MUSIC_TIME:
 			dark_music_requested.emit(true)
 		if _clown_time >= CLOWN_ACTIVE_TIME:
