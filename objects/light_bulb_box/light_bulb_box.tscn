@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://xhxg2m2t8cay"]
+[gd_scene load_steps=5 format=3 uid="uid://xhxg2m2t8cay"]
 
 [ext_resource type="Script" path="res://objects/light_bulb_box/light_bulb_box.gd" id="1_1552p"]
+[ext_resource type="PackedScene" uid="uid://dw2iyy37a6eun" path="res://assets/Models/Cardboard Box.glb" id="2_g3fvl"]
 [ext_resource type="Script" path="res://scripts/node/interactable.gd" id="2_n17i2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pdvpj"]
@@ -9,9 +10,7 @@ size = Vector3(0.25, 0.25, 0.25)
 [node name="LightBulbBox" type="Node3D"]
 script = ExtResource("1_1552p")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-size = Vector3(0.2, 0.2, 0.2)
+[node name="Cardboard Box" parent="." instance=ExtResource("2_g3fvl")]
 
 [node name="Interactable" type="Area3D" parent="."]
 script = ExtResource("2_n17i2")

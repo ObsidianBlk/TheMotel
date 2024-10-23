@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://juu0jtiveafj"]
+[gd_scene load_steps=21 format=3 uid="uid://juu0jtiveafj"]
 
 [ext_resource type="PackedScene" uid="uid://cjoydi4ccpoxo" path="res://assets/Models/Office.glb" id="1_k8mec"]
 [ext_resource type="Script" path="res://objects/buildings/hotel_room.gd" id="1_lm1q1"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bnynle845fjog" path="res://objects/job_note/job_note.tscn" id="9_7oi4w"]
 [ext_resource type="Material" uid="uid://cpuhgm0mnor4p" path="res://objects/buildings/HotelRoomGlass.material" id="9_gkn8b"]
 [ext_resource type="PackedScene" uid="uid://der28xp4tlinb" path="res://assets/Models/Toilet.glb" id="9_p2u5y"]
+[ext_resource type="PackedScene" uid="uid://fq3hb38vlq6w" path="res://objects/office sign/office_sign.tscn" id="10_3qvyl"]
 [ext_resource type="PackedScene" uid="uid://ckog3t8mbo4mi" path="res://objects/brochure rack/brochure_rack.tscn" id="10_e0vgw"]
 [ext_resource type="PackedScene" uid="uid://dixri84qmdp53" path="res://objects/room_door/room_door.tscn" id="10_o0g6s"]
 [ext_resource type="PackedScene" uid="uid://cs7g67tlsld2u" path="res://objects/desk/desk.tscn" id="14_lj70t"]
@@ -58,7 +59,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0531853, 0, 0.0261662)
 transform = Transform3D(0.746755, -0.00717133, 0.66506, 0.0255015, 0.999515, -0.0178564, -0.664609, 0.0302944, 0.746576, 1.0743, 1.23625, 1.04107)
 
 [node name="JobNote" parent="Furnishings_MainRoom/ReceptionCounter" instance=ExtResource("9_7oi4w")]
-transform = Transform3D(0.803098, 0, 0.595846, 0, 1, 0, -0.595846, 0, 0.803098, 1.39687, 1.25718, 1.01142)
+transform = Transform3D(0.803098, 0, 0.595846, 0, 1, 0, -0.595846, 0, 0.803098, 1.39687, 1.27285, 1.01142)
+
+[node name="OfficeSign" parent="Furnishings_MainRoom/ReceptionCounter" instance=ExtResource("10_3qvyl")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.80069, 1.33439, 3.63143)
 
 [node name="RoomDoor" parent="Furnishings_MainRoom" instance=ExtResource("10_o0g6s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.19678, 0, 3.62946)

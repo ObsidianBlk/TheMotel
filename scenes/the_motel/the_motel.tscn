@@ -567,7 +567,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.793, 0, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.763, 0, 0)
 
 [node name="FPSController" parent="." instance=ExtResource("5_yp6ap")]
-transform = Transform3D(0.545429, 0, 0.838157, 0, 1, 0, -0.838157, 0, 0.545429, -10.8432, 4.76837e-07, 6.76793)
+transform = Transform3D(-0.0175393, 0, -0.999846, 0, 1, 0, 0.999846, 0, -0.0175393, -10.8432, 4.76837e-07, 7.24903)
 
 [node name="LaundryRoom" parent="." instance=ExtResource("14_uhq2o")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 15.5, 0, 17.0082)
