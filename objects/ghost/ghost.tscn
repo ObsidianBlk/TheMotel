@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://i63u3gfnq3m7"]
+[gd_scene load_steps=36 format=3 uid="uid://i63u3gfnq3m7"]
 
 [ext_resource type="Script" path="res://objects/ghost/ghost.gd" id="1_cmiod"]
 [ext_resource type="Texture2D" uid="uid://ordw5qljchuh" path="res://assets/Textures/Apparition/0146.png" id="1_v2wex"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cvtsi01x1lo2q" path="res://assets/Textures/Apparition/0250.png" id="27_6hqwr"]
 [ext_resource type="AudioStream" uid="uid://b11btbtgf7oeo" path="res://assets/audio/sfx/bare_footstep.wav" id="29_tnd4f"]
 [ext_resource type="AudioStream" uid="uid://bcn2f4tgwo4l3" path="res://assets/audio/sfx/bare_footstep_02.wav" id="30_ivppg"]
+[ext_resource type="Script" path="res://objects/ghost/mischief.gd" id="31_wpqyh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_p6kep"]
 animations = [{
@@ -183,6 +184,9 @@ libraries = {
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="."]
 visible = false
+
+[node name="Mischief" type="Node3D" parent="."]
+script = ExtResource("31_wpqyh")
 
 [connection signal="navigation_finished" from="Agent" to="." method="_on_agent_navigation_finished"]
 [connection signal="timeout" from="CampTimer" to="." method="_on_camp_timer_timeout"]

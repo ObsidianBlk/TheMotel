@@ -40,6 +40,7 @@ var _lights_out : bool = true
 @onready var _camp_timer: Timer = $CampTimer
 @onready var _asp_footsteps: AudioStreamPlayer3D = $ASP_Footsteps
 @onready var _anim_footsteps: AnimationPlayer = $Anim_Footsteps
+@onready var _mischief: Node3D = $Mischief
 
 
 # ------------------------------------------------------------------------------
@@ -108,6 +109,9 @@ func _FindNewDestination() -> void:
 func _WaitAtTarget() -> void:
 	_need_dest = true
 	_wait = true
+	if randf() < 0.5:
+		print("Ghost Mischief")
+		_mischief.trigger()
 	_camp_timer.start(randf_range(WAIT_TIME_MIN, WAIT_TIME_MAX))
 
 func _AlphaFromDistance(from : Vector3, to : Vector3) -> float:
